@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.text.ParseException;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.DefaultFormatterFactory;
@@ -224,10 +222,8 @@ public class AgendarCita extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgendarCita().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AgendarCita().setVisible(true);
         });
     }
 
