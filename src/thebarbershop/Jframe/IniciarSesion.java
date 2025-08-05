@@ -4,6 +4,8 @@
  */
 package thebarbershop.Jframe;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jaelj
@@ -135,8 +137,9 @@ public class IniciarSesion extends javax.swing.JFrame {
         String password = new String(jPasswordField1.getPassword());
         // Validar que los campos no están vacíos
         if (email.isEmpty()) {
-            System.out.println("El email es obligatorio");
+            JOptionPane.showMessageDialog(this, "El email es obligatorio");
             return;
+            
         }
 
         if (password.isEmpty()) {
@@ -157,7 +160,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         }
 
         // Si pasa todas las validaciones, ir al menú
-        System.out.println("Login exitoso para: " + email);
+//        System.out.println("Login exitoso para: " + email);
         this.dispose();
         new MenuCliente().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
