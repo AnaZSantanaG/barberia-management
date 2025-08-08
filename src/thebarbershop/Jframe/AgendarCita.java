@@ -23,11 +23,11 @@ public class AgendarCita extends javax.swing.JFrame {
     }
     
     private void configurarFormulario() {
-    // Usuario actual logueado: Jaeljc
-    jLabel2.setText("Cliente: "); // Verifica el nombre real del JLabel
+    // Usuario actual logueado: null
+    
     
     // Fecha actual: 2025-07-28 (convertir a formato dd/MM/yyyy)
-    String fechaActual = "28/07/2025";
+    String fechaActual = "null";
     
     // Configurar JFormattedTextField fecha
     try {
@@ -72,8 +72,8 @@ public class AgendarCita extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel9 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(3).png"))); // NOI18N
 
@@ -212,13 +212,10 @@ public class AgendarCita extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Lugar de Cita:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 140, 20));
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagenn(1).jpg"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 140, 30));
-        jLabel2.getAccessibleContext().setAccessibleName("NombreUsuario");
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
         jPanel1.getAccessibleContext().setAccessibleName("");
@@ -295,6 +292,7 @@ public class AgendarCita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -303,7 +301,6 @@ public class AgendarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

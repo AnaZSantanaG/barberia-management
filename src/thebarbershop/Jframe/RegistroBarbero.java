@@ -4,6 +4,8 @@
  */
 package thebarbershop.Jframe;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jaelj
@@ -28,25 +30,25 @@ public class RegistroBarbero extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jMenu1 = new javax.swing.JMenu();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        JLtitleRegistroBarbe = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
+        JTnombre = new javax.swing.JTextField();
+        JLemail = new javax.swing.JLabel();
+        JTemail = new javax.swing.JTextField();
+        JLtelefono = new javax.swing.JLabel();
+        JFtelefono = new javax.swing.JFormattedTextField();
+        JLtipouser = new javax.swing.JLabel();
+        Cliente = new javax.swing.JRadioButton();
+        Barbero = new javax.swing.JRadioButton();
+        JLciudad = new javax.swing.JLabel();
+        JcomboCiudad = new javax.swing.JComboBox<>();
+        JLexperiencia = new javax.swing.JLabel();
+        JcomboExperiencia = new javax.swing.JComboBox<>();
+        JLcontraseña = new javax.swing.JLabel();
+        JPcontraseña = new javax.swing.JPasswordField();
+        JPRegistrarse = new javax.swing.JButton();
+        JPvolver = new javax.swing.JButton();
+        JLfondo = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -55,226 +57,253 @@ public class RegistroBarbero extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registro de Barbero");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 450, 50));
+        JLtitleRegistroBarbe.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
+        JLtitleRegistroBarbe.setForeground(new java.awt.Color(255, 255, 255));
+        JLtitleRegistroBarbe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLtitleRegistroBarbe.setText("Registro de Barbero");
+        getContentPane().add(JLtitleRegistroBarbe, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 640, 50));
 
-        jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Tipo de Usuario:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, 30));
+        Nombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        Nombre.setForeground(new java.awt.Color(255, 255, 255));
+        Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Nombre.setText("Nombre:");
+        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Usuario");
-        jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        JTnombre.setBackground(new java.awt.Color(204, 204, 204));
+        JTnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTnombre.setForeground(new java.awt.Color(0, 0, 0));
+        JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTnombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JTnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                JTnombreActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 80, 30));
+        getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 270, 50));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Barbero");
-        jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        JLemail.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLemail.setForeground(new java.awt.Color(255, 255, 255));
+        JLemail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLemail.setText("Email:");
+        getContentPane().add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 110, 30));
+
+        JTemail.setBackground(new java.awt.Color(204, 204, 204));
+        JTemail.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTemail.setForeground(new java.awt.Color(0, 0, 0));
+        JTemail.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JTemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                JTemailActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 100, 30));
+        getContentPane().add(JTemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 270, 50));
 
-        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nombre:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 110, 30));
+        JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
+        JLtelefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLtelefono.setText("Telefono:");
+        getContentPane().add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 110, 30));
 
-        jTextField5.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 270, 50));
-
-        jTextField7.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 270, 50));
-
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 190, 40));
-
-        jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Ciudad:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 90, 30));
-
-        jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Contraseña:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, 30));
-
-        jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Telefono:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 110, 30));
-
-        jLabel7.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Experiencia:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 130, 30));
-
-        jLabel9.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Email:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, 30));
-
-        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 270, 50));
-
-        jFormattedTextField1.setBackground(new java.awt.Color(102, 102, 102));
+        JFtelefono.setBackground(new java.awt.Color(204, 204, 204));
+        JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
+            JFtelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 270, 50));
+        getContentPane().add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 270, 50));
 
-        jPasswordField1.setBackground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 270, 50));
+        JLtipouser.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLtipouser.setForeground(new java.awt.Color(255, 255, 255));
+        JLtipouser.setText("Tipo de Usuario:");
+        getContentPane().add(JLtipouser, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, 30));
 
-        jComboBox2.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 270, 50));
-
-        jButton1.setBackground(new java.awt.Color(13, 73, 11));
-        jButton1.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrarse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Cliente);
+        Cliente.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        Cliente.setForeground(new java.awt.Color(255, 255, 255));
+        Cliente.setText("Usuario");
+        Cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Cliente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 190, 40));
+        getContentPane().add(Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 80, 30));
 
-        jLabel8.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
+        buttonGroup1.add(Barbero);
+        Barbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        Barbero.setForeground(new java.awt.Color(255, 255, 255));
+        Barbero.setSelected(true);
+        Barbero.setText("Barbero");
+        Barbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Barbero.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        Barbero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BarberoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Barbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 90, 30));
+
+        JLciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLciudad.setForeground(new java.awt.Color(255, 255, 255));
+        JLciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLciudad.setText("Ciudad:");
+        getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 90, 30));
+
+        JcomboCiudad.setBackground(new java.awt.Color(0, 0, 0));
+        JcomboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JcomboCiudad.setForeground(new java.awt.Color(255, 255, 255));
+        JcomboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "Santo Domingo", "Santiago", "San Cristobal", "San Pedro de Macoris" }));
+        JcomboCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JcomboCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcomboCiudadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JcomboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 270, 50));
+
+        JLexperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLexperiencia.setForeground(new java.awt.Color(255, 255, 255));
+        JLexperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLexperiencia.setText("Experiencia:");
+        getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 130, 30));
+
+        JcomboExperiencia.setBackground(new java.awt.Color(0, 0, 0));
+        JcomboExperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JcomboExperiencia.setForeground(new java.awt.Color(255, 255, 255));
+        JcomboExperiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "1 - 6 MESES", "6 - 12 MESES", "1 - 2 AÑOS", "2 - 4 AÑOS", "4 - 8 AÑOS", "8 o MÁS" }));
+        JcomboExperiencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 270, 50));
+
+        JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcontraseña.setForeground(new java.awt.Color(255, 255, 255));
+        JLcontraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLcontraseña.setText("Contraseña:");
+        getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, 30));
+
+        JPcontraseña.setBackground(new java.awt.Color(204, 204, 204));
+        JPcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
+        JPcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JPcontraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 270, 50));
+
+        JPRegistrarse.setBackground(new java.awt.Color(13, 73, 11));
+        JPRegistrarse.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        JPRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
+        JPRegistrarse.setText("Registrarse");
+        JPRegistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JPRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JPRegistrarseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JPRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 40));
+
+        JPvolver.setBackground(new java.awt.Color(255, 255, 255));
+        JPvolver.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        JPvolver.setForeground(new java.awt.Color(0, 0, 0));
+        JPvolver.setText("Volver");
+        JPvolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JPvolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JPvolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JPvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, -1, -1));
+
+        JLfondo.setBackground(new java.awt.Color(102, 102, 102));
+        JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
+        JLfondo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
         this.dispose();
         new RegistroCliente().setVisible(true);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_ClienteActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void JTemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTemailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_JTemailActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void BarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarberoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_BarberoActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void JTnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTnombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_JTnombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void JPRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPRegistrarseActionPerformed
         
-        String nombre = jTextField5.getText();
+       String nombre = JTnombre.getText();
             if (nombre.isEmpty()) {
-                System.out.println("El nombre es obligatorio");
+                JOptionPane.showMessageDialog(this, "El nombre es obligatorio");
             return;
         }
  
-        String email = jTextField7.getText();
+        String email = JTemail.getText();
             if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-                System.out.println("Ingrese un email válido");
+                JOptionPane.showMessageDialog(this, "Ingrese un email valido");
             return;
         }
         
-        String ciudad = (String) jComboBox1.getSelectedItem();
+        String ciudad = (String) JcomboCiudad.getSelectedItem();
             if (ciudad == null || ciudad.equals("Seleccione....")) {
-                System.out.println("Seleccione una ciudad");
+                JOptionPane.showMessageDialog(this, "Seleccione una ciudad");
             return;
         }
         
-        String telefono = jFormattedTextField1.getText();
+        String telefono = JFtelefono.getText();
             if (telefono.isEmpty() || telefono.replace("(", "").replace(")", "").replace(" ", "").replace("-", "").length() < 10) {
-                System.out.println("Complete el teléfono");
+                JOptionPane.showMessageDialog(this, "Debe agregar un telefono");
             return;
         }
         
-        String password = new String(jPasswordField1.getPassword());
+        String password = new String(JPcontraseña.getPassword());
             if (password.isEmpty()) {
-                System.out.println("La contraseña es obligatoria");
+                JOptionPane.showMessageDialog(this, "La contraseña es obligatoria");
             return;
             }else if(password.length() < 8){
-               System.out.println("Minimo 8 caracteres");
+               JOptionPane.showMessageDialog(this, "Minimo 8 caracteres");
                return;
             }
     
             // Determinar tipo de usuario
             String tipoUsuario;
-            if (jRadioButton2.isSelected()) {
-                tipoUsuario = "Barbero";
-             } else if (jRadioButton1.isSelected()) {
+            if (Cliente.isSelected()) {
                 tipoUsuario = "Cliente";
+             } else if (Barbero.isSelected()) {
+                tipoUsuario = "Barbero";
          } else {
-         System.out.println("Seleccione tipo de usuario");
+         JOptionPane.showMessageDialog(this, "Seleccione un tipo de usuario");
          return;
         }
     
         // Validar campos
         if (nombre.isEmpty() || email.isEmpty() || ciudad.equals("Seleccione....") || telefono.isEmpty() || password.isEmpty()) {
-         System.out.println("Complete todos los campos");
+         JOptionPane.showMessageDialog(this, "Complete todos los campos");
         return;
         }  
         
-            // Por ahora, solo ir al login
+            // 
             this.dispose();
-            new IniciarSesion().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+            new MenuBarbero().setVisible(true);
+    }//GEN-LAST:event_JPRegistrarseActionPerformed
 
     //Boton de volver, hara que vuelva a IniciarSesion
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void JPvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPvolverActionPerformed
       this.dispose();
       new IniciarSesion().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_JPvolverActionPerformed
+
+    private void JcomboCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcomboCiudadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,26 +341,26 @@ public class RegistroBarbero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Barbero;
+    private javax.swing.JRadioButton Cliente;
+    private javax.swing.JFormattedTextField JFtelefono;
+    private javax.swing.JLabel JLciudad;
+    private javax.swing.JLabel JLcontraseña;
+    private javax.swing.JLabel JLemail;
+    private javax.swing.JLabel JLexperiencia;
+    private javax.swing.JLabel JLfondo;
+    private javax.swing.JLabel JLtelefono;
+    private javax.swing.JLabel JLtipouser;
+    private javax.swing.JLabel JLtitleRegistroBarbe;
+    private javax.swing.JButton JPRegistrarse;
+    private javax.swing.JPasswordField JPcontraseña;
+    private javax.swing.JButton JPvolver;
+    private javax.swing.JTextField JTemail;
+    private javax.swing.JTextField JTnombre;
+    private javax.swing.JComboBox<String> JcomboCiudad;
+    private javax.swing.JComboBox<String> JcomboExperiencia;
+    private javax.swing.JLabel Nombre;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

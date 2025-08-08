@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -29,34 +28,81 @@ public class IniciarSesion extends javax.swing.JFrame {
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        lblRegistrate = new javax.swing.JLabel();
-        btnEntrar = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
-        lblUsuario = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        JPprincipal = new javax.swing.JPanel();
+        JLiconoBarberia = new javax.swing.JLabel();
+        JLTitleIniciarsesion = new javax.swing.JLabel();
+        JLcorreo = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        JScorreo = new javax.swing.JSeparator();
+        JLcontraseña = new javax.swing.JLabel();
+        JPcontraseña = new javax.swing.JPasswordField();
         sprContrasena = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
+        btnEntrar = new javax.swing.JButton();
+        lblRegistrate = new javax.swing.JLabel();
+        JLimagenBarberia = new javax.swing.JLabel();
+        JLempresa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheBarberShop - Iniciar Sesion");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JPprincipal.setBackground(new java.awt.Color(255, 255, 255));
+        JPprincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("INICIA SESIÓN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 30));
+        JLiconoBarberia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLiconoBarberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
+        JPprincipal.add(JLiconoBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 70, 70));
+        JLiconoBarberia.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen3(1).jpg"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 500));
+        JLTitleIniciarsesion.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
+        JLTitleIniciarsesion.setForeground(new java.awt.Color(0, 0, 0));
+        JLTitleIniciarsesion.setText("INICIA SESIÓN");
+        JPprincipal.add(JLTitleIniciarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 30));
+
+        JLcorreo.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JLcorreo.setForeground(new java.awt.Color(0, 0, 0));
+        JLcorreo.setText("Correo");
+        JPprincipal.add(JLcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+
+        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCorreo.setBorder(null);
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+        JPprincipal.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 490, 30));
+        JPprincipal.add(JScorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 510, 20));
+
+        JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JLcontraseña.setForeground(new java.awt.Color(0, 0, 0));
+        JLcontraseña.setText("CONTRASEÑA");
+        JPprincipal.add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 20));
+
+        JPcontraseña.setBackground(new java.awt.Color(255, 255, 255));
+        JPcontraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JPcontraseña.setToolTipText("");
+        JPcontraseña.setBorder(null);
+        JPcontraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JPcontraseñaActionPerformed(evt);
+            }
+        });
+        JPprincipal.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 490, 30));
+        JPprincipal.add(sprContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 510, 20));
+
+        btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEntrar.setText("ENTRAR");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+        JPprincipal.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 40));
 
         lblRegistrate.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
         lblRegistrate.setForeground(new java.awt.Color(0, 102, 204));
@@ -68,73 +114,35 @@ public class IniciarSesion extends javax.swing.JFrame {
                 lblRegistrateMouseClicked(evt);
             }
         });
-        jPanel1.add(lblRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, -1, 40));
+        JPprincipal.add(lblRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, -1, 40));
 
-        btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
-        btnEntrar.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        btnEntrar.setForeground(new java.awt.Color(0, 0, 0));
-        btnEntrar.setText("ENTRAR");
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, 40));
+        JLimagenBarberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen3(1).jpg"))); // NOI18N
+        JPprincipal.add(JLimagenBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 500));
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setToolTipText("");
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 490, 30));
+        JLempresa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JLempresa.setForeground(new java.awt.Color(0, 0, 0));
+        JLempresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLempresa.setText("© Propiedad de Ancharja Studios ");
+        JPprincipal.add(JLempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 290, 20));
 
-        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("CONTRASEÑA");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 20));
-
-        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setBorder(null);
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 490, 30));
-
-        lblUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        lblUsuario.setText("USUARIO");
-        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 70));
-        jLabel6.getAccessibleContext().setAccessibleDescription("");
-
-        jPanel1.add(sprContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 490, 20));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 490, 20));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
-        jPanel1.getAccessibleContext().setAccessibleName("");
+        getContentPane().add(JPprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
+        JPprincipal.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void JPcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPcontraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_JPcontraseñaActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
-        String email = txtUsuario.getText();
-        String password = new String(jPasswordField1.getPassword());
+      
+        String email = txtCorreo.getText();
+        String password = new String(JPcontraseña.getPassword());
         // Validar que los campos no están vacíos
         if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El email es obligatorio");
@@ -143,19 +151,19 @@ public class IniciarSesion extends javax.swing.JFrame {
         }
 
         if (password.isEmpty()) {
-            System.out.println("La contraseña es obligatoria");
+            JOptionPane.showMessageDialog(this, "La contraseña es obligatoria");
             return;
         }
 
         // Validar formato de email
         if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-            System.out.println("Ingrese un email válido");
+            JOptionPane.showMessageDialog(this, "Ingrese un email valido");
             return;
         }
 
         // Validar contraseña mínimo 8 caracteres
         if (password.length() < 8) {
-            System.out.println("La contraseña debe tener mínimo 8 caracteres");
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener minimo 8 caracteres");
             return;
         }
 
@@ -209,18 +217,19 @@ public class IniciarSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JLTitleIniciarsesion;
+    private javax.swing.JLabel JLcontraseña;
+    private javax.swing.JLabel JLcorreo;
+    private javax.swing.JLabel JLempresa;
+    private javax.swing.JLabel JLiconoBarberia;
+    private javax.swing.JLabel JLimagenBarberia;
+    private javax.swing.JPasswordField JPcontraseña;
+    private javax.swing.JPanel JPprincipal;
+    private javax.swing.JSeparator JScorreo;
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblRegistrate;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JSeparator sprContrasena;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }
