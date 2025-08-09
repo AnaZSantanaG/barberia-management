@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// thebarbershop.JFrame.RegistroClienteFrame
 package thebarbershop.Jframe;
-import javax.swing.JOptionPane;
-import thebarbershop.Jframe.IniciarSesion;
 
+import thebarbershop.utilidades.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jaelj
@@ -230,60 +227,30 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JComboCiudadActionPerformed
 
     private void JBregistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBregistrarseActionPerformed
-        
-        String nombre = JTnombre.getText();
-            if (nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El nombre es obligatorio");
-            return;
-        }
- 
-        String email = JTemail.getText();
-            if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-                JOptionPane.showMessageDialog(this, "Ingrese un email valido");
-            return;
-        }
-        
+    // Validaciones
+        if (!Validaciones.validarNombre(JTnombre)) return;
+        if (!Validaciones.validarEmail(JTemail)) return;
+        if (!Validaciones.validarCiudad(JComboCiudad)) return;
+        if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
+        if (!Validaciones.validarContraseña(JPcontraseña)) return;
+        if (!Validaciones.validarTipoUsuario(Cliente.isSelected(), Barbero.isSelected())) return;
+
+        // Datos
+        String nombre = JTnombre.getText().trim();
+        String email = JTemail.getText().trim();
         String ciudad = (String) JComboCiudad.getSelectedItem();
-            if (ciudad == null || ciudad.equals("Seleccione....")) {
-                JOptionPane.showMessageDialog(this, "Seleccione una ciudad");
-            return;
-        }
-        
-        String telefono = JFtelefono.getText();
-            if (telefono.isEmpty() || telefono.replace("(", "").replace(")", "").replace(" ", "").replace("-", "").length() < 10) {
-                JOptionPane.showMessageDialog(this, "Debe agregar un telefono");
-            return;
-        }
-        
+        String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
         String password = new String(JPcontraseña.getPassword());
-            if (password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "La contraseña es obligatoria");
-            return;
-            }else if(password.length() < 8){
-               JOptionPane.showMessageDialog(this, "Minimo 8 caracteres");
-               return;
-            }
-    
-            // Determinar tipo de usuario
-            String tipoUsuario;
-            if (Cliente.isSelected()) {
-                tipoUsuario = "Cliente";
-             } else if (Barbero.isSelected()) {
-                tipoUsuario = "Barbero";
-         } else {
-         JOptionPane.showMessageDialog(this, "Seleccione un tipo de usuario");
-         return;
+
+        // Registrar
+        boolean exito = RegistroCliente_Utilidades.registrar(email, password, nombre, telefono, ciudad);
+        if (exito) {
+            // Limpiar campos para nuevo registro 
+            Validaciones.limpiarCampos(JTnombre, JTemail, JComboCiudad, JFtelefono, JPcontraseña, Cliente, Barbero);
+
+            this.dispose();
+            new MenuCliente().setVisible(true);
         }
-    
-        // Validar campos
-        if (nombre.isEmpty() || email.isEmpty() || ciudad.equals("Seleccione....") || telefono.isEmpty() || password.isEmpty()) {
-         JOptionPane.showMessageDialog(this, "Complete todos los campos");
-        return;
-    }
-    
-    // Por ahora, solo ir al login
-    this.dispose();
-    new MenuCliente().setVisible(true);
     }//GEN-LAST:event_JBregistrarseActionPerformed
 
     private void JBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBvolverActionPerformed
@@ -303,7 +270,9 @@ public class RegistroCliente extends javax.swing.JFrame {
     private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ClienteActionPerformed
-
+    
+    
+    
     /**
      * @param args the command line arguments
      */
