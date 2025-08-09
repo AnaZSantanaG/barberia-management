@@ -149,6 +149,7 @@ CREATE TABLE `peluqueros` (
   `id_users` int NOT NULL,
   `nombre_completo` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Ciudad` text COLLATE utf8mb4_unicode_ci,
+  `telefono` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `years_experiencia` int DEFAULT NULL,
   `especialidades` text COLLATE utf8mb4_unicode_ci,
   `biografia` text COLLATE utf8mb4_unicode_ci,
@@ -251,4 +252,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-09 12:40:57
+-- Dump completed on 2025-08-09 13:37:51
