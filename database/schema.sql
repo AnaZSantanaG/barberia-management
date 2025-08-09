@@ -191,11 +191,11 @@ CREATE TABLE `users` (
   `idusers` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `clave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo` enum('peluquero','cliente') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` enum('peluquero','cliente','Admin') COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idusers`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,4 +249,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-28  0:46:19
+-- Dump completed on 2025-08-08 20:33:26
