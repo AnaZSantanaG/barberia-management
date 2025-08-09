@@ -53,6 +53,7 @@ CREATE TABLE `clientes` (
   `id_users` int NOT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telefono` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Ciudad` tinyint(1) DEFAULT '1',
   `preferencias` text COLLATE utf8mb4_unicode_ci,
   `activo` tinyint(1) DEFAULT '1',
   `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -147,6 +148,7 @@ CREATE TABLE `peluqueros` (
   `id_Peluquero` int NOT NULL AUTO_INCREMENT,
   `id_users` int NOT NULL,
   `nombre_completo` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Ciudad` tinyint(1) DEFAULT '1',
   `years_experiencia` int DEFAULT NULL,
   `especialidades` text COLLATE utf8mb4_unicode_ci,
   `biografia` text COLLATE utf8mb4_unicode_ci,
@@ -249,4 +251,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-08 20:33:26
+-- Dump completed on 2025-08-09 12:34:47
