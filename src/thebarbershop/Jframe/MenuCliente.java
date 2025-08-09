@@ -67,7 +67,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
         JBperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBperfil.setText("Mi Pefil");
-        JBperfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBperfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JBperfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBperfilActionPerformed(evt);
@@ -77,7 +77,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
         JBagendarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBagendarcita.setText("Agendar Cita");
-        JBagendarcita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBagendarcita.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JBagendarcita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBagendarcitaActionPerformed(evt);
@@ -148,7 +148,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
         JBimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/fashion-8254063_1280.jpg"))); // NOI18N
         JBimagen.setText("jLabel7");
-        JPmenu.add(JBimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 500));
+        JPmenu.add(JBimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 510));
 
         getContentPane().add(JPmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 720, 510));
 

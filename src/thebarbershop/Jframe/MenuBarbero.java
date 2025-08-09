@@ -92,7 +92,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(102, 102, 102));
         jButton4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Mi informacion de Baerbero");
+        jButton4.setText("Mi informacion de Barbero");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.addActionListener(new java.awt.event.ActionListener() {

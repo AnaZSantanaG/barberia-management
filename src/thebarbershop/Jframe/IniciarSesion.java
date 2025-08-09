@@ -1,10 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package thebarbershop.Jframe;
 import javax.swing.JOptionPane;
-
+import thebarbershop.db.DatabaseConnection;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jaelj
@@ -140,39 +140,74 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_JPcontraseñaActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-      
-        String email = txtCorreo.getText();
-        String password = new String(JPcontraseña.getPassword());
-        // Validar que los campos no están vacíos
-        if (email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El email es obligatorio");
-            return;
-            
+      String email = txtCorreo.getText();
+      String password = new String(JPcontraseña.getPassword());
+        if (!validarCampos()){
+          return; //si falla, no hace nada se detiene ahi.
+      }
+       // Verificar credenciales en la base de datos
+        if (iniciarSesion(email, password)) {
+            // Si el login es exitoso, abrir el menú
+            this.dispose();
+            new MenuCliente().setVisible(true);
+        } else {
+            // Si las credenciales son incorrectas
+            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos. Verifique sus datos.");
         }
-
-        if (password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "La contraseña es obligatoria");
-            return;
-        }
-
-        // Validar formato de email
-        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-            JOptionPane.showMessageDialog(this, "Ingrese un email valido");
-            return;
-        }
-
-        // Validar contraseña mínimo 8 caracteres
-        if (password.length() < 8) {
-            JOptionPane.showMessageDialog(this, "La contraseña debe tener minimo 8 caracteres");
-            return;
-        }
-
-        // Si pasa todas las validaciones, ir al menú
-//        System.out.println("Login exitoso para: " + email);
-        this.dispose();
-        new MenuCliente().setVisible(true);
     }//GEN-LAST:event_btnEntrarActionPerformed
+    
+    
+    private boolean validarCampos() {
+    String email = txtCorreo.getText();
+    String password = new String(JPcontraseña.getPassword());
 
+    // Validar que los campos no están vacíos
+    if (email.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "El email es obligatorio");
+        return false;
+    }
+
+    if (password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "La contraseña es obligatoria");
+        return false;
+    }
+
+    // Validar formato de email
+    if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+        JOptionPane.showMessageDialog(this, "Ingrese un email válido");
+        return false;
+    }
+
+    // Validar contraseña mínimo 8 caracteres
+    if (password.length() < 8) {
+        JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 8 caracteres");
+        return false;
+    }
+
+    // Si todo está bien
+    return true;
+}
+    
+    private boolean iniciarSesion(String email, String password) {
+        try {
+        
+        Connection conn = DatabaseConnection.getConnection();
+        String sql = "SELECT * FROM users WHERE email = ? AND clave = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, email);
+        stmt.setString(2, password);
+        ResultSet rs = stmt.executeQuery();
+
+        // Si hay un resultado, el login es válido
+        return rs.next();
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+}
+    
     private void lblRegistrateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrateMouseClicked
         // Cerrar esta ventana
         this.dispose();
