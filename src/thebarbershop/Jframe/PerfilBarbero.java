@@ -3,19 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
-import thebarbershop.Jframe.IconPerfilcliente;
+
+import javax.swing.JOptionPane;
+import thebarbershop.Barbero;
+import thebarbershop.utilidades.BarberoDAO;
+import thebarbershop.utilidades.Validaciones;
+import thebarbershop.utilidades.Seguridad;
 /**
  *
  * @author jaelj
  */
 public class PerfilBarbero extends javax.swing.JFrame {
-
+    private final String emailUsuario;
     /**
      * Creates new form PerfilBarbero
      */
-    public PerfilBarbero() {
+    public PerfilBarbero(String email) {
+        this.emailUsuario = email;
         initComponents();
          setLocationRelativeTo(null);
+        cargarDatosPerfil();
     }
 
     /**
@@ -31,9 +38,12 @@ public class PerfilBarbero extends javax.swing.JFrame {
         icono2 = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
         JLfotodeperfil = new javax.swing.JLabel();
+        JLnombreBarberia = new javax.swing.JLabel();
         JBicono = new javax.swing.JButton();
         JLnombre = new javax.swing.JLabel();
         JTnombre = new javax.swing.JTextField();
+        JBCerrarSesion = new javax.swing.JButton();
+        JBeliminarPerfil = new javax.swing.JButton();
         JLtelefono = new javax.swing.JLabel();
         JFtelefono = new javax.swing.JFormattedTextField();
         JLcontraseña = new javax.swing.JLabel();
@@ -59,15 +69,21 @@ public class PerfilBarbero extends javax.swing.JFrame {
         getContentPane().add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 340, 60));
 
         icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        getContentPane().add(icono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, 70));
+        getContentPane().add(icono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 60, 70));
 
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        getContentPane().add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 60, 70));
+        getContentPane().add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 60, 70));
 
         JLfotodeperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLfotodeperfil.setForeground(new java.awt.Color(255, 255, 255));
         JLfotodeperfil.setText("Foto de perfil");
         getContentPane().add(JLfotodeperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, 30));
+
+        JLnombreBarberia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLnombreBarberia.setForeground(new java.awt.Color(255, 255, 255));
+        JLnombreBarberia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLnombreBarberia.setText("Barberia");
+        getContentPane().add(JLnombreBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 180, 30));
 
         JBicono.setText("ICON");
         JBicono.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +103,29 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 240, 50));
+
+        JBCerrarSesion.setBackground(new java.awt.Color(30, 30, 30));
+        JBCerrarSesion.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        JBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cerrar-sesion.png"))); // NOI18N
+        JBCerrarSesion.setActionCommand("Cerrar Sesion");
+        JBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCerrarSesionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 50, 50));
+
+        JBeliminarPerfil.setBackground(new java.awt.Color(153, 0, 51));
+        JBeliminarPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JBeliminarPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        JBeliminarPerfil.setText("Eliminar Perfil");
+        JBeliminarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarPerfilActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, 220, 50));
 
         JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,31 +171,36 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JLciudad.setForeground(new java.awt.Color(255, 255, 255));
         JLciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLciudad.setText("Ciudad");
-        getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 190, 30));
+        getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 190, 30));
 
         JComboCiudad.setBackground(new java.awt.Color(51, 51, 51));
         JComboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JComboCiudad.setForeground(new java.awt.Color(255, 255, 255));
         JComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Santo Domingo", "Santiago", "San Cristóbal", "San Pedro de Macorís" }));
-        getContentPane().add(JComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 200, 50));
+        getContentPane().add(JComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 200, 50));
 
         JLexperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLexperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JLexperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLexperiencia.setText("Experiencia");
-        getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 200, 30));
+        getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 200, 30));
 
         JcomboExperiencia.setBackground(new java.awt.Color(51, 51, 51));
         JcomboExperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JcomboExperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JcomboExperiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "1 - 6 MESES", "6 - 12 MESES", "1 - 2 AÑOS", "2 - 4 AÑOS", "4 - 8 AÑOS", "8 o MÁS" }));
-        getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 200, 50));
+        getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 200, 50));
 
         JLguardar.setBackground(new java.awt.Color(13, 73, 11));
         JLguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLguardar.setForeground(new java.awt.Color(255, 255, 255));
         JLguardar.setText("Guardar Cambios");
-        getContentPane().add(JLguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 220, 50));
+        JLguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JLguardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JLguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 220, 50));
 
         JLvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JLvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -167,7 +211,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
                 JLvolveralmenuActionPerformed(evt);
             }
         });
-        getContentPane().add(JLvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 220, 50));
+        getContentPane().add(JLvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 220, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         getContentPane().add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -177,7 +221,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
 
     private void JLvolveralmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLvolveralmenuActionPerformed
         this.dispose();
-        new MenuBarbero().setVisible(true);
+        new MenuBarbero(emailUsuario).setVisible(true);
     }//GEN-LAST:event_JLvolveralmenuActionPerformed
 
     private void JTcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTcorreoActionPerformed
@@ -190,42 +234,119 @@ public class PerfilBarbero extends javax.swing.JFrame {
         selector.setVisible(true);
     }//GEN-LAST:event_JBiconoActionPerformed
 
+    private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
+        thebarbershop.utilidades.CerrarSesion.cerrarSesion(this);
+    }//GEN-LAST:event_JBCerrarSesionActionPerformed
+
+    private void JBeliminarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarPerfilActionPerformed
+        thebarbershop.utilidades.EliminarPerfil.eliminarPerfilCliente(this, emailUsuario);
+    }//GEN-LAST:event_JBeliminarPerfilActionPerformed
+
+    private void JLguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLguardarActionPerformed
+    // 1. Validaciones
+    if (!Validaciones.validarNombre(JTnombre)) return;
+    if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
+    if (!Validaciones.validarCiudad(JComboCiudad)) return;
+    if (!Validaciones.validarYearExperiencia(JcomboExperiencia)) return;
+
+    // 2. Obtener datos
+    String nombre = JTnombre.getText().trim();
+    String correo = JTcorreo.getText().trim();
+    String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
+    String ciudad = (String) JComboCiudad.getSelectedItem();
+    String seleccion = (String) JcomboExperiencia.getSelectedItem();
+    int experiencia = comboAExperiencia(seleccion);
+    String nombreBarberia = "";
+
+    // 3. Verificar que no cambie el correo
+    if (!correo.equals(emailUsuario)) {
+        JOptionPane.showMessageDialog(this, "No se puede cambiar el correo electrónico.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 4. Validar y encriptar contraseña si se ingresó
+    String contrasena = new String(JPcontraseña.getPassword()).trim();
+    String contrasenaEncriptada = null;
+
+    if (!contrasena.isEmpty()) {
+        if (!Validaciones.validarContraseña(JPcontraseña)) {
+            return;
+        }
+        contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
+    }
+
+    // 5. Crear objeto Barbero
+    Barbero barbero = new Barbero(correo, contrasena, nombre, telefono, ciudad, experiencia, nombreBarberia);
+    if (contrasenaEncriptada != null) {
+        barbero.setContraseña(contrasenaEncriptada);
+    }
+
+    // 6. Guardar en la base de datos
+    if (BarberoDAO.actualizarBarbero(barbero)) {
+        JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JPcontraseña.setText(""); // Limpiar campo de contraseña
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_JLguardarActionPerformed
+
+    private void cargarDatosPerfil() {
+    Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
+    if (barbero != null) {
+        JTnombre.setText(barbero.getNombre());
+        JTcorreo.setText(barbero.getEmail());
+        JFtelefono.setText(barbero.getTelefono());
+        JComboCiudad.setSelectedItem(barbero.getCiudad());
+
+        //usas experienciaACombo
+        String experienciaTexto = experienciaACombo(barbero.getExperiencia());
+        JcomboExperiencia.setSelectedItem(experienciaTexto);
+    }
+}
+    // Convierte texto del combo a número
+private int comboAExperiencia(String seleccion) {
+    switch (seleccion) {
+        case "1 - 6 MESES":     return 1;
+        case "6 - 12 MESES":    return 2;
+        case "1 - 2 AÑOS":      return 3;
+        case "2 - 4 AÑOS":      return 4;
+        case "4 - 8 AÑOS":      return 5;
+        case "8 o MÁS":         return 6;
+        default:                return 0;
+    }
+}
+
+// Convierte número a texto del combo
+private String experienciaACombo(int valor) {
+    switch (valor) {
+        case 1: return "1 - 6 MESES";
+        case 2: return "6 - 12 MESES";
+        case 3: return "1 - 2 AÑOS";
+        case 4: return "2 - 4 AÑOS";
+        case 5: return "4 - 8 AÑOS";
+        case 6: return "8 o MÁS";
+        default: return "Seleccione....";
+    }
+}
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PerfilBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PerfilBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PerfilBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PerfilBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+/*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
+    **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
+    ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
+    
+    /*public static void main(String args[]) {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PerfilBarbero().setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBCerrarSesion;
+    private javax.swing.JButton JBeliminarPerfil;
     private javax.swing.JButton JBicono;
     private javax.swing.JComboBox<String> JComboCiudad;
     private javax.swing.JFormattedTextField JFtelefono;
@@ -237,6 +358,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLfotodeperfil;
     private javax.swing.JButton JLguardar;
     private javax.swing.JLabel JLnombre;
+    private javax.swing.JLabel JLnombreBarberia;
     private javax.swing.JLabel JLtelefono;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JButton JLvolveralmenu;
