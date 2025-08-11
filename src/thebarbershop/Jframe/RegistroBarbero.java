@@ -273,12 +273,12 @@ public class RegistroBarbero extends javax.swing.JFrame {
         String nombre = JTnombre.getText().trim();
         String email = JTemail.getText().trim();
         String ciudad = (String) JcomboCiudad.getSelectedItem();
-        int experiencia = (int) JcomboExperiencia.getSelectedItem();
         String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
         String password = new String(JPcontraseña.getPassword());
         String nombrePeluqueria = JTnombredeBarberia.getText().trim();
         String seleccion = (String) JcomboExperiencia.getSelectedItem();
     
+        int experiencia = 0;
     if (seleccion == null || seleccion.equals("Seleccione....")) {
         JOptionPane.showMessageDialog(this, "Por favor, seleccione su experiencia.");
         return;
