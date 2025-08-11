@@ -16,7 +16,7 @@ public class RegistroBarbero_Utilidades {
             String telefono,
             String ciudad,
             int experiencia,
-            String nombreBarberia
+            String nombrePeluqueria
     ) {
         String claveEncriptada = Seguridad.encriptarContraseña(password);
         Connection conn = null;
@@ -45,7 +45,7 @@ public class RegistroBarbero_Utilidades {
             pstmt.setString(3, telefono);
             pstmt.setString(4, ciudad);            
             pstmt.setInt(5, experiencia);
-            pstmt.setString(6, nombreBarberia);  
+            pstmt.setString(6, nombrePeluqueria);  
             pstmt.executeUpdate();
 
             conn.commit();
