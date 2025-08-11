@@ -11,8 +11,9 @@ import javax.swing.JOptionPane; // Para los mensajes emergentes
  * @author jaelj
  */
 public class AgendarCita extends javax.swing.JFrame {
-
-    public AgendarCita() {
+    private final String emailUsuario;
+    public AgendarCita(String email) {
+        this.emailUsuario = email;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -215,7 +216,7 @@ public class AgendarCita extends javax.swing.JFrame {
     private void JBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new MenuCliente().setVisible(true);
+        new MenuCliente(emailUsuario).setVisible(true);
     }//GEN-LAST:event_JBcancelarActionPerformed
 
     private void jTextArea1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTextArea1AncestorAdded
@@ -304,17 +305,20 @@ public class AgendarCita extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new MenuCliente().setVisible(true);
+        new MenuCliente(emailUsuario).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
+    **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
+    ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
     
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AgendarCita().setVisible(true);
             }
         });
-    }   
+    }   */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
