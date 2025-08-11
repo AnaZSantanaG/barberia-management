@@ -42,6 +42,15 @@ public class Validaciones {
         }
         return true;
     }
+    
+    public static boolean validarNombreBarberia(JTextField campo) {
+        String texto = campo.getText().trim();
+        if (texto.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El nombre de la barbería es obligatorio.");
+            return false;
+        }
+        return true;
+    }
 
     public static boolean validarTelefono(String telefonoFormateado) {
         String telefono = telefonoFormateado.replaceAll("[^0-9]", "");
