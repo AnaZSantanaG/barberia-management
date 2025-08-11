@@ -4,6 +4,7 @@
  */
 package thebarbershop.Jframe;
 import thebarbershop.utilidades.*;
+import thebarbershop.Barbero;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +33,8 @@ public class RegistroBarbero extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jMenu1 = new javax.swing.JMenu();
         JLtitleRegistroBarbe = new javax.swing.JLabel();
+        NombredeBarberia = new javax.swing.JLabel();
+        JTnombredeBarberia = new javax.swing.JTextField();
         Nombre = new javax.swing.JLabel();
         JTnombre = new javax.swing.JTextField();
         JLemail = new javax.swing.JLabel();
@@ -40,7 +43,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JFtelefono = new javax.swing.JFormattedTextField();
         JLtipouser = new javax.swing.JLabel();
         Cliente = new javax.swing.JRadioButton();
-        Barbero = new javax.swing.JRadioButton();
+        BarberoRadio = new javax.swing.JRadioButton();
         JLciudad = new javax.swing.JLabel();
         JcomboCiudad = new javax.swing.JComboBox<>();
         JLexperiencia = new javax.swing.JLabel();
@@ -64,11 +67,29 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JLtitleRegistroBarbe.setText("Registro de Barbero");
         getContentPane().add(JLtitleRegistroBarbe, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 640, 50));
 
+        NombredeBarberia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        NombredeBarberia.setForeground(new java.awt.Color(255, 255, 255));
+        NombredeBarberia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NombredeBarberia.setText("Nombre Barberia:");
+        getContentPane().add(NombredeBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 220, 30));
+
+        JTnombredeBarberia.setBackground(new java.awt.Color(153, 153, 153));
+        JTnombredeBarberia.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTnombredeBarberia.setForeground(new java.awt.Color(0, 0, 0));
+        JTnombredeBarberia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTnombredeBarberia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JTnombredeBarberia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTnombredeBarberiaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JTnombredeBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 270, 50));
+
         Nombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         Nombre.setForeground(new java.awt.Color(255, 255, 255));
         Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Nombre.setText("Nombre:");
-        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
+        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 110, 30));
 
         JTnombre.setBackground(new java.awt.Color(153, 153, 153));
         JTnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -80,13 +101,13 @@ public class RegistroBarbero extends javax.swing.JFrame {
                 JTnombreActionPerformed(evt);
             }
         });
-        getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 270, 50));
+        getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 270, 50));
 
         JLemail.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLemail.setForeground(new java.awt.Color(255, 255, 255));
         JLemail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLemail.setText("Email:");
-        getContentPane().add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 110, 30));
+        getContentPane().add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 110, 30));
 
         JTemail.setBackground(new java.awt.Color(153, 153, 153));
         JTemail.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -97,13 +118,13 @@ public class RegistroBarbero extends javax.swing.JFrame {
                 JTemailActionPerformed(evt);
             }
         });
-        getContentPane().add(JTemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 270, 50));
+        getContentPane().add(JTemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 270, 50));
 
         JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
         JLtelefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtelefono.setText("Telefono:");
-        getContentPane().add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 110, 30));
+        getContentPane().add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 110, 30));
 
         JFtelefono.setBackground(new java.awt.Color(153, 153, 153));
         JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
@@ -112,7 +133,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 270, 50));
+        getContentPane().add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 270, 50));
 
         JLtipouser.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLtipouser.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,25 +153,25 @@ public class RegistroBarbero extends javax.swing.JFrame {
         });
         getContentPane().add(Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 80, 30));
 
-        buttonGroup1.add(Barbero);
-        Barbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        Barbero.setForeground(new java.awt.Color(255, 255, 255));
-        Barbero.setSelected(true);
-        Barbero.setText("Barbero");
-        Barbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Barbero.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        Barbero.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(BarberoRadio);
+        BarberoRadio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        BarberoRadio.setForeground(new java.awt.Color(255, 255, 255));
+        BarberoRadio.setSelected(true);
+        BarberoRadio.setText("Barbero");
+        BarberoRadio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BarberoRadio.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        BarberoRadio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BarberoActionPerformed(evt);
+                BarberoRadioActionPerformed(evt);
             }
         });
-        getContentPane().add(Barbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 90, 30));
+        getContentPane().add(BarberoRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 90, 30));
 
         JLciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLciudad.setForeground(new java.awt.Color(255, 255, 255));
         JLciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLciudad.setText("Ciudad:");
-        getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 90, 30));
+        getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 90, 30));
 
         JcomboCiudad.setBackground(new java.awt.Color(51, 51, 51));
         JcomboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -162,33 +183,33 @@ public class RegistroBarbero extends javax.swing.JFrame {
                 JcomboCiudadActionPerformed(evt);
             }
         });
-        getContentPane().add(JcomboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 270, 50));
+        getContentPane().add(JcomboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 270, 50));
 
         JLexperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLexperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JLexperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLexperiencia.setText("Experiencia:");
-        getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 130, 30));
+        getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 130, 30));
 
         JcomboExperiencia.setBackground(new java.awt.Color(51, 51, 51));
         JcomboExperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboExperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JcomboExperiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "1 - 6 MESES", "6 - 12 MESES", "1 - 2 AÑOS", "2 - 4 AÑOS", "4 - 8 AÑOS", "8 o MÁS" }));
         JcomboExperiencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 270, 50));
+        getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 270, 50));
 
         JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLcontraseña.setForeground(new java.awt.Color(255, 255, 255));
         JLcontraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcontraseña.setText("Contraseña:");
-        getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, 30));
+        getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, -1, 30));
 
         JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
         JPcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         JPcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JPcontraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 270, 50));
+        getContentPane().add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 270, 50));
 
         JPRegistrarse.setBackground(new java.awt.Color(13, 73, 11));
         JPRegistrarse.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -200,7 +221,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
                 JPRegistrarseActionPerformed(evt);
             }
         });
-        getContentPane().add(JPRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 40));
+        getContentPane().add(JPRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, -1, 40));
 
         JPvolver.setBackground(new java.awt.Color(153, 153, 153));
         JPvolver.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -212,7 +233,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
                 JPvolverActionPerformed(evt);
             }
         });
-        getContentPane().add(JPvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 90, -1));
+        getContentPane().add(JPvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, 90, -1));
 
         JLfondo.setBackground(new java.awt.Color(102, 102, 102));
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
@@ -231,9 +252,9 @@ public class RegistroBarbero extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JTemailActionPerformed
 
-    private void BarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarberoActionPerformed
+    private void BarberoRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarberoRadioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BarberoActionPerformed
+    }//GEN-LAST:event_BarberoRadioActionPerformed
 
     private void JTnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTnombreActionPerformed
         // TODO add your handling code here:
@@ -243,25 +264,46 @@ public class RegistroBarbero extends javax.swing.JFrame {
        if (!Validaciones.validarNombre(JTnombre)) return;
         if (!Validaciones.validarEmail(JTemail)) return;
         if (!Validaciones.validarCiudad(JcomboCiudad)) return;
+        if (!Validaciones.validarYearExperiencia(JcomboExperiencia)) return;
         if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
         if (!Validaciones.validarContraseña(JPcontraseña)) return;
-        if (!Validaciones.validarTipoUsuario(Cliente.isSelected(), Barbero.isSelected())) return;
+        if (!Validaciones.validarTipoUsuario(Cliente.isSelected(), BarberoRadio.isSelected())) return;
 
         // Datos
         String nombre = JTnombre.getText().trim();
         String email = JTemail.getText().trim();
         String ciudad = (String) JcomboCiudad.getSelectedItem();
+        int experiencia = (int) JcomboExperiencia.getSelectedItem();
         String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
         String password = new String(JPcontraseña.getPassword());
+        String nombrePeluqueria = JTnombredeBarberia.getText().trim();
+        String seleccion = (String) JcomboExperiencia.getSelectedItem();
+    
+    if (seleccion == null || seleccion.equals("Seleccione....")) {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione su experiencia.");
+        return;
+    }
+
+    // Aquí conviertes el texto a un número (ej: 1, 2, 3...) para guardar en BD
+        switch (seleccion) {
+            case "1 - 6 MESES":     experiencia = 1; break;
+            case "6 - 12 MESES":    experiencia = 2; break;
+            case "1 - 2 AÑOS":      experiencia = 3; break;
+            case "2 - 4 AÑOS":      experiencia = 4; break;
+            case "4 - 8 AÑOS":      experiencia = 5; break;
+            case "8 o MÁS":         experiencia = 6; break;
+        }
+
+    // Ahora guardas 'experiencia' en el objeto Barbero
 
         // Registrar como peluquero
-        boolean exito = RegistroBarbero_Utilidades.registrar(email, password, nombre, telefono, ciudad);
+        boolean exito = RegistroBarbero_Utilidades.registrar(email, password, nombre, telefono, ciudad, experiencia, nombrePeluqueria);
         if (exito) {
              // Limpiar campos
-            Validaciones.limpiarCampos(JTnombre, JTemail, JcomboCiudad, JFtelefono, JPcontraseña, Cliente, Barbero);
+            Validaciones.limpiarCampos(JTnombre, JTemail, JcomboCiudad,JcomboExperiencia, JFtelefono, JPcontraseña, Cliente, BarberoRadio, JTnombredeBarberia);
 
             this.dispose();
-            new MenuBarbero().setVisible(true);
+            new MenuBarbero(email).setVisible(true);
         }
             
     }//GEN-LAST:event_JPRegistrarseActionPerformed
@@ -275,6 +317,10 @@ public class RegistroBarbero extends javax.swing.JFrame {
     private void JcomboCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboCiudadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JcomboCiudadActionPerformed
+
+    private void JTnombredeBarberiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTnombredeBarberiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTnombredeBarberiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,7 +358,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Barbero;
+    private javax.swing.JRadioButton BarberoRadio;
     private javax.swing.JRadioButton Cliente;
     private javax.swing.JFormattedTextField JFtelefono;
     private javax.swing.JLabel JLciudad;
@@ -328,9 +374,11 @@ public class RegistroBarbero extends javax.swing.JFrame {
     private javax.swing.JButton JPvolver;
     private javax.swing.JTextField JTemail;
     private javax.swing.JTextField JTnombre;
+    private javax.swing.JTextField JTnombredeBarberia;
     private javax.swing.JComboBox<String> JcomboCiudad;
     private javax.swing.JComboBox<String> JcomboExperiencia;
     private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel NombredeBarberia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
     // End of variables declaration//GEN-END:variables
