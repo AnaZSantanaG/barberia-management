@@ -17,16 +17,18 @@ public class Barbero extends Usuario {
     private String nombreBarberia;
     private String horarioAtencion;
     private boolean disponible;
+    private int experiencia; //varible que no estaba pero se solicita en el frame.
     
     // NUEVO: Lista para guardar las rutas de las imágenes del portafolio
     private List<File> imagenesPortafolio;
     
     public Barbero(String nombre, String email, String ciudad, String telefono, 
-                   String contraseña, String nombreBarberia) {
+                   String contraseña, int experiencia, String nombreBarberia) {
         super(nombre, email, ciudad, telefono, contraseña);
         this.nombreBarberia = nombreBarberia;
         this.horarioAtencion = "9:00 AM - 6:00 PM"; // Horario por defecto
         this.disponible = true;
+        this.experiencia = experiencia;
         
         // NUEVO: Inicializar la lista de imágenes vacía
         this.imagenesPortafolio = new ArrayList<>();
@@ -46,6 +48,10 @@ public class Barbero extends Usuario {
     
     public boolean isDisponible() { return disponible; }
     public void setDisponible(boolean disponible) { this.disponible = disponible; }
+    
+    public int getExperiencia() {return experiencia;}
+    public void setExperiencia(int experiencia) {this.experiencia = experiencia;}
+    
     
     // Métodos para manejar el portafolio de imágenes
     public List<File> getImagenesPortafolio() { 
