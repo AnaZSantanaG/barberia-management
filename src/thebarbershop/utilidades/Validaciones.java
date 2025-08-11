@@ -37,7 +37,7 @@ public class Validaciones {
     public static boolean validarYearExperiencia(JComboBox<String> combo) {
         String experiencia = (String) combo.getSelectedItem();
         if (experiencia == null || experiencia.equals("Seleccione....")) {
-            JOptionPane.showMessageDialog(null, "Seleccione una ciudad.");
+            JOptionPane.showMessageDialog(null, "Seleccione su experiencia.");
             return false;
         }
         return true;
@@ -91,21 +91,26 @@ public class Validaciones {
      * @param contraseña
      * @param cliente
      * @param barbero
+     * @param nombreBarberia
      */
     public static void limpiarCampos(
             JTextField nombre,
             JTextField email,
             JComboBox<String> ciudad,
+            JComboBox<String> experiencia,
             JFormattedTextField telefono,
             JPasswordField contraseña,
             JRadioButton cliente,
-            JRadioButton barbero
+            JRadioButton barbero,
+            JTextField nombreBarberia
     ) {
         nombre.setText("");
         email.setText("");
         ciudad.setSelectedIndex(0);  // "Seleccione...."
+        experiencia.setSelectedIndex(0);  // "Seleccione...."
         telefono.setText("");
         contraseña.setText("");
+        nombreBarberia.setText("");  // Limpiar campo de barbería
         if (cliente != null) cliente.setSelected(false);
         if (barbero != null) barbero.setSelected(false);
     }
