@@ -15,6 +15,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
      */
     public PerfilBarbero() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     /**

@@ -14,6 +14,7 @@ public class AgendarCita extends javax.swing.JFrame {
 
     public AgendarCita() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     /**

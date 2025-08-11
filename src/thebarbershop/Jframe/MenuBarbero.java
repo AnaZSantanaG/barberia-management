@@ -17,6 +17,7 @@ public class MenuBarbero extends javax.swing.JFrame {
      */
     public MenuBarbero() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     /**

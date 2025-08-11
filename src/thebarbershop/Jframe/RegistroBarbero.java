@@ -17,6 +17,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
      */
     public RegistroBarbero() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     /**
