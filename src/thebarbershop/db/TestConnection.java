@@ -15,10 +15,10 @@ public class TestConnection {
             
             // Si llega aquí, la conexión fue exitosa
             if (conn != null && !conn.isClosed()) {
-                System.out.println("🎉 ¡Conexión establecida correctamente!");
+                System.out.println("¡Conexión establecida correctamente!");
             }
         } catch (SQLException e) {
-            System.out.println("❌ Error de conexión: " + e.getMessage());
+            System.out.println("Error de conexión: " + e.getMessage());
             e.printStackTrace();
         } finally {
             // Cierra la conexión
