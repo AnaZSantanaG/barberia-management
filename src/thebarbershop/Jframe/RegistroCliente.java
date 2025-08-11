@@ -37,7 +37,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JFtelefono = new javax.swing.JFormattedTextField();
         JLtipouser = new javax.swing.JLabel();
         Cliente = new javax.swing.JRadioButton();
-        Barbero = new javax.swing.JRadioButton();
+        BarberoRadio = new javax.swing.JRadioButton();
         JLemail = new javax.swing.JLabel();
         JTemail = new javax.swing.JTextField();
         JBcontraseña = new javax.swing.JLabel();
@@ -138,19 +138,19 @@ public class RegistroCliente extends javax.swing.JFrame {
         });
         JPprincipal.add(Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 80, 30));
 
-        buttonGroup1.add(Barbero);
-        Barbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        Barbero.setForeground(new java.awt.Color(255, 255, 255));
-        Barbero.setText("Barbero");
-        Barbero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Barbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Barbero.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        Barbero.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(BarberoRadio);
+        BarberoRadio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        BarberoRadio.setForeground(new java.awt.Color(255, 255, 255));
+        BarberoRadio.setText("Barbero");
+        BarberoRadio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BarberoRadio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BarberoRadio.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        BarberoRadio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BarberoActionPerformed(evt);
+                BarberoRadioActionPerformed(evt);
             }
         });
-        JPprincipal.add(Barbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
+        JPprincipal.add(BarberoRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
 
         JLemail.setBackground(new java.awt.Color(255, 255, 255));
         JLemail.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -234,7 +234,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         if (!Validaciones.validarCiudad(JComboCiudad)) return;
         if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
         if (!Validaciones.validarContraseña(JPcontraseña)) return;
-        if (!Validaciones.validarTipoUsuario(Cliente.isSelected(), Barbero.isSelected())) return;
+        if (!Validaciones.validarTipoUsuario(Cliente.isSelected(), BarberoRadio.isSelected())) return;
 
         // Datos
         String nombre = JTnombre.getText().trim();
@@ -247,7 +247,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         boolean exito = RegistroCliente_Utilidades.registrar(email, password, nombre, telefono, ciudad);
         if (exito) {
             // Limpiar campos para nuevo registro 
-            Validaciones.limpiarCampos(JTnombre, JTemail, JComboCiudad, JFtelefono, JPcontraseña, Cliente, Barbero);
+            Validaciones.limpiarCampos(JTnombre, JTemail, JComboCiudad, JFtelefono, JPcontraseña, Cliente, BarberoRadio);
 
             this.dispose();
             new MenuCliente(email).setVisible(true);
@@ -263,10 +263,10 @@ public class RegistroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JFtelefonoActionPerformed
 
-    private void BarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarberoActionPerformed
+    private void BarberoRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarberoRadioActionPerformed
         this.dispose();
         new RegistroBarbero().setVisible(true);
-    }//GEN-LAST:event_BarberoActionPerformed
+    }//GEN-LAST:event_BarberoRadioActionPerformed
 
     private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
         // TODO add your handling code here:
@@ -311,7 +311,7 @@ public class RegistroCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Barbero;
+    private javax.swing.JRadioButton BarberoRadio;
     private javax.swing.JRadioButton Cliente;
     private javax.swing.JLabel JBcontraseña;
     private javax.swing.JButton JBregistrarse;
