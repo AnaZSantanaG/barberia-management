@@ -297,10 +297,10 @@ public class RegistroBarbero extends javax.swing.JFrame {
     // Ahora guardas 'experiencia' en el objeto Barbero
 
         // Registrar como peluquero
-        boolean exito = RegistroBarbero_Utilidades.registrar(email, password, nombre, telefono, ciudad, experiencia, nombrePeluqueria);
+        boolean exito = RegistroBarbero_Utilidades.registrar(nombre, email, telefono, password, ciudad, experiencia, nombrePeluqueria);
         if (exito) {
              // Limpiar campos
-            Validaciones.limpiarCampos(JTnombre, JTemail, JcomboCiudad,JcomboExperiencia, JFtelefono, JPcontraseña, Cliente, BarberoRadio, JTnombredeBarberia);
+            Validaciones.limpiarCampos(JTnombre, JTemail, JFtelefono,  JTnombredeBarberia,  JcomboCiudad, JcomboExperiencia, JPcontraseña, Cliente, BarberoRadio);
 
             this.dispose();
             new MenuBarbero(email).setVisible(true);
