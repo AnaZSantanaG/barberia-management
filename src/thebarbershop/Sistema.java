@@ -30,10 +30,10 @@ public class Sistema {
         // Agregar algunos barberos de ejemplo
         Barbero barbero1 = new Barbero("Carlos Pérez", "carlos@email.com", 
                                       "Santo Domingo", "809-123-4567", 
-                                      "123", "Barbería El Corte");
+                                      "123", 3, "Barbería El Corte");
         Barbero barbero2 = new Barbero("Miguel García", "miguel@email.com", 
                                       "Santiago", "809-987-6543", 
-                                      "456", "Style Barber Shop");
+                                      "456", 5, "Style Barber Shop");
         
         usuarios.add(barbero1);
         usuarios.add(barbero2);
@@ -46,7 +46,7 @@ public class Sistema {
     
     // Método para registrar usuario
     public boolean registrarUsuario(String nombre, String email, String ciudad, 
-                                   String telefono, String contraseña, String tipoUsuario, 
+                                   String telefono, String contraseña,int experiencia, String tipoUsuario, 
                                    String nombreBarberia) {
         // Verificar si el email ya existe
         for (Usuario u : usuarios) {
@@ -57,7 +57,7 @@ public class Sistema {
         
         Usuario nuevoUsuario;
         if (tipoUsuario.equals("Barbero")) {
-            nuevoUsuario = new Barbero(nombre, email, ciudad, telefono, contraseña, nombreBarberia);
+            nuevoUsuario = new Barbero(nombre, email, ciudad, telefono, contraseña, experiencia, nombreBarberia);
         } else {
             nuevoUsuario = new Cliente(nombre, email, ciudad, telefono, contraseña);
         }
