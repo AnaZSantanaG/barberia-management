@@ -141,18 +141,25 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
       String email = txtCorreo.getText();
-      String password = new String(JPcontraseña.getPassword());
-        if (!validarCampos()){
-          return; //si falla, no hace nada se detiene ahi.
-      }
-       // Verificar credenciales en la base de datos
-        
-    if (iniciarSesion(email, password)) {
-        this.dispose();
-        new MenuCliente(email).setVisible(true); //Pasamos el correo aquí
-    } else {
-        JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
-    }
+        String password = new String(JPcontraseña.getPassword());
+
+        if (!validarCampos()) {
+            return; // Si falla, no hace nada
+        }
+
+        String tipoUsuario = iniciarSesion(email, password);
+
+        if (tipoUsuario != null) {
+            this.dispose();
+
+            switch (tipoUsuario) {
+                case "cliente" -> new MenuCliente(email).setVisible(true);
+                case "peluquero" -> new MenuBarbero(email).setVisible(true);
+                default -> JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
     
     
@@ -187,25 +194,29 @@ public class IniciarSesion extends javax.swing.JFrame {
     return true;
 }
     
-    private boolean iniciarSesion(String email, String password) {
+    private String iniciarSesion(String email, String password) {
         try {
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "SELECT clave FROM users WHERE email = ?";
+        String sql = "SELECT clave, tipo FROM users WHERE email = ?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, email);
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {
             String hashedPassword = rs.getString("clave");
-            return Seguridad.verificarContraseña(password, hashedPassword);
+            String tipoUsuario = rs.getString("tipo");
+
+            if (Seguridad.verificarContraseña(password, hashedPassword)) {
+                return tipoUsuario; // Devuelve el tipo de usuario si las credenciales son correctas
+            }
         }
 
-        return false;
+        return null; // Si las credenciales son incorrectas o no se encuentra el usuario
 
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + e.getMessage());
         e.printStackTrace();
-        return false;
+        return null;
     }
 }
     
