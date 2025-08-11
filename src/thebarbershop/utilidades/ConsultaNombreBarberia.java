@@ -9,16 +9,16 @@ import java.sql.*;
  */
 public class ConsultaNombreBarberia {
      /**
-     * Obtiene el nombre de la barberia a la que pertenece el barbero usando su email.
+     * Obtiene el nombre de la barbería a la que pertenece el barbero usando su email.
      * @param emailBarbero El correo del barbero
-     * @return El nombre de la barberia, o cadena vacía si no se encuentra
+     * @return El nombre de la barbería, o cadena vacía si no se encuentra
      */
     public static String obtenerNombreBarberia(String emailBarbero) {
     String nombreBarberia = "";
     String query = "SELECT p.nombreBarberia " +
                        "FROM peluqueros p " +
                        "JOIN users u ON p.id_users = u.idusers " +
-                       "WHERE u.idusers = p.id_users";
+                       "WHERE u.email = ?"; //Filtra por email
     
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -27,11 +27,14 @@ public class ConsultaNombreBarberia {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                nombreBarberia = rs.getString("nombre");
+                nombreBarberia = rs.getString("nombreBarberia"); // ✅ Nombre correcto
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            System.err.println("Error al consultar el nombre de la barbería: " + e.getMessage());
         }
+
         return nombreBarberia;
     }
 }
