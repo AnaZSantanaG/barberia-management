@@ -14,7 +14,9 @@ public class RegistroBarbero_Utilidades {
             String password,
             String nombre,
             String telefono,
-            String ciudad
+            String ciudad,
+            int experiencia,
+            String nombreBarberia
     ) {
         String claveEncriptada = Seguridad.encriptarContraseña(password);
         Connection conn = null;
@@ -36,12 +38,14 @@ public class RegistroBarbero_Utilidades {
             int idUsersGenerado = rs.next() ? rs.getInt(1) : 0;
 
             // Insertar en peluqueros
-            String sqlPeluqueros = "INSERT INTO peluqueros (id_users, nombre_completo, telefono, Ciudad) VALUES (?, ?, ?, ?)";
+            String sqlPeluqueros = "INSERT INTO peluqueros (id_users, nombre_completo, telefono, Ciudad, years_experiencia, nombreBarberia) VALUES (?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sqlPeluqueros);
             pstmt.setInt(1, idUsersGenerado);
             pstmt.setString(2, nombre);
             pstmt.setString(3, telefono);
-            pstmt.setString(4, ciudad);
+            pstmt.setString(4, ciudad);            
+            pstmt.setInt(5, experiencia);
+            pstmt.setString(6, nombreBarberia);  
             pstmt.executeUpdate();
 
             conn.commit();
