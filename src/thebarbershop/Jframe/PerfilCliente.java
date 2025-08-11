@@ -1,23 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package thebarbershop.Jframe;
-
-import thebarbershop.Jframe.MenuCliente;
-
+import javax.swing.JOptionPane;
+import thebarbershop.utilidades.*;
+import thebarbershop.*;
+import thebarbershop.utilidades.ClienteDAO;
 /**
  *
  * @author jaelj
  */
 public class PerfilCliente extends javax.swing.JFrame {
-
+    private final String emailUsuario; // ← Aquí se DECLARA (como variable de la ventana)
     /**
      * Creates new form Perfil
+     * @param email
      */
-    public PerfilCliente() {
+    public PerfilCliente(String email) {
+        this.emailUsuario = email; // ← Aquí se GUARDA el correo de sesión
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
+        cargarDatosPerfil();// ← Usa emailUsuario para cargar los datos
     }
 
     /**
@@ -44,7 +44,9 @@ public class PerfilCliente extends javax.swing.JFrame {
         JFtelefono = new javax.swing.JFormattedTextField();
         JLcontraseña = new javax.swing.JLabel();
         JPcontraseña = new javax.swing.JPasswordField();
+        JBCerrarSesion = new javax.swing.JButton();
         JBguardar = new javax.swing.JButton();
+        JBeliminarPerfil = new javax.swing.JButton();
         JBvolveralmenu = new javax.swing.JButton();
         JLfondo = new javax.swing.JLabel();
 
@@ -139,6 +141,18 @@ public class PerfilCliente extends javax.swing.JFrame {
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
 
+        JBCerrarSesion.setBackground(new java.awt.Color(30, 30, 30));
+        JBCerrarSesion.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        JBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cerrar-sesion.png"))); // NOI18N
+        JBCerrarSesion.setActionCommand("Cerrar Sesion");
+        JBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCerrarSesionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 50, 50));
+
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBguardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,7 +162,18 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 220, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 220, 50));
+
+        JBeliminarPerfil.setBackground(new java.awt.Color(153, 0, 51));
+        JBeliminarPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JBeliminarPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        JBeliminarPerfil.setText("Eliminar Perfil");
+        JBeliminarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarPerfilActionPerformed(evt);
+            }
+        });
+        jPanel1.add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 220, 50));
 
         JBvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JBvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -159,7 +184,7 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JBvolveralmenuActionPerformed(evt);
             }
         });
-        jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 220, 50));
+        jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 220, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -176,58 +201,114 @@ public class PerfilCliente extends javax.swing.JFrame {
 
     private void JBvolveralmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBvolveralmenuActionPerformed
         this.dispose();
-        new MenuCliente().setVisible(true);
+        new MenuCliente(emailUsuario).setVisible(true);
     }//GEN-LAST:event_JBvolveralmenuActionPerformed
 
     private void JBiconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBiconoActionPerformed
         // TODO add your handling code here:
                 IconPerfilcliente selector = new IconPerfilcliente(JBicono);
-        selector.setVisible(true);
+                selector.setVisible(true);
     }//GEN-LAST:event_JBiconoActionPerformed
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
-        // TODO add your handling code here:
+        // 1. Validar nombre
+    if (!Validaciones.validarNombre(JTnombre)) {
+        return;
+    }
+
+    // 2. Validar correo
+    if (!Validaciones.validarEmail(JTcorreo)) {
+        return;
+    }
+
+    // 3. Validar teléfono
+    String telefonoFormateado = JFtelefono.getText();
+    if (!Validaciones.validarTelefono(telefonoFormateado)) {
+        return;
+    }
+    String telefono = telefonoFormateado.replaceAll("[^0-9]", "");
+
+    // 4. Validar ciudad
+    if (!Validaciones.validarCiudad(JCOMBOciudad)) {
+        return;
+    }
+    String ciudad = (String) JCOMBOciudad.getSelectedItem();
+
+    // 5. Obtener otros datos
+    String nombre = JTnombre.getText().trim();
+    String correo = JTcorreo.getText().trim();
+
+    // 6. Verificar que no cambie el correo (opcional)
+    if (!correo.equals(emailUsuario)) {
+        JOptionPane.showMessageDialog(this, "No se puede cambiar el correo electrónico.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 7. Validar contraseña solo si fue ingresada
+    String contrasena = new String(JPcontraseña.getPassword()).trim();
+    String contrasenaEncriptada = null;
+    if (!contrasena.isEmpty()) {
+        if (!Validaciones.validarContraseña(JPcontraseña)) {
+            return;
+        }
+        //Encriptar solo si pasó la validación
+        contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
+    }
+
+    // 8. Crear objeto Cliente
+    Cliente cliente = new Cliente(correo, nombre, telefono, ciudad, "");
+
+    // 9. Asignar contraseña encriptada si fue ingresada
+    if (contrasenaEncriptada != null) {
+        cliente.setContraseña(contrasenaEncriptada);
+    }
+
+    // 10. Guardar en la base de datos
+    if (ClienteDAO.actualizarCliente(cliente)) {
+        JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JPcontraseña.setText(""); // Limpiar campo de contraseña
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
         
     }//GEN-LAST:event_JBguardarActionPerformed
 
+    private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
+        thebarbershop.utilidades.CerrarSesion.cerrarSesion(this);
+    }//GEN-LAST:event_JBCerrarSesionActionPerformed
+
+    private void JBeliminarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarPerfilActionPerformed
+        thebarbershop.utilidades.EliminarPerfil.eliminarPerfilCliente(this, emailUsuario);
+    }//GEN-LAST:event_JBeliminarPerfilActionPerformed
+
+    private void cargarDatosPerfil() {
+    Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario); // ← busca con el correo original
+    if (cliente != null) {
+        JTnombre.setText(cliente.getNombre());
+        JTcorreo.setText(cliente.getEmail()); // ← muestra el correo (pero no lo cambia)
+    }
+}
+    /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
+    **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
+    ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+    /*public static void main(String args[]) {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PerfilCliente().setVisible(true);
+                new PerfilCliente(emailUsuario).setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBCerrarSesion;
     private javax.swing.JLabel JBciudad;
+    private javax.swing.JButton JBeliminarPerfil;
     private javax.swing.JButton JBguardar;
     private javax.swing.JButton JBicono;
     private javax.swing.JButton JBvolveralmenu;
