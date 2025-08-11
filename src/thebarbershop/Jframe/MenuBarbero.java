@@ -11,11 +11,14 @@ import javax.swing.JOptionPane;
  * @author jaelj
  */
 public class MenuBarbero extends javax.swing.JFrame {
+    private final String emailUsuario;
+
 
     /**
      * Creates new form MenuBarbero
      */
-    public MenuBarbero() {
+    public MenuBarbero(String email) {
+        this.emailUsuario = email;
         initComponents();
          setLocationRelativeTo(null);
     }
@@ -138,7 +141,7 @@ public class MenuBarbero extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
-        new PerfilBarbero().setVisible(true);
+        new PerfilBarbero(emailUsuario).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnPortafolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPortafolioActionPerformed
@@ -148,37 +151,19 @@ public class MenuBarbero extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuBarbero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    
+    /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
+    **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
+    ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
+    
+    /*public static void main(String args[]) {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuBarbero().setVisible(true);
             }
         });
-    }
+    }*/
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconBarber2;
