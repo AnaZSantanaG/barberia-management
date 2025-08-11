@@ -33,6 +33,15 @@ public class Validaciones {
         }
         return true;
     }
+    
+    public static boolean validarYearExperiencia(JComboBox<String> combo) {
+        String experiencia = (String) combo.getSelectedItem();
+        if (experiencia == null || experiencia.equals("Seleccione....")) {
+            JOptionPane.showMessageDialog(null, "Seleccione una ciudad.");
+            return false;
+        }
+        return true;
+    }
 
     public static boolean validarTelefono(String telefonoFormateado) {
         String telefono = telefonoFormateado.replaceAll("[^0-9]", "");
