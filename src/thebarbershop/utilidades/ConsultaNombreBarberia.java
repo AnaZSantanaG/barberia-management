@@ -27,7 +27,7 @@ public class ConsultaNombreBarberia {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                nombreBarberia = rs.getString("nombreBarberia"); // ✅ Nombre correcto
+                nombreBarberia = rs.getString("nombreBarberia"); // Nombre correcto
             }
 
         } catch (SQLException e) {
