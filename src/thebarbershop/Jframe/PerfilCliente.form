@@ -297,7 +297,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="JLfondo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="fondo"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/images/imagen10(1).jpg"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

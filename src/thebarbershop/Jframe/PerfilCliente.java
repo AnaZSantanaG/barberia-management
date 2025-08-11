@@ -150,7 +150,7 @@ public class PerfilCliente extends javax.swing.JFrame {
         });
         jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 220, 50));
 
-        JLfondo.setText("fondo");
+        JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));

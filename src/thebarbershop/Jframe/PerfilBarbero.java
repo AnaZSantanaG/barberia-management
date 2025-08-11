@@ -48,7 +48,6 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JLfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(920, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -158,7 +157,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
         });
         getContentPane().add(JLvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 220, 50));
 
-        JLfondo.setText("jLabel11");
+        JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         getContentPane().add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
 
         pack();
