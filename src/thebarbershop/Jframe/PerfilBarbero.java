@@ -6,6 +6,7 @@ package thebarbershop.Jframe;
 
 import javax.swing.JOptionPane;
 import thebarbershop.Barbero;
+import thebarbershop.utilidades.ConsultaNombreBarberia;
 import thebarbershop.utilidades.BarberoDAO;
 import thebarbershop.utilidades.Validaciones;
 import thebarbershop.utilidades.Seguridad;
@@ -296,11 +297,22 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JTnombre.setText(barbero.getNombre());
         JTcorreo.setText(barbero.getEmail());
         JFtelefono.setText(barbero.getTelefono());
-        JComboCiudad.setSelectedItem(barbero.getCiudad());
-
-        //usas experienciaACombo
         String experienciaTexto = experienciaACombo(barbero.getExperiencia());
         JcomboExperiencia.setSelectedItem(experienciaTexto);
+        JComboCiudad.setSelectedItem(barbero.getCiudad());
+
+        // Obtener nombre de la barbería desde la BD
+        String nombreBarberia = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
+        if (!nombreBarberia.isEmpty()) {
+            // Muestra el nombre en un JLabel o JTextField
+            JLnombreBarberia.setText(nombreBarberia); // Si usas JLabel
+            // O si usas JTextField:
+            // JTnombreBarberia.setText(nombreBarberia);
+        } else {
+            JLnombreBarberia.setText("Barbería no asignada");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
     // Convierte texto del combo a número
