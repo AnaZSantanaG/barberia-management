@@ -16,6 +16,7 @@ public class MenuBarbero extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuBarbero
+     * @param email
      */
     public MenuBarbero(String email) {
         this.emailUsuario = email;
