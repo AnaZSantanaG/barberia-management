@@ -146,14 +146,13 @@ public class IniciarSesion extends javax.swing.JFrame {
           return; //si falla, no hace nada se detiene ahi.
       }
        // Verificar credenciales en la base de datos
-        if (iniciarSesion(email, password)) {
-            // Si el login es exitoso, abrir el menú
-            this.dispose();
-            new MenuCliente().setVisible(true);
-        } else {
-            // Si las credenciales son incorrectas
-            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos. Verifique sus datos.");
-        }
+        
+    if (iniciarSesion(email, password)) {
+        this.dispose();
+        new MenuCliente(email).setVisible(true); //Pasamos el correo aquí
+    } else {
+        JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
+    }
     }//GEN-LAST:event_btnEntrarActionPerformed
     
     
