@@ -26,16 +26,15 @@ public class BarberoDAO {
 
             if (rs.next()) {
                 return new Barbero(
-                    rs.getString("email"),
-                    rs.getString("clave"),
                     rs.getString("nombre_completo"),
+                    rs.getString("email"),
+                    rs.getString("ciudad"),
                     rs.getString("telefono"),
-                    rs.getString("Ciudad"),
+                    rs.getString("clave"),
                     rs.getInt("years_experiencia"),
                     rs.getString("nombreBarberia")
                 );
-               /* String nombre, String email, String ciudad, String telefono, 
-                   String contraseña, String nombreBarberia*/
+              
             }
         } catch (SQLException e) {
             e.printStackTrace();
