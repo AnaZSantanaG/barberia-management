@@ -70,7 +70,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         Nombre.setText("Nombre:");
         getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
 
-        JTnombre.setBackground(new java.awt.Color(204, 204, 204));
+        JTnombre.setBackground(new java.awt.Color(153, 153, 153));
         JTnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -88,7 +88,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JLemail.setText("Email:");
         getContentPane().add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 110, 30));
 
-        JTemail.setBackground(new java.awt.Color(204, 204, 204));
+        JTemail.setBackground(new java.awt.Color(153, 153, 153));
         JTemail.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JTemail.setForeground(new java.awt.Color(0, 0, 0));
         JTemail.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -105,7 +105,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JLtelefono.setText("Telefono:");
         getContentPane().add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 110, 30));
 
-        JFtelefono.setBackground(new java.awt.Color(204, 204, 204));
+        JFtelefono.setBackground(new java.awt.Color(153, 153, 153));
         JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
         try {
             JFtelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
@@ -152,7 +152,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JLciudad.setText("Ciudad:");
         getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 90, 30));
 
-        JcomboCiudad.setBackground(new java.awt.Color(0, 0, 0));
+        JcomboCiudad.setBackground(new java.awt.Color(51, 51, 51));
         JcomboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboCiudad.setForeground(new java.awt.Color(255, 255, 255));
         JcomboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "Santo Domingo", "Santiago", "San Cristobal", "San Pedro de Macoris" }));
@@ -170,7 +170,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JLexperiencia.setText("Experiencia:");
         getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 130, 30));
 
-        JcomboExperiencia.setBackground(new java.awt.Color(0, 0, 0));
+        JcomboExperiencia.setBackground(new java.awt.Color(51, 51, 51));
         JcomboExperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboExperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JcomboExperiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "1 - 6 MESES", "6 - 12 MESES", "1 - 2 AÑOS", "2 - 4 AÑOS", "4 - 8 AÑOS", "8 o MÁS" }));
@@ -183,7 +183,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JLcontraseña.setText("Contraseña:");
         getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, 30));
 
-        JPcontraseña.setBackground(new java.awt.Color(204, 204, 204));
+        JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
         JPcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         JPcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -191,10 +191,10 @@ public class RegistroBarbero extends javax.swing.JFrame {
         getContentPane().add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 270, 50));
 
         JPRegistrarse.setBackground(new java.awt.Color(13, 73, 11));
-        JPRegistrarse.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        JPRegistrarse.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JPRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         JPRegistrarse.setText("Registrarse");
-        JPRegistrarse.setBorder(null);
+        JPRegistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         JPRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPRegistrarseActionPerformed(evt);
@@ -202,17 +202,17 @@ public class RegistroBarbero extends javax.swing.JFrame {
         });
         getContentPane().add(JPRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 40));
 
-        JPvolver.setBackground(new java.awt.Color(255, 255, 255));
-        JPvolver.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        JPvolver.setForeground(new java.awt.Color(0, 0, 0));
+        JPvolver.setBackground(new java.awt.Color(153, 153, 153));
+        JPvolver.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JPvolver.setForeground(new java.awt.Color(51, 51, 51));
         JPvolver.setText("Volver");
-        JPvolver.setBorder(null);
+        JPvolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         JPvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPvolverActionPerformed(evt);
             }
         });
-        getContentPane().add(JPvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, -1, -1));
+        getContentPane().add(JPvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 90, -1));
 
         JLfondo.setBackground(new java.awt.Color(102, 102, 102));
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N

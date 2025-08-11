@@ -72,10 +72,12 @@ public class MenuBarbero extends javax.swing.JFrame {
         jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 320, 240));
 
         JLestilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLestilosdisp.setForeground(new java.awt.Color(255, 255, 255));
         JLestilosdisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLestilosdisp.setText("Estilos disponibles:");
         jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 230, 30));
 
+        JComboEstilosdisp.setBackground(new java.awt.Color(51, 51, 51));
         JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JComboEstilosdisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar estilos....", "Mullet", "Taper fade", "Low fade", "Rapado", " " }));
         jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 230, 60));
@@ -84,16 +86,19 @@ public class MenuBarbero extends javax.swing.JFrame {
         jPanel1.add(JLicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 140, 130));
 
         JLhorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLhorarios.setForeground(new java.awt.Color(255, 255, 255));
         JLhorarios.setText("Horarios disponibles");
         jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 230, 30));
 
+        JcomboHorarios.setBackground(new java.awt.Color(51, 51, 51));
         JcomboHorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios...", " " }));
+        JcomboHorarios.setPreferredSize(new java.awt.Dimension(180, 23));
         jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 230, 60));
 
-        btnPortafolio.setBackground(new java.awt.Color(102, 102, 102));
+        btnPortafolio.setBackground(new java.awt.Color(153, 153, 153));
         btnPortafolio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        btnPortafolio.setForeground(new java.awt.Color(255, 255, 255));
+        btnPortafolio.setForeground(new java.awt.Color(51, 51, 51));
         btnPortafolio.setText("Mi Portafolio de Fotos");
         btnPortafolio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnPortafolio.addActionListener(new java.awt.event.ActionListener() {
@@ -103,9 +108,9 @@ public class MenuBarbero extends javax.swing.JFrame {
         });
         jPanel1.add(btnPortafolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 190, 60));
 
-        jButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jButton4.setBackground(new java.awt.Color(153, 153, 153));
         jButton4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setForeground(new java.awt.Color(51, 51, 51));
         jButton4.setText("Mi informacion de Barbero");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -118,6 +123,7 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JBguardar.setForeground(new java.awt.Color(255, 255, 255));
         JBguardar.setText("Guardar");
         jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 210, 50));
 

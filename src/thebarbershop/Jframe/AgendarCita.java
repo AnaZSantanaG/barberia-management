@@ -88,6 +88,7 @@ public class AgendarCita extends javax.swing.JFrame {
         JSPnotasadicionales.setToolTipText("");
         JSPnotasadicionales.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jTextArea1.setBackground(new java.awt.Color(153, 153, 153));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -113,6 +114,7 @@ public class AgendarCita extends javax.swing.JFrame {
 
         JBcancelar.setBackground(new java.awt.Color(102, 0, 0));
         JBcancelar.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        JBcancelar.setForeground(new java.awt.Color(255, 255, 255));
         JBcancelar.setText("Cancelar");
         JBcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +175,7 @@ public class AgendarCita extends javax.swing.JFrame {
         jPanel1.add(JLhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 30));
 
         JComboLugarcita.setBackground(new java.awt.Color(153, 153, 153));
+        JComboLugarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JComboLugarcita.setForeground(new java.awt.Color(0, 0, 0));
         JComboLugarcita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion lugar...", "1", "2", "3", "4", "5", " " }));
         jPanel1.add(JComboLugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 230, 50));
@@ -182,9 +185,14 @@ public class AgendarCita extends javax.swing.JFrame {
         JLlugarcita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLlugarcita.setText("Lugar de Cita:");
         jPanel1.add(JLlugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 230, 30));
+
+        Jcalendario.setBackground(new java.awt.Color(51, 51, 51));
+        Jcalendario.setForeground(new java.awt.Color(51, 51, 51));
         jPanel1.add(Jcalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 330, 230));
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Volver al menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -53,6 +53,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JLtitulo.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
+        JLtitulo.setForeground(new java.awt.Color(255, 255, 255));
         JLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtitulo.setText("Mi Perfil");
         getContentPane().add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 340, 60));
@@ -64,6 +65,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
         getContentPane().add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 60, 70));
 
         JLfotodeperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLfotodeperfil.setForeground(new java.awt.Color(255, 255, 255));
         JLfotodeperfil.setText("Foto de perfil");
         getContentPane().add(JLfotodeperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, 30));
 
@@ -76,21 +78,24 @@ public class PerfilBarbero extends javax.swing.JFrame {
         getContentPane().add(JBicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 150, 140));
 
         JLnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLnombre.setForeground(new java.awt.Color(255, 255, 255));
         JLnombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLnombre.setText("Nombre");
         getContentPane().add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 180, 30));
 
-        JTnombre.setBackground(new java.awt.Color(135, 135, 135));
-        JTnombre.setForeground(new java.awt.Color(255, 255, 255));
+        JTnombre.setBackground(new java.awt.Color(153, 153, 153));
+        JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 240, 50));
 
         JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
         JLtelefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtelefono.setText("Telefono");
         getContentPane().add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 240, 30));
 
-        JFtelefono.setBackground(new java.awt.Color(135, 135, 135));
+        JFtelefono.setBackground(new java.awt.Color(153, 153, 153));
+        JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
         try {
             JFtelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
         } catch (java.text.ParseException ex) {
@@ -99,21 +104,23 @@ public class PerfilBarbero extends javax.swing.JFrame {
         getContentPane().add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 240, 50));
 
         JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcontraseña.setForeground(new java.awt.Color(255, 255, 255));
         JLcontraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcontraseña.setText("Contraseña");
         getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 240, 30));
 
-        JPcontraseña.setBackground(new java.awt.Color(255, 255, 255));
+        JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
 
         JLcorreo.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcorreo.setForeground(new java.awt.Color(255, 255, 255));
         JLcorreo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcorreo.setText("Correo");
         getContentPane().add(JLcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 240, 30));
 
-        JTcorreo.setBackground(new java.awt.Color(135, 135, 135));
-        JTcorreo.setForeground(new java.awt.Color(255, 255, 255));
+        JTcorreo.setBackground(new java.awt.Color(153, 153, 153));
+        JTcorreo.setForeground(new java.awt.Color(0, 0, 0));
         JTcorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTcorreoActionPerformed(evt);
@@ -122,22 +129,26 @@ public class PerfilBarbero extends javax.swing.JFrame {
         getContentPane().add(JTcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 240, 50));
 
         JLciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLciudad.setForeground(new java.awt.Color(255, 255, 255));
         JLciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLciudad.setText("Ciudad");
         getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 190, 30));
 
         JComboCiudad.setBackground(new java.awt.Color(51, 51, 51));
         JComboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JComboCiudad.setForeground(new java.awt.Color(255, 255, 255));
         JComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Santo Domingo", "Santiago", "San Cristóbal", "San Pedro de Macorís" }));
         getContentPane().add(JComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 200, 50));
 
         JLexperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLexperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JLexperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLexperiencia.setText("Experiencia");
         getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 200, 30));
 
         JcomboExperiencia.setBackground(new java.awt.Color(51, 51, 51));
         JcomboExperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JcomboExperiencia.setForeground(new java.awt.Color(255, 255, 255));
         JcomboExperiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "1 - 6 MESES", "6 - 12 MESES", "1 - 2 AÑOS", "2 - 4 AÑOS", "4 - 8 AÑOS", "8 o MÁS" }));
         getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 200, 50));
 
@@ -149,7 +160,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
 
         JLvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JLvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        JLvolveralmenu.setForeground(new java.awt.Color(255, 255, 255));
+        JLvolveralmenu.setForeground(new java.awt.Color(51, 51, 51));
         JLvolveralmenu.setText("Volver al Menu");
         JLvolveralmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

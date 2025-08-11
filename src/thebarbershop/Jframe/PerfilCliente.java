@@ -57,11 +57,13 @@ public class PerfilCliente extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JLtitulo.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
+        JLtitulo.setForeground(new java.awt.Color(255, 255, 255));
         JLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtitulo.setText("Mi Perfil");
         jPanel1.add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 340, 60));
 
         JLfotoperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLfotoperfil.setForeground(new java.awt.Color(255, 255, 255));
         JLfotoperfil.setText("Foto de perfil");
         jPanel1.add(JLfotoperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, 30));
 
@@ -73,33 +75,38 @@ public class PerfilCliente extends javax.swing.JFrame {
         });
         jPanel1.add(JBicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 150, 140));
 
+        JBciudad.setBackground(new java.awt.Color(255, 255, 255));
         JBciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JBciudad.setForeground(new java.awt.Color(255, 255, 255));
         JBciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JBciudad.setText("Ciudad");
         jPanel1.add(JBciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 190, 30));
 
         JCOMBOciudad.setBackground(new java.awt.Color(51, 51, 51));
         JCOMBOciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JCOMBOciudad.setForeground(new java.awt.Color(255, 255, 255));
         JCOMBOciudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Santo Domingo", "Santiago", "San Cristóbal", "San Pedro de Macorís" }));
         jPanel1.add(JCOMBOciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 200, 50));
 
         JLnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLnombre.setForeground(new java.awt.Color(255, 255, 255));
         JLnombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLnombre.setText("Nombre");
         jPanel1.add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 180, 30));
 
-        JTnombre.setBackground(new java.awt.Color(135, 135, 135));
-        JTnombre.setForeground(new java.awt.Color(255, 255, 255));
+        JTnombre.setBackground(new java.awt.Color(153, 153, 153));
+        JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 240, 50));
 
         JLcorreo.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcorreo.setForeground(new java.awt.Color(255, 255, 255));
         JLcorreo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcorreo.setText("Correo");
         jPanel1.add(JLcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 240, 30));
 
-        JTcorreo.setBackground(new java.awt.Color(135, 135, 135));
-        JTcorreo.setForeground(new java.awt.Color(255, 255, 255));
+        JTcorreo.setBackground(new java.awt.Color(153, 153, 153));
+        JTcorreo.setForeground(new java.awt.Color(0, 0, 0));
         JTcorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTcorreoActionPerformed(evt);
@@ -108,11 +115,13 @@ public class PerfilCliente extends javax.swing.JFrame {
         jPanel1.add(JTcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 240, 50));
 
         JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
         JLtelefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtelefono.setText("Telefono");
         jPanel1.add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 240, 30));
 
-        JFtelefono.setBackground(new java.awt.Color(135, 135, 135));
+        JFtelefono.setBackground(new java.awt.Color(153, 153, 153));
+        JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
         try {
             JFtelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
         } catch (java.text.ParseException ex) {
@@ -121,11 +130,12 @@ public class PerfilCliente extends javax.swing.JFrame {
         jPanel1.add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 240, 50));
 
         JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcontraseña.setForeground(new java.awt.Color(255, 255, 255));
         JLcontraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcontraseña.setText("Contraseña");
         jPanel1.add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 240, 30));
 
-        JPcontraseña.setBackground(new java.awt.Color(255, 255, 255));
+        JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
 
@@ -142,7 +152,7 @@ public class PerfilCliente extends javax.swing.JFrame {
 
         JBvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JBvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        JBvolveralmenu.setForeground(new java.awt.Color(255, 255, 255));
+        JBvolveralmenu.setForeground(new java.awt.Color(51, 51, 51));
         JBvolveralmenu.setText("Volver al Menu");
         JBvolveralmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

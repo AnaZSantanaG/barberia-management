@@ -108,6 +108,7 @@ public class IconPerfilcliente extends javax.swing.JFrame {
 
         JLguardar.setBackground(new java.awt.Color(13, 73, 11));
         JLguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLguardar.setForeground(new java.awt.Color(255, 255, 255));
         JLguardar.setText("Guardar");
         JLguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

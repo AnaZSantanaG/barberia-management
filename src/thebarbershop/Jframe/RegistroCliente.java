@@ -69,7 +69,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JLnombre.setText("Nombre:");
         JPprincipal.add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 90, 30));
 
-        JTnombre.setBackground(new java.awt.Color(204, 204, 204));
+        JTnombre.setBackground(new java.awt.Color(153, 153, 153));
         JTnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -87,7 +87,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JLciudad.setText("Ciudad:");
         JPprincipal.add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 30));
 
-        JComboCiudad.setBackground(new java.awt.Color(0, 0, 0));
+        JComboCiudad.setBackground(new java.awt.Color(51, 51, 51));
         JComboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 14)); // NOI18N
         JComboCiudad.setForeground(new java.awt.Color(255, 255, 255));
         JComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "Santo Domingo", "Santiago", "San Cristobal", "San Pedro de Macoris" }));
@@ -105,7 +105,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JLtelefono.setText("Telefono:");
         JPprincipal.add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 110, 30));
 
-        JFtelefono.setBackground(new java.awt.Color(204, 204, 204));
+        JFtelefono.setBackground(new java.awt.Color(153, 153, 153));
         JFtelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
         try {
@@ -131,7 +131,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         Cliente.setForeground(new java.awt.Color(255, 255, 255));
         Cliente.setSelected(true);
         Cliente.setText("Cliente");
-        Cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClienteActionPerformed(evt);
@@ -143,7 +143,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         Barbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         Barbero.setForeground(new java.awt.Color(255, 255, 255));
         Barbero.setText("Barbero");
-        Barbero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Barbero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Barbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Barbero.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         Barbero.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JLemail.setText("Email:");
         JPprincipal.add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 30));
 
-        JTemail.setBackground(new java.awt.Color(204, 204, 204));
+        JTemail.setBackground(new java.awt.Color(153, 153, 153));
         JTemail.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JTemail.setForeground(new java.awt.Color(0, 0, 0));
         JTemail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -176,7 +176,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JBcontraseña.setText("Contraseña:");
         JPprincipal.add(JBcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 140, 30));
 
-        JPcontraseña.setBackground(new java.awt.Color(204, 204, 204));
+        JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
         JPcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         JPcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -184,7 +184,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JPprincipal.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 270, 50));
 
         JBregistrarse.setBackground(new java.awt.Color(13, 73, 11));
-        JBregistrarse.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        JBregistrarse.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JBregistrarse.setForeground(new java.awt.Color(255, 255, 255));
         JBregistrarse.setText("Registrarse");
         JBregistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -195,17 +195,18 @@ public class RegistroCliente extends javax.swing.JFrame {
         });
         JPprincipal.add(JBregistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 40));
 
-        JBvolver.setBackground(new java.awt.Color(255, 255, 255));
-        JBvolver.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        JBvolver.setForeground(new java.awt.Color(0, 0, 0));
+        JBvolver.setBackground(new java.awt.Color(153, 153, 153));
+        JBvolver.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JBvolver.setForeground(new java.awt.Color(51, 51, 51));
         JBvolver.setText("Volver");
         JBvolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JBvolver.setPreferredSize(new java.awt.Dimension(79, 25));
         JBvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBvolverActionPerformed(evt);
             }
         });
-        JPprincipal.add(JBvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, -1, -1));
+        JPprincipal.add(JBvolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 90, -1));
 
         JLFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         JPprincipal.add(JLFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
