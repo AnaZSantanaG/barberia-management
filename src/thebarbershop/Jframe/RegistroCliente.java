@@ -8,11 +8,10 @@ import javax.swing.JOptionPane;
  * @author jaelj
  */
 public class RegistroCliente extends javax.swing.JFrame {
-
     /**
      * Creates new form Registro
      */
-    public RegistroCliente() {
+    public RegistroCliente( ) {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -251,7 +250,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             Validaciones.limpiarCampos(JTnombre, JTemail, JComboCiudad, JFtelefono, JPcontraseña, Cliente, Barbero);
 
             this.dispose();
-            new MenuCliente().setVisible(true);
+            new MenuCliente(email).setVisible(true);
         }
     }//GEN-LAST:event_JBregistrarseActionPerformed
 
