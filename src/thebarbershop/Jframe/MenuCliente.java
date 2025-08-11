@@ -63,7 +63,7 @@ public class MenuCliente extends javax.swing.JFrame {
         JLiconoUser.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLiconoUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLiconoUser.setText("ICON");
-        JPusuario.add(JLiconoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, 110));
+        JPusuario.add(JLiconoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, 130));
 
         JBperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBperfil.setText("Mi Pefil");
@@ -73,7 +73,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 JBperfilActionPerformed(evt);
             }
         });
-        JPusuario.add(JBperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 160, -1));
+        JPusuario.add(JBperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 160, -1));
 
         JBagendarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBagendarcita.setText("Agendar Cita");
@@ -83,7 +83,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 JBagendarcitaActionPerformed(evt);
             }
         });
-        JPusuario.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 160, -1));
+        JPusuario.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 160, -1));
 
         JBcerrarsesion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBcerrarsesion.setText("Cerrar Sesion ");

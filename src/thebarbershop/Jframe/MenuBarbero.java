@@ -29,21 +29,19 @@ public class MenuBarbero extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        btnPortafolio = new javax.swing.JButton();
+        JLtitulo = new javax.swing.JLabel();
+        iconBarber = new javax.swing.JLabel();
+        IconBarber2 = new javax.swing.JLabel();
+        JLresumendeactividad = new javax.swing.JLabel();
+        JSPresumenActividad = new javax.swing.JScrollPane();
         JLestilosdisp = new javax.swing.JLabel();
         JComboEstilosdisp = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        JLicono = new javax.swing.JLabel();
+        JLhorarios = new javax.swing.JLabel();
+        JcomboHorarios = new javax.swing.JComboBox<>();
+        btnPortafolio = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        JBguardar = new javax.swing.JButton();
         JLfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,54 +51,44 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        JLtitulo.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 36)); // NOI18N
+        JLtitulo.setForeground(new java.awt.Color(255, 255, 255));
+        JLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLtitulo.setText("NOMBRE BARBERIA");
+        jPanel1.add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 520, 50));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 320, 240));
+        iconBarber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
+        jPanel1.add(iconBarber, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 60, 70));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 60, 70));
+        IconBarber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
+        jPanel1.add(IconBarber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
+        JLresumendeactividad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLresumendeactividad.setForeground(new java.awt.Color(255, 255, 255));
+        JLresumendeactividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLresumendeactividad.setText("Resumen de Actividad:");
+        jPanel1.add(JLresumendeactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 240, 30));
+        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 320, 240));
 
-        jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Resumen de Actividad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 240, 30));
+        JLestilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLestilosdisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLestilosdisp.setText("Estilos disponibles:");
+        jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 230, 30));
 
-        jButton5.setBackground(new java.awt.Color(102, 102, 102));
-        jButton5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("MENU PRINCIPAL ");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 230, 50));
+        JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JComboEstilosdisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar estilos....", "Mullet", "Taper fade", "Low fade", "Rapado", " " }));
+        jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 230, 60));
 
-        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("NOMBRE BARBERIA");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 520, 50));
+        JLicono.setText("jLabel3");
+        jPanel1.add(JLicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 140, 130));
 
-        jButton4.setBackground(new java.awt.Color(102, 102, 102));
-        jButton4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Mi informacion de Barbero");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 240, 50));
+        JLhorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLhorarios.setText("Horarios disponibles");
+        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 230, 30));
+
+        JcomboHorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios...", " " }));
+        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 230, 60));
 
         btnPortafolio.setBackground(new java.awt.Color(102, 102, 102));
         btnPortafolio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
@@ -112,31 +100,25 @@ public class MenuBarbero extends javax.swing.JFrame {
                 btnPortafolioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPortafolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 190, 60));
+        jPanel1.add(btnPortafolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 190, 60));
 
-        JLestilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        JLestilosdisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JLestilosdisp.setText("Estilos disponibles:");
-        jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 230, 30));
+        jButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jButton4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Mi informacion de Barbero");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 230, 50));
 
-        JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JComboEstilosdisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar estilos....", "Mullet", "Taper fade", "Low fade", "Rapado", " " }));
-        jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 230, 60));
-
-        jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel4.setText("Horarios disponibles");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 230, 30));
-
-        jComboBox2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios...", " " }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 230, 60));
-
-        jButton1.setText("jButton1");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 150, 130));
-
-        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel3.setText("Foto de perfil");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
+        JBguardar.setBackground(new java.awt.Color(13, 73, 11));
+        JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JBguardar.setText("Guardar");
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 210, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -151,11 +133,6 @@ public class MenuBarbero extends javax.swing.JFrame {
         this.dispose();
         new PerfilBarbero().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.dispose();
-        new MenuBarbero().setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnPortafolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPortafolioActionPerformed
       JOptionPane.showMessageDialog(this, "Proximamente...");       
@@ -197,22 +174,20 @@ public class MenuBarbero extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IconBarber2;
+    private javax.swing.JButton JBguardar;
     private javax.swing.JComboBox<String> JComboEstilosdisp;
     private javax.swing.JLabel JLestilosdisp;
     private javax.swing.JLabel JLfondo;
+    private javax.swing.JLabel JLhorarios;
+    private javax.swing.JLabel JLicono;
+    private javax.swing.JLabel JLresumendeactividad;
+    private javax.swing.JLabel JLtitulo;
+    private javax.swing.JScrollPane JSPresumenActividad;
+    private javax.swing.JComboBox<String> JcomboHorarios;
     private javax.swing.JButton btnPortafolio;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel iconBarber;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,45 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.text.ParseException;
-import javax.swing.text.MaskFormatter;
-import javax.swing.text.DefaultFormatterFactory;
+import java.util.Date; // Para el JCalendar
+import java.text.SimpleDateFormat; // Para formatear la fecha a String
+import javax.swing.JOptionPane; // Para los mensajes emergentes
 /**
  *
  * @author jaelj
  */
 public class AgendarCita extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AgendarCita
-     */
     public AgendarCita() {
         initComponents();
-        configurarFormulario();
     }
-    
-    private void configurarFormulario() {
-    // Usuario actual logueado: null
-    
-    
-    // Fecha actual: 2025-07-28 (convertir a formato dd/MM/yyyy)
-    String fechaActual = "null";
-    
-    // Configurar JFormattedTextField fecha
-    try {
-        MaskFormatter mascara = new MaskFormatter("##/##/####");
-        mascara.setPlaceholderCharacter('_');
-        jFormattedTextField1.setFormatterFactory(new DefaultFormatterFactory(mascara));
-        
-        // Establecer fecha actual como valor inicial
-        jFormattedTextField1.setText(fechaActual);
-        
-    } catch (ParseException e) {
-        System.err.println("Error en máscara de fecha: " + e.getMessage());
-    }
-}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,25 +28,25 @@ public class AgendarCita extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        JLTituloAgendarcita = new javax.swing.JLabel();
+        JcomboTipodeservicio = new javax.swing.JComboBox<>();
+        JLtipodeservicio = new javax.swing.JLabel();
+        JSPnotasadicionales = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
-        jLabel9 = new javax.swing.JLabel();
+        JLnotasadicionales = new javax.swing.JLabel();
+        JBcancelar = new javax.swing.JButton();
+        JBagendarcita = new javax.swing.JButton();
+        JComboElegirbarbero = new javax.swing.JComboBox<>();
+        JLElegirbarbero = new javax.swing.JLabel();
+        JLfechadelacita = new javax.swing.JLabel();
+        JComboHORA = new javax.swing.JComboBox<>();
+        JLhora = new javax.swing.JLabel();
+        JComboLugarcita = new javax.swing.JComboBox<>();
+        JLlugarcita = new javax.swing.JLabel();
+        Jcalendario = new com.toedter.calendar.JCalendar();
+        jButton1 = new javax.swing.JButton();
+        JLfondo = new javax.swing.JLabel();
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png")));
 
@@ -84,33 +57,34 @@ public class AgendarCita extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(920, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Agenda tu cita");
-        jLabel1.setToolTipText("");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 230, -1));
+        JLTituloAgendarcita.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        JLTituloAgendarcita.setForeground(new java.awt.Color(255, 255, 255));
+        JLTituloAgendarcita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLTituloAgendarcita.setText("Agenda tu cita");
+        JLTituloAgendarcita.setToolTipText("");
+        jPanel1.add(JLTituloAgendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 230, -1));
 
-        jComboBox4.setBackground(new java.awt.Color(153, 153, 153));
-        jComboBox4.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Servicio...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        JcomboTipodeservicio.setBackground(new java.awt.Color(153, 153, 153));
+        JcomboTipodeservicio.setForeground(new java.awt.Color(0, 0, 0));
+        JcomboTipodeservicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Servicio...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        JcomboTipodeservicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                JcomboTipodeservicioActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 140, 30));
+        jPanel1.add(JcomboTipodeservicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 140, 30));
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Tipo de servicio:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 140, 20));
+        JLtipodeservicio.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLtipodeservicio.setForeground(new java.awt.Color(255, 255, 255));
+        JLtipodeservicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLtipodeservicio.setText("Tipo de servicio:");
+        jPanel1.add(JLtipodeservicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 140, 20));
 
-        jScrollPane2.setToolTipText("");
-        jScrollPane2.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JSPnotasadicionales.setToolTipText("");
+        JSPnotasadicionales.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -125,192 +99,231 @@ public class AgendarCita extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTextArea1);
 
-        jScrollPane2.setViewportView(jScrollPane1);
+        JSPnotasadicionales.setViewportView(jScrollPane1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 220, 90));
+        jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 220, 90));
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Notas adicionales (opcional)");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 220, 20));
+        JLnotasadicionales.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLnotasadicionales.setForeground(new java.awt.Color(255, 255, 255));
+        JLnotasadicionales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLnotasadicionales.setText("Notas adicionales (opcional)");
+        jPanel1.add(JLnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 220, 20));
 
-        jButton3.setBackground(new java.awt.Color(102, 0, 0));
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        JBcancelar.setBackground(new java.awt.Color(102, 0, 0));
+        JBcancelar.setText("Cancelar");
+        JBcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                JBcancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 30));
+        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 30));
 
-        jButton2.setBackground(new java.awt.Color(51, 102, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Agendar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JBagendarcita.setBackground(new java.awt.Color(51, 102, 0));
+        JBagendarcita.setForeground(new java.awt.Color(255, 255, 255));
+        JBagendarcita.setText("Agendar");
+        JBagendarcita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                JBagendarcitaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, 30));
+        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, 30));
 
-        jComboBox1.setBackground(new java.awt.Color(153, 153, 153));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Barbero...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        JComboElegirbarbero.setBackground(new java.awt.Color(153, 153, 153));
+        JComboElegirbarbero.setForeground(new java.awt.Color(0, 0, 0));
+        JComboElegirbarbero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Barbero...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        JComboElegirbarbero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                JComboElegirbarberoActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 140, 30));
+        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 140, 30));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Seleccione Barbero:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, 30));
+        JLElegirbarbero.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLElegirbarbero.setForeground(new java.awt.Color(255, 255, 255));
+        JLElegirbarbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLElegirbarbero.setText("Seleccione Barbero:");
+        jPanel1.add(JLElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, 30));
 
-        jFormattedTextField1.setBackground(new java.awt.Color(153, 153, 153));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        JLfechadelacita.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLfechadelacita.setForeground(new java.awt.Color(255, 255, 255));
+        JLfechadelacita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLfechadelacita.setText("Fecha de la Cita:");
+        jPanel1.add(JLfechadelacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 140, 30));
+
+        JComboHORA.setBackground(new java.awt.Color(153, 153, 153));
+        JComboHORA.setForeground(new java.awt.Color(0, 0, 0));
+        JComboHORA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione hora...", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "08:00 PM", "09:00 PM", "10:00 PM" }));
+        JComboHORA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                JComboHORAActionPerformed(evt);
             }
         });
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 140, 30));
+        jPanel1.add(JComboHORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 140, 30));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Fecha de la Cita:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 140, 30));
+        JLhora.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLhora.setForeground(new java.awt.Color(255, 255, 255));
+        JLhora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLhora.setText("Hora:");
+        jPanel1.add(JLhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 130, 20));
 
-        jComboBox2.setBackground(new java.awt.Color(153, 153, 153));
-        jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione hora...", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "08:00 PM", "09:00 PM", "10:00 PM" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        JComboLugarcita.setBackground(new java.awt.Color(153, 153, 153));
+        JComboLugarcita.setForeground(new java.awt.Color(0, 0, 0));
+        JComboLugarcita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion lugar...", "1", "2", "3", "4", "5", " " }));
+        jPanel1.add(JComboLugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 140, 30));
+
+        JLlugarcita.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLlugarcita.setForeground(new java.awt.Color(255, 255, 255));
+        JLlugarcita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLlugarcita.setText("Lugar de Cita:");
+        jPanel1.add(JLlugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 140, 20));
+        jPanel1.add(Jcalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 330, 210));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 140, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Hora:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 130, 20));
+        JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
+        jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
-        jComboBox3.setBackground(new java.awt.Color(153, 153, 153));
-        jComboBox3.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion lugar...", "1", "2", "3", "4", "5", " " }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 140, 30));
-
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Lugar de Cita:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 140, 20));
-        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagenn(1).jpg"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
         jPanel1.getAccessibleContext().setAccessibleName("");
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+    private void JBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new MenuCliente().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_JBcancelarActionPerformed
 
     private void jTextArea1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTextArea1AncestorAdded
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextArea1AncestorAdded
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void JBagendarcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagendarcitaActionPerformed
+        // Obtener la fecha seleccionada del calendario
+    Date fechaSeleccionada = Jcalendario.getDate();
+    if (fechaSeleccionada == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione una fecha en el calendario.");
+        return;
+    }
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    // Validar que la fecha seleccionada no sea anterior a hoy (solo comparar días)
+    java.util.Calendar calFecha = java.util.Calendar.getInstance();
+    calFecha.setTime(fechaSeleccionada);
+    calFecha.set(java.util.Calendar.HOUR_OF_DAY, 0);
+    calFecha.set(java.util.Calendar.MINUTE, 0);
+    calFecha.set(java.util.Calendar.SECOND, 0);
+    calFecha.set(java.util.Calendar.MILLISECOND, 0);
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    java.util.Calendar calHoy = java.util.Calendar.getInstance();
+    calHoy.set(java.util.Calendar.HOUR_OF_DAY, 0);
+    calHoy.set(java.util.Calendar.MINUTE, 0);
+    calHoy.set(java.util.Calendar.SECOND, 0);
+    calHoy.set(java.util.Calendar.MILLISECOND, 0);
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    if (calFecha.before(calHoy)) {
+        JOptionPane.showMessageDialog(this, "¡No puedes agendar citas en fechas pasadas!");
+        return;
+    }
 
-    /**
-     * @param args the command line arguments
-     */
+    // Formatear la fecha como String para mostrarla
+    String fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaSeleccionada);
+
+    // Obtener la hora seleccionada
+    String horaSeleccionada = (String) JComboHORA.getSelectedItem();
+    if (horaSeleccionada == null || horaSeleccionada.equals("Seleccione hora...")) {
+        JOptionPane.showMessageDialog(this, "Seleccione una hora.");
+        return;
+    }
+
+    // Obtener el barbero seleccionado
+    String barbero = (String) JComboElegirbarbero.getSelectedItem();
+    if (barbero == null || barbero.equals("Seleccione Barbero...")) {
+        JOptionPane.showMessageDialog(this, "Seleccione un barbero.");
+        return;
+    }
+
+    // Obtener el tipo de servicio seleccionado
+    String servicio = (String) JcomboTipodeservicio.getSelectedItem();
+    if (servicio == null || servicio.equals("Seleccione Servicio...")) {
+        JOptionPane.showMessageDialog(this, "Seleccione un tipo de servicio.");
+        return;
+    }
+
+    // Obtener el lugar de la cita seleccionado
+    String lugar = (String) JComboLugarcita.getSelectedItem();
+    if (lugar == null || lugar.equals("Seleccion lugar...")) {
+        JOptionPane.showMessageDialog(this, "Seleccione un lugar para la cita.");
+        return;
+    }
+
+    // Obtener notas adicionales (opcional)
+    String notas = jTextArea1.getText();
+
+    // --- Aquí iría la lógica para guardar en la base de datos ---
+    // TODO: agregar código para guardar la cita en la base de datos
+
+    // Mensaje de confirmación
+    JOptionPane.showMessageDialog(this, "¡Cita agendada para el " + fechaStr + " a las " + horaSeleccionada + "!\nBarbero: " + barbero + "\nServicio: " + servicio + "\nLugar: " + lugar + "\nNotas: " + notas);
+    }//GEN-LAST:event_JBagendarcitaActionPerformed
+
+    private void JComboHORAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboHORAActionPerformed
+        
+    }//GEN-LAST:event_JComboHORAActionPerformed
+
+    private void JcomboTipodeservicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboTipodeservicioActionPerformed
+        
+    }//GEN-LAST:event_JcomboTipodeservicioActionPerformed
+
+    private void JComboElegirbarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboElegirbarberoActionPerformed
+        
+    }//GEN-LAST:event_JComboElegirbarberoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        new MenuCliente().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgendarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgendarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgendarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgendarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AgendarCita().setVisible(true);
             }
         });
-    }
+    }   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JCalendar jCalendar1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton JBagendarcita;
+    private javax.swing.JButton JBcancelar;
+    private javax.swing.JComboBox<String> JComboElegirbarbero;
+    private javax.swing.JComboBox<String> JComboHORA;
+    private javax.swing.JComboBox<String> JComboLugarcita;
+    private javax.swing.JLabel JLElegirbarbero;
+    private javax.swing.JLabel JLTituloAgendarcita;
+    private javax.swing.JLabel JLfechadelacita;
+    private javax.swing.JLabel JLfondo;
+    private javax.swing.JLabel JLhora;
+    private javax.swing.JLabel JLlugarcita;
+    private javax.swing.JLabel JLnotasadicionales;
+    private javax.swing.JLabel JLtipodeservicio;
+    private javax.swing.JScrollPane JSPnotasadicionales;
+    private com.toedter.calendar.JCalendar Jcalendario;
+    private javax.swing.JComboBox<String> JcomboTipodeservicio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

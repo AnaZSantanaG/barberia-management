@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
-
+import thebarbershop.Jframe.IconPerfilcliente;
 /**
  *
  * @author jaelj
@@ -26,21 +26,158 @@ public class PerfilBarbero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        JLtitulo = new javax.swing.JLabel();
+        icono2 = new javax.swing.JLabel();
+        icono = new javax.swing.JLabel();
+        JLfotodeperfil = new javax.swing.JLabel();
+        JBicono = new javax.swing.JButton();
+        JLnombre = new javax.swing.JLabel();
+        JTnombre = new javax.swing.JTextField();
+        JLtelefono = new javax.swing.JLabel();
+        JFtelefono = new javax.swing.JFormattedTextField();
+        JLcontraseña = new javax.swing.JLabel();
+        JPcontraseña = new javax.swing.JPasswordField();
+        JLcorreo = new javax.swing.JLabel();
+        JTcorreo = new javax.swing.JTextField();
+        JLciudad = new javax.swing.JLabel();
+        JComboCiudad = new javax.swing.JComboBox<>();
+        JLexperiencia = new javax.swing.JLabel();
+        JcomboExperiencia = new javax.swing.JComboBox<>();
+        JLguardar = new javax.swing.JButton();
+        JLvolveralmenu = new javax.swing.JButton();
+        JLfondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(920, 500));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        JLtitulo.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
+        JLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLtitulo.setText("Mi Perfil");
+        getContentPane().add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 340, 60));
+
+        icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
+        getContentPane().add(icono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, 70));
+
+        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
+        getContentPane().add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 60, 70));
+
+        JLfotodeperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLfotodeperfil.setText("Foto de perfil");
+        getContentPane().add(JLfotodeperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, 30));
+
+        JBicono.setText("ICON");
+        JBicono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBiconoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 150, 140));
+
+        JLnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLnombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLnombre.setText("Nombre");
+        getContentPane().add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 180, 30));
+
+        JTnombre.setBackground(new java.awt.Color(135, 135, 135));
+        JTnombre.setForeground(new java.awt.Color(255, 255, 255));
+        JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 240, 50));
+
+        JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLtelefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLtelefono.setText("Telefono");
+        getContentPane().add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 240, 30));
+
+        JFtelefono.setBackground(new java.awt.Color(135, 135, 135));
+        try {
+            JFtelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 240, 50));
+
+        JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcontraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLcontraseña.setText("Contraseña");
+        getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 240, 30));
+
+        JPcontraseña.setBackground(new java.awt.Color(255, 255, 255));
+        JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
+
+        JLcorreo.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLcorreo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLcorreo.setText("Correo");
+        getContentPane().add(JLcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 240, 30));
+
+        JTcorreo.setBackground(new java.awt.Color(135, 135, 135));
+        JTcorreo.setForeground(new java.awt.Color(255, 255, 255));
+        JTcorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTcorreoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JTcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 240, 50));
+
+        JLciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLciudad.setText("Ciudad");
+        getContentPane().add(JLciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 190, 30));
+
+        JComboCiudad.setBackground(new java.awt.Color(51, 51, 51));
+        JComboCiudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Santo Domingo", "Santiago", "San Cristóbal", "San Pedro de Macorís" }));
+        getContentPane().add(JComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 200, 50));
+
+        JLexperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLexperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLexperiencia.setText("Experiencia");
+        getContentPane().add(JLexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 200, 30));
+
+        JcomboExperiencia.setBackground(new java.awt.Color(51, 51, 51));
+        JcomboExperiencia.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JcomboExperiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione....", "1 - 6 MESES", "6 - 12 MESES", "1 - 2 AÑOS", "2 - 4 AÑOS", "4 - 8 AÑOS", "8 o MÁS" }));
+        getContentPane().add(JcomboExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 200, 50));
+
+        JLguardar.setBackground(new java.awt.Color(13, 73, 11));
+        JLguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        JLguardar.setForeground(new java.awt.Color(255, 255, 255));
+        JLguardar.setText("Guardar Cambios");
+        getContentPane().add(JLguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 220, 50));
+
+        JLvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
+        JLvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLvolveralmenu.setForeground(new java.awt.Color(255, 255, 255));
+        JLvolveralmenu.setText("Volver al Menu");
+        JLvolveralmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JLvolveralmenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JLvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 220, 50));
+
+        JLfondo.setText("jLabel11");
+        getContentPane().add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JLvolveralmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLvolveralmenuActionPerformed
+        this.dispose();
+        new MenuBarbero().setVisible(true);
+    }//GEN-LAST:event_JLvolveralmenuActionPerformed
+
+    private void JTcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTcorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTcorreoActionPerformed
+
+    private void JBiconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBiconoActionPerformed
+        // TODO add your handling code here:
+        IconPerfilcliente selector = new IconPerfilcliente(JBicono);
+        selector.setVisible(true);
+    }//GEN-LAST:event_JBiconoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +215,25 @@ public class PerfilBarbero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBicono;
+    private javax.swing.JComboBox<String> JComboCiudad;
+    private javax.swing.JFormattedTextField JFtelefono;
+    private javax.swing.JLabel JLciudad;
+    private javax.swing.JLabel JLcontraseña;
+    private javax.swing.JLabel JLcorreo;
+    private javax.swing.JLabel JLexperiencia;
+    private javax.swing.JLabel JLfondo;
+    private javax.swing.JLabel JLfotodeperfil;
+    private javax.swing.JButton JLguardar;
+    private javax.swing.JLabel JLnombre;
+    private javax.swing.JLabel JLtelefono;
+    private javax.swing.JLabel JLtitulo;
+    private javax.swing.JButton JLvolveralmenu;
+    private javax.swing.JPasswordField JPcontraseña;
+    private javax.swing.JTextField JTcorreo;
+    private javax.swing.JTextField JTnombre;
+    private javax.swing.JComboBox<String> JcomboExperiencia;
+    private javax.swing.JLabel icono;
+    private javax.swing.JLabel icono2;
     // End of variables declaration//GEN-END:variables
 }

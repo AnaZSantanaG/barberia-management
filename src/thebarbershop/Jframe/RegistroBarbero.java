@@ -193,7 +193,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JPRegistrarse.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
         JPRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         JPRegistrarse.setText("Registrarse");
-        JPRegistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JPRegistrarse.setBorder(null);
         JPRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPRegistrarseActionPerformed(evt);
@@ -205,7 +205,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         JPvolver.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
         JPvolver.setForeground(new java.awt.Color(0, 0, 0));
         JPvolver.setText("Volver");
-        JPvolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JPvolver.setBorder(null);
         JPvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPvolverActionPerformed(evt);
