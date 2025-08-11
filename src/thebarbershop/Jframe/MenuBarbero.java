@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author jaelj
  */
 public class MenuBarbero extends javax.swing.JFrame {
-    private final String emailUsuario;
+    private final String emailUsuario; //a esta variable le llamamos modificaciones de lugar.
 
 
     /**
