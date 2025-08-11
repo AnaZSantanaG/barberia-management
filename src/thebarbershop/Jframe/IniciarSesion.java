@@ -1,10 +1,10 @@
 package thebarbershop.Jframe;
-import javax.swing.JOptionPane;
 import thebarbershop.db.DatabaseConnection;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import thebarbershop.utilidades.Seguridad;
 /**
  *
  * @author jaelj
@@ -189,16 +189,18 @@ public class IniciarSesion extends javax.swing.JFrame {
     
     private boolean iniciarSesion(String email, String password) {
         try {
-        
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "SELECT * FROM users WHERE email = ? AND clave = ?";
+        String sql = "SELECT clave FROM users WHERE email = ?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, email);
-        stmt.setString(2, password);
         ResultSet rs = stmt.executeQuery();
 
-        // Si hay un resultado, el login es válido
-        return rs.next();
+        if (rs.next()) {
+            String hashedPassword = rs.getString("clave");
+            return Seguridad.verificarContraseña(password, hashedPassword);
+        }
+
+        return false;
 
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + e.getMessage());
