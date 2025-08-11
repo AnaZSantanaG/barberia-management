@@ -83,36 +83,30 @@ public class Validaciones {
     }
     
     /**
-     * Limpia los campos del formulario
-     * @param nombre
-     * @param email
-     * @param ciudad
-     * @param telefono
-     * @param contraseña
-     * @param cliente
-     * @param barbero
-     * @param nombreBarberia
-     */
-    public static void limpiarCampos(
-            JTextField nombre,
-            JTextField email,
-            JComboBox<String> ciudad,
-            JComboBox<String> experiencia,
-            JFormattedTextField telefono,
-            JPasswordField contraseña,
-            JRadioButton cliente,
-            JRadioButton barbero,
-            JTextField nombreBarberia
-    ) {
-        nombre.setText("");
-        email.setText("");
-        ciudad.setSelectedIndex(0);  // "Seleccione...."
-        experiencia.setSelectedIndex(0);  // "Seleccione...."
-        telefono.setText("");
-        contraseña.setText("");
-        nombreBarberia.setText("");  // Limpiar campo de barbería
-        if (cliente != null) cliente.setSelected(false);
-        if (barbero != null) barbero.setSelected(false);
-    }
+ * Limpia cualquier combinación de componentes de formulario.
+ * Soporta: JTextField, JPasswordField, JComboBox, JRadioButton
+ * 
+ * @param componentes Componentes a limpiar (pueden ser JTextField, JComboBox, etc.)
+ */
+public static void limpiarCampos(Object... componentes) {
+    for (Object comp : componentes) {
+        if (comp == null) continue;
 
+        if (comp instanceof JTextField) {
+            ((JTextField) comp).setText("");
+        } 
+        else if (comp instanceof JPasswordField) {
+            ((JPasswordField) comp).setText("");
+        } 
+        else if (comp instanceof JComboBox) {
+            // Reinicia al primer elemento (ej: "Seleccione...")
+            ((JComboBox<?>) comp).setSelectedIndex(0);
+        } 
+        else if (comp instanceof JRadioButton) {
+            // Deselecciona el radio button
+            ((JRadioButton) comp).setSelected(false);
+        }
+        // Puedes agregar más tipos si necesitas (JTextArea, etc.)
+    }
+}
 }
