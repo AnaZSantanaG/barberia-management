@@ -60,14 +60,15 @@ public class AgendarCita extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(920, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JLTituloAgendarcita.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        JLTituloAgendarcita.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 48)); // NOI18N
         JLTituloAgendarcita.setForeground(new java.awt.Color(255, 255, 255));
         JLTituloAgendarcita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLTituloAgendarcita.setText("Agenda tu cita");
         JLTituloAgendarcita.setToolTipText("");
-        jPanel1.add(JLTituloAgendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 230, -1));
+        jPanel1.add(JLTituloAgendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 530, -1));
 
         JcomboTipodeservicio.setBackground(new java.awt.Color(153, 153, 153));
+        JcomboTipodeservicio.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboTipodeservicio.setForeground(new java.awt.Color(0, 0, 0));
         JcomboTipodeservicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Servicio...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         JcomboTipodeservicio.addActionListener(new java.awt.event.ActionListener() {
@@ -75,13 +76,13 @@ public class AgendarCita extends javax.swing.JFrame {
                 JcomboTipodeservicioActionPerformed(evt);
             }
         });
-        jPanel1.add(JcomboTipodeservicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 140, 30));
+        jPanel1.add(JcomboTipodeservicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 230, 50));
 
-        JLtipodeservicio.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLtipodeservicio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLtipodeservicio.setForeground(new java.awt.Color(255, 255, 255));
         JLtipodeservicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtipodeservicio.setText("Tipo de servicio:");
-        jPanel1.add(JLtipodeservicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 140, 20));
+        jPanel1.add(JLtipodeservicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 230, 30));
 
         JSPnotasadicionales.setToolTipText("");
         JSPnotasadicionales.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -101,24 +102,26 @@ public class AgendarCita extends javax.swing.JFrame {
 
         JSPnotasadicionales.setViewportView(jScrollPane1);
 
-        jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 220, 90));
+        jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 190, 120));
 
-        JLnotasadicionales.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLnotasadicionales.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLnotasadicionales.setForeground(new java.awt.Color(255, 255, 255));
         JLnotasadicionales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JLnotasadicionales.setText("Notas adicionales (opcional)");
-        jPanel1.add(JLnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 220, 20));
+        JLnotasadicionales.setText("Notas adicionales");
+        jPanel1.add(JLnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 190, 30));
 
         JBcancelar.setBackground(new java.awt.Color(102, 0, 0));
+        JBcancelar.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         JBcancelar.setText("Cancelar");
         JBcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBcancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 30));
+        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 210, 50));
 
         JBagendarcita.setBackground(new java.awt.Color(51, 102, 0));
+        JBagendarcita.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         JBagendarcita.setForeground(new java.awt.Color(255, 255, 255));
         JBagendarcita.setText("Agendar");
         JBagendarcita.addActionListener(new java.awt.event.ActionListener() {
@@ -126,9 +129,10 @@ public class AgendarCita extends javax.swing.JFrame {
                 JBagendarcitaActionPerformed(evt);
             }
         });
-        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, 30));
+        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, 210, 50));
 
         JComboElegirbarbero.setBackground(new java.awt.Color(153, 153, 153));
+        JComboElegirbarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JComboElegirbarbero.setForeground(new java.awt.Color(0, 0, 0));
         JComboElegirbarbero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Barbero...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         JComboElegirbarbero.addActionListener(new java.awt.event.ActionListener() {
@@ -136,21 +140,22 @@ public class AgendarCita extends javax.swing.JFrame {
                 JComboElegirbarberoActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 140, 30));
+        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 230, 50));
 
-        JLElegirbarbero.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLElegirbarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLElegirbarbero.setForeground(new java.awt.Color(255, 255, 255));
         JLElegirbarbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLElegirbarbero.setText("Seleccione Barbero:");
-        jPanel1.add(JLElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, 30));
+        jPanel1.add(JLElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 230, 30));
 
-        JLfechadelacita.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLfechadelacita.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLfechadelacita.setForeground(new java.awt.Color(255, 255, 255));
         JLfechadelacita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLfechadelacita.setText("Fecha de la Cita:");
-        jPanel1.add(JLfechadelacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 140, 30));
+        jPanel1.add(JLfechadelacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 330, 30));
 
         JComboHORA.setBackground(new java.awt.Color(153, 153, 153));
+        JComboHORA.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JComboHORA.setForeground(new java.awt.Color(0, 0, 0));
         JComboHORA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione hora...", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "08:00 PM", "09:00 PM", "10:00 PM" }));
         JComboHORA.addActionListener(new java.awt.event.ActionListener() {
@@ -158,33 +163,34 @@ public class AgendarCita extends javax.swing.JFrame {
                 JComboHORAActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboHORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 140, 30));
+        jPanel1.add(JComboHORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 230, 50));
 
-        JLhora.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLhora.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLhora.setForeground(new java.awt.Color(255, 255, 255));
         JLhora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLhora.setText("Hora:");
-        jPanel1.add(JLhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 130, 20));
+        jPanel1.add(JLhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 30));
 
         JComboLugarcita.setBackground(new java.awt.Color(153, 153, 153));
         JComboLugarcita.setForeground(new java.awt.Color(0, 0, 0));
         JComboLugarcita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion lugar...", "1", "2", "3", "4", "5", " " }));
-        jPanel1.add(JComboLugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 140, 30));
+        jPanel1.add(JComboLugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 230, 50));
 
-        JLlugarcita.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        JLlugarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLlugarcita.setForeground(new java.awt.Color(255, 255, 255));
         JLlugarcita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLlugarcita.setText("Lugar de Cita:");
-        jPanel1.add(JLlugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 140, 20));
-        jPanel1.add(Jcalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 330, 210));
+        jPanel1.add(JLlugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 230, 30));
+        jPanel1.add(Jcalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 330, 230));
 
-        jButton1.setText("jButton1");
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        jButton1.setText("Volver al menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 210, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
