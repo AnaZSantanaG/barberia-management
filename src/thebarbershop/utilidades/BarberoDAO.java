@@ -23,18 +23,23 @@ public class BarberoDAO {
 
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
+            
+                if (rs.next()) {
+                // Manejar NULL en years_experiencia
+                int experiencia = rs.getInt("years_experiencia");
+                if (rs.wasNull()) {
+                    experiencia = 0; // o 3 si quieres "1-2 años" por defecto
+                }
 
-            if (rs.next()) {
                 return new Barbero(
                     rs.getString("nombre_completo"),
                     rs.getString("email"),
-                    rs.getString("ciudad"),
+                    rs.getString("Ciudad"),
                     rs.getString("telefono"),
                     rs.getString("clave"),
-                    rs.getInt("years_experiencia"),
+                    experiencia,
                     rs.getString("nombreBarberia")
                 );
-              
             }
         } catch (SQLException e) {
             e.printStackTrace();
