@@ -92,4 +92,51 @@ public class BarberoDAO {
             return false;
         }
     }
+    
+    public static int obtenerIdPeluquero(String email) {
+        String sql = "SELECT p.id_Peluquero FROM peluqueros p JOIN users u ON p.id_users = u.idusers WHERE u.email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id_Peluquero");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public static boolean actualizarNombreBarberia(String email, String nombreBarberia) {
+        String sql = "UPDATE peluqueros SET nombreBarberia = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombreBarberia);
+            ps.setString(2, email);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean actualizarEspecialidades(String email, String especialidades) {
+        String sql = "UPDATE peluqueros SET especialidades = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, especialidades);
+            ps.setString(2, email);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }      
 }
