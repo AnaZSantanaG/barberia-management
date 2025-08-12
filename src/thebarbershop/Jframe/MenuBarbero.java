@@ -39,6 +39,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JLtitulo = new javax.swing.JLabel();
         iconBarber = new javax.swing.JLabel();
+        btnCerrarApp = new javax.swing.JButton();
         IconBarber2 = new javax.swing.JLabel();
         JLresumendeactividad = new javax.swing.JLabel();
         JSPresumenActividad = new javax.swing.JScrollPane();
@@ -67,6 +68,17 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         iconBarber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(iconBarber, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 60, 70));
+
+        btnCerrarApp.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarAppActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 40, -1));
 
         IconBarber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(IconBarber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
@@ -191,6 +203,18 @@ public class MenuBarbero extends javax.swing.JFrame {
     private void JComboEstilosdispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboEstilosdispActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JComboEstilosdispActionPerformed
+
+    private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estás seguro que quieres salir?",
+            "Confirmar salida",
+            JOptionPane.YES_NO_OPTION
+        );
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnCerrarAppActionPerformed
     private void cargarDatosIniciales() {
         Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
         if (barbero != null) {
@@ -271,6 +295,7 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JScrollPane JSPresumenActividad;
     private javax.swing.JComboBox<String> JcomboHorarios;
+    private javax.swing.JButton btnCerrarApp;
     private javax.swing.JButton btnPortafolio;
     private javax.swing.JLabel iconBarber;
     private javax.swing.JButton jButton4;
