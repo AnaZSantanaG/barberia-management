@@ -212,26 +212,18 @@ public class PerfilCliente extends javax.swing.JFrame {
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
         // 1. Validar nombre
-    if (!Validaciones.validarNombre(JTnombre)) {
-        return;
-    }
+    if (!Validaciones.validarNombre(JTnombre)) {return;}
 
     // 2. Validar correo
-    if (!Validaciones.validarEmail(JTcorreo)) {
-        return;
-    }
+    if (!Validaciones.validarEmail(JTcorreo)) {return;}
 
     // 3. Validar teléfono
     String telefonoFormateado = JFtelefono.getText();
-    if (!Validaciones.validarTelefono(telefonoFormateado)) {
-        return;
-    }
+    if (!Validaciones.validarTelefono(telefonoFormateado)) {return;}
     String telefono = telefonoFormateado.replaceAll("[^0-9]", "");
 
     // 4. Validar ciudad
-    if (!Validaciones.validarCiudad(JCOMBOciudad)) {
-        return;
-    }
+    if (!Validaciones.validarCiudad(JCOMBOciudad)) {return; }
     String ciudad = (String) JCOMBOciudad.getSelectedItem();
 
     // 5. Obtener otros datos
@@ -282,10 +274,14 @@ public class PerfilCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JBeliminarPerfilActionPerformed
 
     private void cargarDatosPerfil() {
-    Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario); // ← busca con el correo original
+    Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
     if (cliente != null) {
         JTnombre.setText(cliente.getNombre());
-        JTcorreo.setText(cliente.getEmail()); // ← muestra el correo (pero no lo cambia)
+        JTcorreo.setText(cliente.getEmail());
+        JFtelefono.setText(cliente.getTelefono());
+        JCOMBOciudad.setSelectedItem(cliente.getCiudad());
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
