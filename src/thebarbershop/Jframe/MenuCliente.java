@@ -104,6 +104,7 @@ public class MenuCliente extends javax.swing.JFrame {
         JPmenu.setPreferredSize(new java.awt.Dimension(800, 600));
         JPmenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnCerrarApp.setBackground(new java.awt.Color(0, 0, 0));
         btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
         btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
