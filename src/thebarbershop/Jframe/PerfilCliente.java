@@ -266,7 +266,7 @@ public class PerfilCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JBguardarActionPerformed
 
     private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
-        thebarbershop.utilidades.CerrarSesion.cerrarSesion(this);
+        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
     }//GEN-LAST:event_JBCerrarSesionActionPerformed
 
     private void JBeliminarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarPerfilActionPerformed
