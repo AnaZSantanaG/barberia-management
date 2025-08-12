@@ -30,6 +30,7 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         JPprincipal = new javax.swing.JPanel();
+        btnCerrarApp = new javax.swing.JButton();
         JLTitleIniciarsesion = new javax.swing.JLabel();
         JLcorreo = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
@@ -49,6 +50,17 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         JPprincipal.setBackground(new java.awt.Color(255, 255, 255));
         JPprincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrarApp.setBackground(new java.awt.Color(102, 102, 102));
+        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarAppActionPerformed(evt);
+            }
+        });
+        JPprincipal.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 40, -1));
 
         JLTitleIniciarsesion.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
         JLTitleIniciarsesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -223,6 +235,18 @@ public class IniciarSesion extends javax.swing.JFrame {
         new RegistroCliente().setVisible(true);
     }//GEN-LAST:event_lblRegistrateMouseClicked
 
+    private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estás seguro que quieres salir?",
+            "Confirmar salida",
+            JOptionPane.YES_NO_OPTION
+        );
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnCerrarAppActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,6 +291,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JPasswordField JPcontraseña;
     private javax.swing.JPanel JPprincipal;
     private javax.swing.JSeparator JScorreo;
+    private javax.swing.JButton btnCerrarApp;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblRegistrate;
