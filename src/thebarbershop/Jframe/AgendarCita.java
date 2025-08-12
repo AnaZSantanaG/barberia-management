@@ -6,6 +6,8 @@ package thebarbershop.Jframe;
 import java.util.Date; // Para el JCalendar
 import java.text.SimpleDateFormat; // Para formatear la fecha a String
 import javax.swing.JOptionPane; // Para los mensajes emergentes
+import thebarbershop.utilidades.CitaDAO;
+import java.util.Calendar;
 /**
  *
  * @author jaelj
@@ -16,6 +18,9 @@ public class AgendarCita extends javax.swing.JFrame {
         this.emailUsuario = email;
         initComponents();
         setLocationRelativeTo(null);
+        // Cargar datos desde la BD
+    CitaDAO.cargarBarberos(JComboElegirbarbero);
+    CitaDAO.cargarServicios(JcomboTipodeservicio);
     }
     
     /**
@@ -224,71 +229,67 @@ public class AgendarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextArea1AncestorAdded
 
     private void JBagendarcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagendarcitaActionPerformed
-        // Obtener la fecha seleccionada del calendario
-    Date fechaSeleccionada = Jcalendario.getDate();
-    if (fechaSeleccionada == null) {
-        JOptionPane.showMessageDialog(this, "Seleccione una fecha en el calendario.");
-        return;
-    }
+        // Obtener fecha del calendario
+        Date fechaSeleccionada = Jcalendario.getDate();
+        if (fechaSeleccionada == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione una fecha.");
+            return;
+        }
 
-    // Validar que la fecha seleccionada no sea anterior a hoy (solo comparar días)
-    java.util.Calendar calFecha = java.util.Calendar.getInstance();
-    calFecha.setTime(fechaSeleccionada);
-    calFecha.set(java.util.Calendar.HOUR_OF_DAY, 0);
-    calFecha.set(java.util.Calendar.MINUTE, 0);
-    calFecha.set(java.util.Calendar.SECOND, 0);
-    calFecha.set(java.util.Calendar.MILLISECOND, 0);
+        // Validar fecha no pasada
+        Calendar calFecha = Calendar.getInstance();
+        calFecha.setTime(fechaSeleccionada);
+        calFecha.set(Calendar.HOUR_OF_DAY, 0);
+        calFecha.set(Calendar.MINUTE, 0);
 
-    java.util.Calendar calHoy = java.util.Calendar.getInstance();
-    calHoy.set(java.util.Calendar.HOUR_OF_DAY, 0);
-    calHoy.set(java.util.Calendar.MINUTE, 0);
-    calHoy.set(java.util.Calendar.SECOND, 0);
-    calHoy.set(java.util.Calendar.MILLISECOND, 0);
+        Calendar calHoy = Calendar.getInstance();
+        calHoy.set(Calendar.HOUR_OF_DAY, 0);
+        calHoy.set(Calendar.MINUTE, 0);
 
-    if (calFecha.before(calHoy)) {
-        JOptionPane.showMessageDialog(this, "¡No puedes agendar citas en fechas pasadas!");
-        return;
-    }
+        if (calFecha.before(calHoy)) {
+            JOptionPane.showMessageDialog(this, "No puedes agendar citas en fechas pasadas.");
+            return;
+        }
 
-    // Formatear la fecha como String para mostrarla
-    String fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaSeleccionada);
+        String fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaSeleccionada);
+        String hora = (String) JComboHORA.getSelectedItem();
+        String barbero = (String) JComboElegirbarbero.getSelectedItem();
+        String servicio = (String) JcomboTipodeservicio.getSelectedItem();
+        String lugar = (String) JComboLugarcita.getSelectedItem();
+        String notas = jTextArea1.getText();
 
-    // Obtener la hora seleccionada
-    String horaSeleccionada = (String) JComboHORA.getSelectedItem();
-    if (horaSeleccionada == null || horaSeleccionada.equals("Seleccione hora...")) {
-        JOptionPane.showMessageDialog(this, "Seleccione una hora.");
-        return;
-    }
+        // Validaciones
+        if (hora == null || hora.equals("Seleccione hora...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una hora.");
+            return;
+        }
+        if (barbero == null || barbero.equals("Seleccione Barbero...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un barbero.");
+            return;
+        }
+        if (servicio == null || servicio.equals("Seleccione Servicio...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un servicio.");
+            return;
+        }
+        if (lugar == null || lugar.equals("Seleccion lugar...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un lugar.");
+            return;
+        }
 
-    // Obtener el barbero seleccionado
-    String barbero = (String) JComboElegirbarbero.getSelectedItem();
-    if (barbero == null || barbero.equals("Seleccione Barbero...")) {
-        JOptionPane.showMessageDialog(this, "Seleccione un barbero.");
-        return;
-    }
+        // Verificar disponibilidad
+        if (!CitaDAO.esDisponible(barbero, fechaStr, hora)) {
+            JOptionPane.showMessageDialog(this, "El barbero no está disponible en esa fecha y hora.");
+            return;
+        }
 
-    // Obtener el tipo de servicio seleccionado
-    String servicio = (String) JcomboTipodeservicio.getSelectedItem();
-    if (servicio == null || servicio.equals("Seleccione Servicio...")) {
-        JOptionPane.showMessageDialog(this, "Seleccione un tipo de servicio.");
-        return;
-    }
-
-    // Obtener el lugar de la cita seleccionado
-    String lugar = (String) JComboLugarcita.getSelectedItem();
-    if (lugar == null || lugar.equals("Seleccion lugar...")) {
-        JOptionPane.showMessageDialog(this, "Seleccione un lugar para la cita.");
-        return;
-    }
-
-    // Obtener notas adicionales (opcional)
-    String notas = jTextArea1.getText();
-
-    // --- Aquí iría la lógica para guardar en la base de datos ---
-    // TODO: agregar código para guardar la cita en la base de datos
-
-    // Mensaje de confirmación
-    JOptionPane.showMessageDialog(this, "¡Cita agendada para el " + fechaStr + " a las " + horaSeleccionada + "!\nBarbero: " + barbero + "\nServicio: " + servicio + "\nLugar: " + lugar + "\nNotas: " + notas);
+        // Agendar cita
+        if (CitaDAO.agendarCita(emailUsuario, barbero, servicio, fechaStr, hora, notas)) {
+            JOptionPane.showMessageDialog(this, "Cita agendada con éxito.");
+            this.dispose();
+            new MenuCliente(emailUsuario).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al agendar la cita.");
+        }
     }//GEN-LAST:event_JBagendarcitaActionPerformed
 
     private void JComboHORAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboHORAActionPerformed
