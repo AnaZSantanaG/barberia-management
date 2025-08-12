@@ -13,10 +13,10 @@ import thebarbershop.*;
 public class ClienteDAO {
     // Método para obtener los datos del cliente por email (o id)
     public static Cliente obtenerClientePorEmail(String email) {
-        String sql = "SELECT u.email, c.nombre, c.telefono, c.Ciudad, u.clave " +
-                     "FROM users u " +
-                     "JOIN clientes c ON u.idusers = c.id_users " +
-                     "WHERE u.email = ? AND u.tipo = 'cliente' AND c.activo = 1";
+        String sql = "SELECT u.email, c.nombre, c.telefono, c.Ciudad " +
+                 "FROM users u " +
+                 "JOIN clientes c ON u.idusers = c.id_users " +
+                 "WHERE u.email = ? AND u.tipo = 'cliente' AND c.activo = 1";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -26,12 +26,11 @@ public class ClienteDAO {
 
             if (rs.next()) {
                 return new Cliente(
-                    rs.getString("email"),
                     rs.getString("nombre"),
-                    rs.getString("telefono"),
+                    rs.getString("email"),
                     rs.getString("Ciudad"),
-                    rs.getString("Contraseña")    
-                    //rs.getString("preferencias")
+                    rs.getString("telefono"),
+                    "" // contraseña vacía (no se devuelve)
                 );
             }
         } catch (SQLException e) {
@@ -53,8 +52,7 @@ public class ClienteDAO {
                 psCliente.setString(1, cliente.getNombre());
                 psCliente.setString(2, cliente.getTelefono());
                 psCliente.setString(3, cliente.getCiudad());
-                //psCliente.setString(4, cliente.getPreferencias());
-                psCliente.setString(5, cliente.getEmail());
+                psCliente.setString(4, cliente.getEmail());
 
                 int filasCliente = psCliente.executeUpdate();
                 if (filasCliente == 0) {
