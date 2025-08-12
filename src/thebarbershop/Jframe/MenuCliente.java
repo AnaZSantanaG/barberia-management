@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
+import javax.swing.JOptionPane;
 import thebarbershop.Cliente;
 import thebarbershop.utilidades.ClienteDAO;
 
@@ -40,6 +41,7 @@ public class MenuCliente extends javax.swing.JFrame {
         JBagendarcita = new javax.swing.JButton();
         JBcerrarsesion = new javax.swing.JButton();
         JPmenu = new javax.swing.JPanel();
+        btnCerrarApp = new javax.swing.JButton();
         JBtitle = new javax.swing.JLabel();
         JBseleccioneopcion = new javax.swing.JLabel();
         JBcitasagendadas = new javax.swing.JLabel();
@@ -85,7 +87,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 JBagendarcitaActionPerformed(evt);
             }
         });
-        JPusuario.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 160, -1));
+        JPusuario.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 160, -1));
 
         JBcerrarsesion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBcerrarsesion.setText("Cerrar Sesion ");
@@ -101,6 +103,16 @@ public class MenuCliente extends javax.swing.JFrame {
         JPmenu.setBackground(new java.awt.Color(255, 255, 255));
         JPmenu.setPreferredSize(new java.awt.Dimension(800, 600));
         JPmenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarAppActionPerformed(evt);
+            }
+        });
+        JPmenu.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, 40, -1));
 
         JBtitle.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 48)); // NOI18N
         JBtitle.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,6 +189,18 @@ public class MenuCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextArea1AncestorAdded
 
+    private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(
+        this, 
+        "¿Estás seguro que quieres salir?", 
+        "Confirmar salida", 
+        JOptionPane.YES_NO_OPTION
+    );
+    if (confirm == JOptionPane.YES_OPTION) {
+        System.exit(0);
+    }
+    }//GEN-LAST:event_btnCerrarAppActionPerformed
+
     private void cargarDatosUsuario() {
         Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
         if (cliente != null) {
@@ -214,6 +238,7 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel JLiconoUser;
     private javax.swing.JPanel JPmenu;
     private javax.swing.JPanel JPusuario;
+    private javax.swing.JButton btnCerrarApp;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
