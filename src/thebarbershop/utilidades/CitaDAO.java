@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class CitaDAO {
     // Obtener todos los barberos disponibles
     public static void cargarBarberos(javax.swing.JComboBox<String> combo) {
-        String sql = "SELECT p.nombre_completo FROM peluqueros p JOIN users u ON p.id_users = u.idusers WHERE u.tipo = 'peluquero' AND u.activo = 1";
+        String sql = "SELECT p.nombre_completo FROM peluqueros p JOIN users u ON p.id_users = u.idusers WHERE u.tipo = 'peluquero'";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -31,7 +31,7 @@ public class CitaDAO {
     }
     // Obtener todos los estilos de corte
     public static void cargarServicios(javax.swing.JComboBox<String> combo) {
-        String sql = "SELECT nombre_estilo FROM estilos_corte WHERE activo = 1";
+        String sql = "SELECT nombre_estilo FROM estilos_corte";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
