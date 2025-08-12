@@ -16,6 +16,7 @@ public class IniciarSesion extends javax.swing.JFrame {
      */
     public IniciarSesion() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,7 +30,6 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         JPprincipal = new javax.swing.JPanel();
-        JLiconoBarberia = new javax.swing.JLabel();
         JLTitleIniciarsesion = new javax.swing.JLabel();
         JLcorreo = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
@@ -49,11 +49,6 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         JPprincipal.setBackground(new java.awt.Color(255, 255, 255));
         JPprincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        JLiconoBarberia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JLiconoBarberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        JPprincipal.add(JLiconoBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 70, 70));
-        JLiconoBarberia.getAccessibleContext().setAccessibleDescription("");
 
         JLTitleIniciarsesion.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
         JLTitleIniciarsesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -108,7 +103,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         lblRegistrate.setForeground(new java.awt.Color(0, 102, 204));
         lblRegistrate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrate.setText("Registrate");
-        lblRegistrate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRegistrate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblRegistrate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblRegistrateMouseClicked(evt);
@@ -268,7 +263,6 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel JLcontraseña;
     private javax.swing.JLabel JLcorreo;
     private javax.swing.JLabel JLempresa;
-    private javax.swing.JLabel JLiconoBarberia;
     private javax.swing.JLabel JLimagenBarberia;
     private javax.swing.JPasswordField JPcontraseña;
     private javax.swing.JPanel JPprincipal;
