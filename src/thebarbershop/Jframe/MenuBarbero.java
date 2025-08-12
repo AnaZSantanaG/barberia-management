@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
-
 import javax.swing.JOptionPane;
-
+import thebarbershop.utilidades.BarberoDAO;
+import thebarbershop.Barbero;
+import thebarbershop.utilidades.*;
+import javax.swing.*;
 /**
  *
  * @author jaelj
@@ -22,6 +24,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         this.emailUsuario = email;
         initComponents();
          setLocationRelativeTo(null);
+        cargarDatosIniciales();
     }
 
     /**
@@ -83,7 +86,12 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         JComboEstilosdisp.setBackground(new java.awt.Color(51, 51, 51));
         JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JComboEstilosdisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar estilos....", "Mullet", "Taper fade", "Low fade", "Rapado", " " }));
+        JComboEstilosdisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar estilos....", "Taper Fade", "Low Fade", "Mid Fade", "High Fade", "Skin Fade", "Drop Fade" }));
+        JComboEstilosdisp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboEstilosdispActionPerformed(evt);
+            }
+        });
         jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 230, 60));
 
         JLicono.setText("jLabel3");
@@ -96,7 +104,7 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         JcomboHorarios.setBackground(new java.awt.Color(51, 51, 51));
         JcomboHorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios...", " " }));
+        JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios..." }));
         JcomboHorarios.setPreferredSize(new java.awt.Dimension(180, 23));
         jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 230, 60));
 
@@ -129,6 +137,11 @@ public class MenuBarbero extends javax.swing.JFrame {
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JBguardar.setForeground(new java.awt.Color(255, 255, 255));
         JBguardar.setText("Guardar");
+        JBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBguardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 210, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
@@ -149,6 +162,86 @@ public class MenuBarbero extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "Proximamente...");       
     }//GEN-LAST:event_btnPortafolioActionPerformed
 
+    private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
+    if (!validarCampos()) return;
+
+        String nombreBarberia = JLtitulo.getText().trim();
+        EstiloCorteDAO.Estilo estilo = (EstiloCorteDAO.Estilo) JComboEstilosdisp.getSelectedItem();
+        DisponibilidadDAO.Horario horario = (DisponibilidadDAO.Horario) JcomboHorarios.getSelectedItem();
+
+        boolean ok = true;
+
+        // 1. Actualizar nombre barbería
+        if (!BarberoDAO.actualizarNombreBarberia(emailUsuario, nombreBarberia)) {
+            ok = false;
+        }
+        
+
+        // 2. Actualizar especialidades
+        if (estilo != null && !estilo.toString().startsWith("Agregar")) {
+            if (!BarberoDAO.actualizarEspecialidades(emailUsuario, estilo.toString())) {
+                ok = false;
+            }
+        }
+
+        JOptionPane.showMessageDialog(this,
+            ok ? "Datos guardados correctamente." : "Error al guardar algunos datos.");
+    }//GEN-LAST:event_JBguardarActionPerformed
+
+    private void JComboEstilosdispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboEstilosdispActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JComboEstilosdispActionPerformed
+    private void cargarDatosIniciales() {
+        Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
+        if (barbero != null) {
+            JLtitulo.setText(barbero.getNombreBarberia());
+            cargarEstilosDisponibles();
+            cargarHorariosDisponibles();
+            mostrarResumenActividad();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void cargarEstilosDisponibles() {
+        JComboEstilosdisp.removeAllItems();
+        JComboEstilosdisp.addItem("Agregar estilos...");
+
+        for (EstiloCorteDAO.Estilo estilo : EstiloCorteDAO.obtenerEstilos()) {
+            JComboEstilosdisp.addItem(estilo.toString());
+        }
+    }
+
+    private void cargarHorariosDisponibles() {
+        int idPeluquero = BarberoDAO.obtenerIdPeluquero(emailUsuario);
+        if (idPeluquero == 0) return;
+
+        JcomboHorarios.removeAllItems();
+        JcomboHorarios.addItem("Agregue horarios...");
+
+        for (DisponibilidadDAO.Horario horario : DisponibilidadDAO.obtenerHorarios(idPeluquero)) {
+            JcomboHorarios.addItem(horario.toString());
+        }
+    }
+
+    private void mostrarResumenActividad() {
+        int idPeluquero = BarberoDAO.obtenerIdPeluquero(emailUsuario);
+        ResumenDAO.Resumen resumen = ResumenDAO.obtenerResumen(idPeluquero);
+
+        JTextArea area = new JTextArea();
+        area.setText("Total de citas realizadas: " + resumen.totalCitas + "\n" +
+                    "Ingresos totales: $" + String.format("%.2f", resumen.totalIngresos));
+        area.setEditable(false);
+        JSPresumenActividad.setViewportView(area);
+    }
+
+    private boolean validarCampos() {
+        if (JLtitulo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nombre de barbería es obligatorio.");
+            return false;
+        }
+        return true;
+    }
     /**
      * @param args the command line arguments
      */
