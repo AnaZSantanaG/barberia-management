@@ -17,6 +17,7 @@ public abstract class Usuario {
     protected String contraseña;
     
     // Constructor
+    
     public Usuario(String nombre, String email, String ciudad, String telefono, String contraseña) {
         this.nombre = nombre;
         this.email = email;
