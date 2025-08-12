@@ -84,7 +84,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JLnombreBarberia.setForeground(new java.awt.Color(255, 255, 255));
         JLnombreBarberia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLnombreBarberia.setText("Barberia");
-        getContentPane().add(JLnombreBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 180, 30));
+        getContentPane().add(JLnombreBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 370, 30));
 
         JBicono.setText("ICON");
         JBicono.addActionListener(new java.awt.event.ActionListener() {
@@ -244,79 +244,75 @@ public class PerfilBarbero extends javax.swing.JFrame {
     }//GEN-LAST:event_JBeliminarPerfilActionPerformed
 
     private void JLguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLguardarActionPerformed
-    // 1. Validaciones
-    if (!Validaciones.validarNombre(JTnombre)) return;
-    if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
-    if (!Validaciones.validarCiudad(JComboCiudad)) return;
-    if (!Validaciones.validarYearExperiencia(JcomboExperiencia)) return;
+        // Validaciones
+        if (!Validaciones.validarNombre(JTnombre)) return;
+        if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
+        if (!Validaciones.validarCiudad(JComboCiudad)) return;
+        if (!Validaciones.validarYearExperiencia(JcomboExperiencia)) return;
 
-    // 2. Obtener datos
-    String nombre = JTnombre.getText().trim();
-    String correo = JTcorreo.getText().trim();
-    String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
-    String ciudad = (String) JComboCiudad.getSelectedItem();
-    String seleccion = (String) JcomboExperiencia.getSelectedItem();
-    int experiencia = comboAExperiencia(seleccion);
-    String nombreBarberia = "";
+        String nombre = JTnombre.getText().trim();
+        String correo = JTcorreo.getText().trim();
+        String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
+        String ciudad = (String) JComboCiudad.getSelectedItem();
+        String seleccion = (String) JcomboExperiencia.getSelectedItem();
+        int experiencia = comboAExperiencia(seleccion); // Asegúrate de que no sea 0 si es válido
 
-    // 3. Verificar que no cambie el correo
-    if (!correo.equals(emailUsuario)) {
-        JOptionPane.showMessageDialog(this, "No se puede cambiar el correo electrónico.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // 4. Validar y encriptar contraseña si se ingresó
-    String contrasena = new String(JPcontraseña.getPassword()).trim();
-    String contrasenaEncriptada = null;
-
-    if (!contrasena.isEmpty()) {
-        if (!Validaciones.validarContraseña(JPcontraseña)) {
+        if (experiencia == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una experiencia válida.");
             return;
         }
-        contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
-    }
 
-    // 5. Crear objeto Barbero
-    Barbero barbero = new Barbero(correo, contrasena, nombre, telefono, ciudad, experiencia, nombreBarberia);
-    if (contrasenaEncriptada != null) {
-        barbero.setContraseña(contrasenaEncriptada);
-    }
+        if (!correo.equals(emailUsuario)) {
+            JOptionPane.showMessageDialog(this, "No se puede cambiar el correo.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // 6. Guardar en la base de datos
-    if (BarberoDAO.actualizarBarbero(barbero)) {
-        JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        JPcontraseña.setText(""); // Limpiar campo de contraseña
-    } else {
-        JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        // Contraseña
+        String contrasena = new String(JPcontraseña.getPassword()).trim();
+        String contrasenaEncriptada = null;
+        if (!contrasena.isEmpty()) {
+            if (!Validaciones.validarContraseña(JPcontraseña)) return;
+            contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
+        }
+
+        // Crear objeto
+        Barbero barbero = new Barbero(
+            nombre, correo, ciudad, telefono, 
+            contrasenaEncriptada != null ? contrasenaEncriptada : "", 
+            experiencia, 
+            "Nombre por defecto" // o obtén de otro campo si lo tienes
+        );
+
+        // Guardar
+        if (BarberoDAO.actualizarBarbero(barbero)) {
+            JOptionPane.showMessageDialog(this, "Perfil actualizado.");
+            JPcontraseña.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el perfil.");
+        }
     }//GEN-LAST:event_JLguardarActionPerformed
 
     private void cargarDatosPerfil() {
-    Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
-    if (barbero != null) {
-        JTnombre.setText(barbero.getNombre());
-        JTcorreo.setText(barbero.getEmail());
-        JFtelefono.setText(barbero.getTelefono());
-        String experienciaTexto = experienciaACombo(barbero.getExperiencia());
-        JcomboExperiencia.setSelectedItem(experienciaTexto);
-        JComboCiudad.setSelectedItem(barbero.getCiudad());
+        Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
+        if (barbero != null) {
+            JTnombre.setText(barbero.getNombre());
+            JTcorreo.setText(barbero.getEmail());
+            JFtelefono.setText(barbero.getTelefono());
+            JComboCiudad.setSelectedItem(barbero.getCiudad());
 
-        // Obtener nombre de la barbería desde la BD
-        String nombreBarberia = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
-        if (!nombreBarberia.isEmpty()) {
-            // Muestra el nombre en un JLabel o JTextField
-            JLnombreBarberia.setText(nombreBarberia); // Si usas JLabel
-            // O si usas JTextField:
-            // JTnombreBarberia.setText(nombreBarberia);
+            //Manejar experiencia 0 o no válida
+            String experienciaTexto = experienciaACombo(barbero.getExperiencia());
+            JcomboExperiencia.setSelectedItem(experienciaTexto);
+
+            // Nombre de la barbería
+            String nombreBarberia = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
+            JLnombreBarberia.setText(nombreBarberia.isEmpty() ? "Barbería no asignada" : nombreBarberia);
         } else {
-            JLnombreBarberia.setText("Barbería no asignada");
+            JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
     // Convierte texto del combo a número
-private int comboAExperiencia(String seleccion) {
+    private int comboAExperiencia(String seleccion) {
     switch (seleccion) {
         case "1 - 6 MESES":     return 1;
         case "6 - 12 MESES":    return 2;
@@ -328,22 +324,22 @@ private int comboAExperiencia(String seleccion) {
     }
 }
 
-// Convierte número a texto del combo
-private String experienciaACombo(int valor) {
-    switch (valor) {
-        case 1: return "1 - 6 MESES";
-        case 2: return "6 - 12 MESES";
-        case 3: return "1 - 2 AÑOS";
-        case 4: return "2 - 4 AÑOS";
-        case 5: return "4 - 8 AÑOS";
-        case 6: return "8 o MÁS";
-        default: return "Seleccione....";
+    // Convierte número a texto del combo
+    private String experienciaACombo(int valor) {
+        switch (valor) {
+            case 1: return "1 - 6 MESES";
+            case 2: return "6 - 12 MESES";
+            case 3: return "1 - 2 AÑOS";
+            case 4: return "2 - 4 AÑOS";
+            case 5: return "4 - 8 AÑOS";
+            case 6: return "8 o MÁS";
+            default: return "Seleccione....";
+        }
     }
-}
     /**
      * @param args the command line arguments
      */
-/*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
+    /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
     ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
     
