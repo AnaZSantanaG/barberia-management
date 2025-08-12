@@ -41,6 +41,7 @@ public class AgendarCita extends javax.swing.JFrame {
         JSPnotasadicionales = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        btnCerrarApp2 = new javax.swing.JButton();
         JLnotasadicionales = new javax.swing.JLabel();
         JBcancelar = new javax.swing.JButton();
         JBagendarcita = new javax.swing.JButton();
@@ -111,6 +112,17 @@ public class AgendarCita extends javax.swing.JFrame {
         JSPnotasadicionales.setViewportView(jScrollPane1);
 
         jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 190, 120));
+
+        btnCerrarApp2.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarApp2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        btnCerrarApp2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarApp2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarApp2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCerrarApp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 40, -1));
 
         JLnotasadicionales.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLnotasadicionales.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,6 +321,18 @@ public class AgendarCita extends javax.swing.JFrame {
         new MenuCliente(emailUsuario).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnCerrarApp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarApp2ActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estás seguro que quieres salir?",
+            "Confirmar salida",
+            JOptionPane.YES_NO_OPTION
+        );
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnCerrarApp2ActionPerformed
+
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
     ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
@@ -339,6 +363,9 @@ public class AgendarCita extends javax.swing.JFrame {
     private javax.swing.JScrollPane JSPnotasadicionales;
     private com.toedter.calendar.JCalendar Jcalendario;
     private javax.swing.JComboBox<String> JcomboTipodeservicio;
+    private javax.swing.JButton btnCerrarApp;
+    private javax.swing.JButton btnCerrarApp1;
+    private javax.swing.JButton btnCerrarApp2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
