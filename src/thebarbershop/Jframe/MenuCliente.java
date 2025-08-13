@@ -40,8 +40,8 @@ public class MenuCliente extends javax.swing.JFrame {
         JBperfil = new javax.swing.JButton();
         JBagendarcita = new javax.swing.JButton();
         JBcerrarsesion = new javax.swing.JButton();
-        JPmenu = new javax.swing.JPanel();
         btnCerrarApp = new javax.swing.JButton();
+        JPmenu = new javax.swing.JPanel();
         JBtitle = new javax.swing.JLabel();
         JBseleccioneopcion = new javax.swing.JLabel();
         JBcitasagendadas = new javax.swing.JLabel();
@@ -89,6 +89,7 @@ public class MenuCliente extends javax.swing.JFrame {
         });
         JPusuario.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 160, -1));
 
+        JBcerrarsesion.setBackground(new java.awt.Color(153, 0, 51));
         JBcerrarsesion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBcerrarsesion.setText("Cerrar Sesion ");
         JBcerrarsesion.addActionListener(new java.awt.event.ActionListener() {
@@ -96,24 +97,24 @@ public class MenuCliente extends javax.swing.JFrame {
                 JBcerrarsesionActionPerformed(evt);
             }
         });
-        JPusuario.add(JBcerrarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 160, -1));
+        JPusuario.add(JBcerrarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 160, -1));
 
-        getContentPane().add(JPusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
-
-        JPmenu.setBackground(new java.awt.Color(255, 255, 255));
-        JPmenu.setPreferredSize(new java.awt.Dimension(800, 600));
-        JPmenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnCerrarApp.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarApp.setBackground(new java.awt.Color(153, 0, 51));
         btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp.setText("Salir Del Menu");
         btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarAppActionPerformed(evt);
             }
         });
-        JPmenu.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, 40, -1));
+        JPusuario.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 160, -1));
+
+        getContentPane().add(JPusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
+
+        JPmenu.setBackground(new java.awt.Color(255, 255, 255));
+        JPmenu.setPreferredSize(new java.awt.Dimension(800, 600));
+        JPmenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JBtitle.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 48)); // NOI18N
         JBtitle.setForeground(new java.awt.Color(0, 0, 0));

@@ -67,13 +67,13 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JLtitulo.setForeground(new java.awt.Color(255, 255, 255));
         JLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtitulo.setText("Mi Perfil");
-        getContentPane().add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 340, 60));
+        getContentPane().add(JLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 340, 60));
 
         icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        getContentPane().add(icono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 60, 70));
+        getContentPane().add(icono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 60, 70));
 
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
-        getContentPane().add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 60, 70));
+        getContentPane().add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 60, 70));
 
         JLfotodeperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLfotodeperfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,28 +105,30 @@ public class PerfilBarbero extends javax.swing.JFrame {
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 240, 50));
 
-        JBCerrarSesion.setBackground(new java.awt.Color(30, 30, 30));
+        JBCerrarSesion.setBackground(new java.awt.Color(153, 0, 51));
         JBCerrarSesion.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        JBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cerrar-sesion.png"))); // NOI18N
+        JBCerrarSesion.setText("Salir del Perfil");
         JBCerrarSesion.setActionCommand("Cerrar Sesion");
+        JBCerrarSesion.setPreferredSize(new java.awt.Dimension(175, 24));
         JBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCerrarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 50, 50));
+        getContentPane().add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, 200, 50));
 
         JBeliminarPerfil.setBackground(new java.awt.Color(153, 0, 51));
         JBeliminarPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBeliminarPerfil.setForeground(new java.awt.Color(255, 255, 255));
         JBeliminarPerfil.setText("Eliminar Perfil");
+        JBeliminarPerfil.setPreferredSize(new java.awt.Dimension(175, 24));
         JBeliminarPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBeliminarPerfilActionPerformed(evt);
             }
         });
-        getContentPane().add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, 220, 50));
+        getContentPane().add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 200, 50));
 
         JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,18 +203,19 @@ public class PerfilBarbero extends javax.swing.JFrame {
                 JLguardarActionPerformed(evt);
             }
         });
-        getContentPane().add(JLguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 220, 50));
+        getContentPane().add(JLguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 200, 50));
 
         JLvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JLvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLvolveralmenu.setForeground(new java.awt.Color(51, 51, 51));
         JLvolveralmenu.setText("Volver al Menu");
+        JLvolveralmenu.setPreferredSize(new java.awt.Dimension(175, 24));
         JLvolveralmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JLvolveralmenuActionPerformed(evt);
             }
         });
-        getContentPane().add(JLvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 220, 50));
+        getContentPane().add(JLvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 200, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         getContentPane().add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));

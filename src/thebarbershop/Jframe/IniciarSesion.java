@@ -51,16 +51,17 @@ public class IniciarSesion extends javax.swing.JFrame {
         JPprincipal.setBackground(new java.awt.Color(255, 255, 255));
         JPprincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCerrarApp.setBackground(new java.awt.Color(102, 102, 102));
-        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp.setBackground(new java.awt.Color(255, 255, 255));
+        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        btnCerrarApp.setForeground(new java.awt.Color(255, 0, 0));
+        btnCerrarApp.setText("Salir");
         btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarAppActionPerformed(evt);
             }
         });
-        JPprincipal.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 40, -1));
+        JPprincipal.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 120, 40));
 
         JLTitleIniciarsesion.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
         JLTitleIniciarsesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -121,7 +122,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 lblRegistrateMouseClicked(evt);
             }
         });
-        JPprincipal.add(lblRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, -1, 40));
+        JPprincipal.add(lblRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, -1, 40));
 
         JLimagenBarberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen3(1).jpg"))); // NOI18N
         JPprincipal.add(JLimagenBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 500));

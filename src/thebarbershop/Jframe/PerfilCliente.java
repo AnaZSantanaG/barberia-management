@@ -141,17 +141,17 @@ public class PerfilCliente extends javax.swing.JFrame {
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
 
-        JBCerrarSesion.setBackground(new java.awt.Color(30, 30, 30));
+        JBCerrarSesion.setBackground(new java.awt.Color(153, 0, 51));
         JBCerrarSesion.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        JBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cerrar-sesion.png"))); // NOI18N
+        JBCerrarSesion.setText("Salir del Perfil");
         JBCerrarSesion.setActionCommand("Cerrar Sesion");
         JBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 50, 50));
+        jPanel1.add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 430, 180, 50));
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
@@ -162,7 +162,7 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 220, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 220, 50));
 
         JBeliminarPerfil.setBackground(new java.awt.Color(153, 0, 51));
         JBeliminarPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
@@ -173,7 +173,7 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JBeliminarPerfilActionPerformed(evt);
             }
         });
-        jPanel1.add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 220, 50));
+        jPanel1.add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 220, 50));
 
         JBvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JBvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -184,7 +184,7 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JBvolveralmenuActionPerformed(evt);
             }
         });
-        jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 220, 50));
+        jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 220, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
