@@ -304,7 +304,15 @@ public class PerfilBarbero extends javax.swing.JFrame {
             JTnombre.setText(barbero.getNombre());
             JTcorreo.setText(barbero.getEmail());
             JFtelefono.setText(barbero.getTelefono());
-            JComboCiudad.setSelectedItem(barbero.getCiudad());
+            // En cargarDatosPerfil()
+            String ciudadDB = barbero.getCiudad().trim();
+            for (int i = 0; i < JComboCiudad.getItemCount(); i++) {
+                String item = JComboCiudad.getItemAt(i);
+                if (item.equalsIgnoreCase(ciudadDB)) {
+                    JComboCiudad.setSelectedIndex(i);
+                    break;
+                }
+            }
 
             //Manejar experiencia 0 o no válida
             String experienciaTexto = experienciaACombo(barbero.getExperiencia());
