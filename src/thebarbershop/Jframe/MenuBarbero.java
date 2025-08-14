@@ -69,16 +69,16 @@ public class MenuBarbero extends javax.swing.JFrame {
         iconBarber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(iconBarber, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 60, 70));
 
-        btnCerrarApp.setBackground(new java.awt.Color(0, 0, 0));
-        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        btnCerrarApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp.setBackground(new java.awt.Color(153, 0, 51));
+        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        btnCerrarApp.setText("Salir");
         btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarAppActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 40, -1));
+        jPanel1.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 160, 50));
 
         IconBarber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(IconBarber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
@@ -143,7 +143,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 230, 50));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 230, 50));
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -154,7 +154,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 210, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 210, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));

@@ -113,16 +113,16 @@ public class AgendarCita extends javax.swing.JFrame {
 
         jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 190, 120));
 
-        btnCerrarApp2.setBackground(new java.awt.Color(0, 0, 0));
-        btnCerrarApp2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        btnCerrarApp2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/apagar.png"))); // NOI18N
+        btnCerrarApp2.setBackground(new java.awt.Color(153, 0, 51));
+        btnCerrarApp2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        btnCerrarApp2.setText("Salir");
         btnCerrarApp2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarApp2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarApp2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarApp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 40, -1));
+        jPanel1.add(btnCerrarApp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 410, 190, 50));
 
         JLnotasadicionales.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLnotasadicionales.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,7 +130,7 @@ public class AgendarCita extends javax.swing.JFrame {
         JLnotasadicionales.setText("Notas adicionales");
         jPanel1.add(JLnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 190, 30));
 
-        JBcancelar.setBackground(new java.awt.Color(102, 0, 0));
+        JBcancelar.setBackground(new java.awt.Color(153, 0, 51));
         JBcancelar.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         JBcancelar.setForeground(new java.awt.Color(255, 255, 255));
         JBcancelar.setText("Cancelar");
@@ -139,7 +139,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 JBcancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 210, 50));
+        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 190, 50));
 
         JBagendarcita.setBackground(new java.awt.Color(51, 102, 0));
         JBagendarcita.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
@@ -150,7 +150,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 JBagendarcitaActionPerformed(evt);
             }
         });
-        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, 210, 50));
+        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 190, 50));
 
         JComboElegirbarbero.setBackground(new java.awt.Color(153, 153, 153));
         JComboElegirbarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -217,7 +217,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 210, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 190, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
@@ -363,8 +363,6 @@ public class AgendarCita extends javax.swing.JFrame {
     private javax.swing.JScrollPane JSPnotasadicionales;
     private com.toedter.calendar.JCalendar Jcalendario;
     private javax.swing.JComboBox<String> JcomboTipodeservicio;
-    private javax.swing.JButton btnCerrarApp;
-    private javax.swing.JButton btnCerrarApp1;
     private javax.swing.JButton btnCerrarApp2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;

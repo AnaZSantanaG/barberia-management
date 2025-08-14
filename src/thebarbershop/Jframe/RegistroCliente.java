@@ -69,7 +69,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JPprincipal.add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 90, 30));
 
         JTnombre.setBackground(new java.awt.Color(153, 153, 153));
-        JTnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTnombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JPprincipal.add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 30));
 
         JTemail.setBackground(new java.awt.Color(153, 153, 153));
-        JTemail.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTemail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JTemail.setForeground(new java.awt.Color(0, 0, 0));
         JTemail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTemail.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +176,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         JPprincipal.add(JBcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 140, 30));
 
         JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
-        JPcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JPcontraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         JPcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JPcontraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

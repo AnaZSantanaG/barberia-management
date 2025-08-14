@@ -73,7 +73,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         getContentPane().add(NombredeBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 220, 30));
 
         JTnombredeBarberia.setBackground(new java.awt.Color(153, 153, 153));
-        JTnombredeBarberia.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTnombredeBarberia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JTnombredeBarberia.setForeground(new java.awt.Color(0, 0, 0));
         JTnombredeBarberia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JTnombredeBarberia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -91,7 +91,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 110, 30));
 
         JTnombre.setBackground(new java.awt.Color(153, 153, 153));
-        JTnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTnombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JTnombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -109,7 +109,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         getContentPane().add(JLemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 110, 30));
 
         JTemail.setBackground(new java.awt.Color(153, 153, 153));
-        JTemail.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JTemail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JTemail.setForeground(new java.awt.Color(0, 0, 0));
         JTemail.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         JTemail.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +204,7 @@ public class RegistroBarbero extends javax.swing.JFrame {
         getContentPane().add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, -1, 30));
 
         JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
-        JPcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JPcontraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         JPcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JPcontraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
