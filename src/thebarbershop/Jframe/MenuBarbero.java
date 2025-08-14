@@ -446,8 +446,6 @@ public class MenuBarbero extends javax.swing.JFrame {
                 }
             }
         }
-
-        JOptionPane.showMessageDialog(this, "Disponibilidad guardada correctamente.");
     }
     /**
      * @param args the command line arguments
