@@ -54,32 +54,30 @@ public class DisponibilidadDAO {
     }
 
     // Agregar nuevo horario
-    public static boolean agregarHorario(int idPeluquero, String dia, String inicio, String fin) {
+    public static boolean agregarHorario(int idPeluquero, String diaSemana, String horaInicio, String horaFin) {
         String sql = "INSERT INTO disponibilidad_pel (id_peluquero, dia_semana, hora_inicio, hora_fin) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
+            
             ps.setInt(1, idPeluquero);
-            ps.setString(2, dia);
-            ps.setString(3, inicio);
-            ps.setString(4, fin);
-            ps.executeUpdate();
-            return true;
+            ps.setString(2, diaSemana);
+            ps.setString(3, horaInicio);
+            ps.setString(4, horaFin);
+            
+            return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
-    // Eliminar todos los horarios (para actualizar)
+    
     public static boolean eliminarHorarios(int idPeluquero) {
         String sql = "DELETE FROM disponibilidad_pel WHERE id_peluquero = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
+            
             ps.setInt(1, idPeluquero);
-            ps.executeUpdate();
-            return true;
+            return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
