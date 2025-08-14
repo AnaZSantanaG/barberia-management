@@ -57,14 +57,13 @@ public class DisponibilidadDAO {
     public static boolean agregarHorario(int idPeluquero, String diaSemana, String horaInicio, String horaFin) {
         String sql = "INSERT INTO disponibilidad_pel (id_peluquero, dia_semana, hora_inicio, hora_fin) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            
+            PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idPeluquero);
             ps.setString(2, diaSemana);
-            ps.setString(3, horaInicio);
-            ps.setString(4, horaFin);
-            
-            return ps.executeUpdate() > 0;
+            ps.setTime(3, Time.valueOf(horaInicio + ":00"));
+            ps.setTime(4, Time.valueOf(horaFin + ":00"));
+            ps.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
