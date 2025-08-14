@@ -141,7 +141,7 @@ public class PerfilCliente extends javax.swing.JFrame {
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
 
-        JBCerrarSesion.setBackground(new java.awt.Color(153, 0, 51));
+        JBCerrarSesion.setBackground(new java.awt.Color(51, 0, 0));
         JBCerrarSesion.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         JBCerrarSesion.setText("Salir del Perfil");
