@@ -83,4 +83,16 @@ public class DisponibilidadDAO {
             return false;
         }
     }
+    
+    public static String ajustarHoraParaTurno(String hora, String turno) {
+    if (turno.equals("PM") && !hora.contains(":")) {
+        // Convertir hora simple a formato PM (ej: "2" -> "14:00")
+        int horaNum = Integer.parseInt(hora.split(":")[0]);
+        if (horaNum < 12) {
+            horaNum += 12;
+        }
+        return horaNum + ":00";
+    }
+    return hora + (hora.contains(":") ? "" : ":00");
+}
 }
