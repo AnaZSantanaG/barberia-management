@@ -17,6 +17,7 @@ public class BarberoDAO {
                      "FROM users u " +
                      "JOIN peluqueros p ON u.idusers = p.id_users " +
                      "WHERE u.email = ? AND u.tipo = 'peluquero'";
+        
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
