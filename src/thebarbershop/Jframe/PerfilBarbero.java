@@ -18,6 +18,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
     private final String emailUsuario;
     /**
      * Creates new form PerfilBarbero
+     * @param email
      */
     public PerfilBarbero(String email) {
         this.emailUsuario = email;
