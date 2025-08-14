@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 import thebarbershop.utilidades.BarberoDAO;
 import thebarbershop.Barbero;
@@ -24,7 +27,9 @@ public class MenuBarbero extends javax.swing.JFrame {
         this.emailUsuario = email;
         initComponents();
          setLocationRelativeTo(null);
+        SwingUtilities.invokeLater(() -> {
         cargarDatosIniciales();
+    });
     }
 
     /**
@@ -44,8 +49,13 @@ public class MenuBarbero extends javax.swing.JFrame {
         JLresumendeactividad = new javax.swing.JLabel();
         JSPresumenActividad = new javax.swing.JScrollPane();
         JLestilosdisp = new javax.swing.JLabel();
+        chkAM = new javax.swing.JCheckBox();
+        chkPM = new javax.swing.JCheckBox();
         JComboEstilosdisp = new javax.swing.JComboBox<>();
-        JLicono = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTPdescripcion = new javax.swing.JTextPane();
+        chkFinSemana = new javax.swing.JCheckBox();
+        chkLunesAViernes = new javax.swing.JCheckBox();
         JLhorarios = new javax.swing.JLabel();
         JcomboHorarios = new javax.swing.JComboBox<>();
         btnPortafolio = new javax.swing.JButton();
@@ -78,7 +88,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 btnCerrarAppActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 160, 50));
+        jPanel1.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 160, 50));
 
         IconBarber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(IconBarber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
@@ -87,14 +97,30 @@ public class MenuBarbero extends javax.swing.JFrame {
         JLresumendeactividad.setForeground(new java.awt.Color(255, 255, 255));
         JLresumendeactividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLresumendeactividad.setText("Resumen de Actividad:");
-        jPanel1.add(JLresumendeactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 240, 30));
-        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 320, 240));
+        jPanel1.add(JLresumendeactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 240, 30));
+        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 320, 240));
 
         JLestilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLestilosdisp.setForeground(new java.awt.Color(255, 255, 255));
         JLestilosdisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLestilosdisp.setText("Estilos disponibles:");
         jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 230, 30));
+
+        chkAM.setText("A.M.");
+        chkAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkAMActionPerformed(evt);
+            }
+        });
+        jPanel1.add(chkAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
+
+        chkPM.setText("P.M.");
+        chkPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPMActionPerformed(evt);
+            }
+        });
+        jPanel1.add(chkPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
 
         JComboEstilosdisp.setBackground(new java.awt.Color(51, 51, 51));
         JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -106,19 +132,36 @@ public class MenuBarbero extends javax.swing.JFrame {
         });
         jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 230, 60));
 
-        JLicono.setText("jLabel3");
-        jPanel1.add(JLicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 140, 130));
+        jScrollPane1.setViewportView(jTPdescripcion);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 220, 60));
+
+        chkFinSemana.setText("FIN DE SEMANA");
+        chkFinSemana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkFinSemanaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
+
+        chkLunesAViernes.setText("LUNES A VIERNES");
+        chkLunesAViernes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkLunesAViernesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(chkLunesAViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
 
         JLhorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLhorarios.setForeground(new java.awt.Color(255, 255, 255));
         JLhorarios.setText("Horarios disponibles");
-        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 230, 30));
+        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 230, 30));
 
         JcomboHorarios.setBackground(new java.awt.Color(51, 51, 51));
         JcomboHorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios..." }));
         JcomboHorarios.setPreferredSize(new java.awt.Dimension(180, 23));
-        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 230, 60));
+        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 230, 60));
 
         btnPortafolio.setBackground(new java.awt.Color(153, 153, 153));
         btnPortafolio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
@@ -130,7 +173,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 btnPortafolioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPortafolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 190, 60));
+        jPanel1.add(btnPortafolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 190, 50));
 
         jButton4.setBackground(new java.awt.Color(153, 153, 153));
         jButton4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
@@ -143,7 +186,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 230, 50));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 230, 50));
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -154,7 +197,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 210, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 210, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -177,31 +220,30 @@ public class MenuBarbero extends javax.swing.JFrame {
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
     if (!validarCampos()) return;
 
-        String nombreBarberia = JLtitulo.getText().trim();
-        EstiloCorteDAO.Estilo estilo = (EstiloCorteDAO.Estilo) JComboEstilosdisp.getSelectedItem();
-        DisponibilidadDAO.Horario horario = (DisponibilidadDAO.Horario) JcomboHorarios.getSelectedItem();
+    String nombreBarberia = JLtitulo.getText().trim();
+    
+    // Guardar nombre de barbería
+    if (!BarberoDAO.actualizarNombreBarberia(emailUsuario, nombreBarberia)) {
+        JOptionPane.showMessageDialog(this, "Error al guardar nombre de barbería.");
+        return;
+    }
 
-        boolean ok = true;
+    // Guardar disponibilidad
+    guardarDisponibilidad();
 
-        // 1. Actualizar nombre barbería
-        if (!BarberoDAO.actualizarNombreBarberia(emailUsuario, nombreBarberia)) {
-            ok = false;
+    // Guardar estilo si está seleccionado
+    String estilo = (String) JComboEstilosdisp.getSelectedItem();
+    if (estilo != null && !estilo.equals("Agregar estilos...")) {
+        if (!BarberoDAO.actualizarEspecialidades(emailUsuario, estilo)) {
+            JOptionPane.showMessageDialog(this, "Error al guardar especialidad.");
         }
-        
+    }
 
-        // 2. Actualizar especialidades
-        if (estilo != null && !estilo.toString().startsWith("Agregar")) {
-            if (!BarberoDAO.actualizarEspecialidades(emailUsuario, estilo.toString())) {
-                ok = false;
-            }
-        }
-
-        JOptionPane.showMessageDialog(this,
-            ok ? "Datos guardados correctamente." : "Error al guardar algunos datos.");
+    JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
     }//GEN-LAST:event_JBguardarActionPerformed
 
     private void JComboEstilosdispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboEstilosdispActionPerformed
-        // TODO add your handling code here:
+        mostrarInformacionEstilo();
     }//GEN-LAST:event_JComboEstilosdispActionPerformed
 
     private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
@@ -215,34 +257,110 @@ public class MenuBarbero extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_btnCerrarAppActionPerformed
+
+    private void chkLunesAViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLunesAViernesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkLunesAViernesActionPerformed
+
+    private void chkFinSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFinSemanaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkFinSemanaActionPerformed
+
+    private void chkAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkAMActionPerformed
+
+    private void chkPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkPMActionPerformed
     private void cargarDatosIniciales() {
-        Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
-        if (barbero != null) {
-            JLtitulo.setText(barbero.getNombreBarberia());
-            cargarEstilosDisponibles();
-            cargarHorariosDisponibles();
-            mostrarResumenActividad();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
+    if (barbero != null) {
+        JLtitulo.setText(barbero.getNombreBarberia());
+        cargarEstilosDisponibles();
+        cargarHorariosDisponibles();
+        mostrarResumenActividad();
+        
+        // Ocultar inicialmente el panel de descripción
+        jScrollPane1.setVisible(false);
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }
 
     private void cargarEstilosDisponibles() {
-        JComboEstilosdisp.removeAllItems();
-        JComboEstilosdisp.addItem("Agregar estilos...");
-
-        for (EstiloCorteDAO.Estilo estilo : EstiloCorteDAO.obtenerEstilos()) {
-            JComboEstilosdisp.addItem(estilo.toString());
+    // Primero, insertar los estilos predeterminados en la base de datos si no existen
+    insertarEstilosPredeterminados();
+    
+    JComboEstilosdisp.removeAllItems();
+    JComboEstilosdisp.addItem("Agregar estilos...");
+    
+    // Cargar estilos de la base de datos
+    for (EstiloCorteDAO.Estilo estilo : EstiloCorteDAO.obtenerEstilos()) {
+        JComboEstilosdisp.addItem(estilo.nombre);
+    }
+}
+    
+    private void insertarEstilosPredeterminados() {
+    // Verificar si los estilos predeterminados ya existen, si no, insertarlos
+    String[] estilosPredeterminados = {"Taper Fade", "Low Fade", "Mid Fade", "High Fade", "Skin Fade"};
+    String[] descripciones = {
+        "Corte degradado que comienza muy corto en los lados y se va alargando hacia arriba, creando una transición suave y moderna.",
+        "Degradado bajo que comienza cerca de las orejas y se desvanece suavemente hacia arriba, manteniendo longitud en la parte superior.",
+        "Degradado medio que comienza a la mitad del costado de la cabeza, ofreciendo un equilibrio perfecto entre sutil y llamativo.",
+        "Degradado alto que comienza cerca de la parte superior de la cabeza, creando un contraste marcado y un look más atrevido.",
+        "Degradado muy corto que llega casi al ras de la piel, proporcionando el mayor contraste y un acabado ultramoderno."
+    };
+    double[] precios = {650.00, 600.00, 700.00, 750.00, 800.00};
+    
+    for (int i = 0; i < estilosPredeterminados.length; i++) {
+        EstiloCorteDAO.Estilo existente = EstiloCorteDAO.obtenerEstiloPorNombre(estilosPredeterminados[i]);
+        if (existente == null) {
+            EstiloCorteDAO.guardarNuevoEstilo(estilosPredeterminados[i], descripciones[i], precios[i], 75);
         }
     }
-
+}
+    
+    private void mostrarInformacionEstilo() {
+    String seleccion = (String) JComboEstilosdisp.getSelectedItem();
+    
+    if (seleccion == null || seleccion.equals("Agregar estilos...")) {
+        // Ocultar el panel si no hay selección válida
+        jScrollPane1.setVisible(false);
+        jTPdescripcion.setText("");
+        return;
+    }
+    
+    // Obtener información completa del estilo desde la base de datos
+    EstiloCorteDAO.Estilo estilo = EstiloCorteDAO.obtenerEstiloPorNombre(seleccion);
+    
+    if (estilo != null) {
+        // Formatear la información para mostrar
+        String info = "Descripción:\n" + estilo.descripcion + "\n\n" +
+                      "Precio: RD$" + String.format("%.2f", estilo.precio) + "\n\n" +
+                      "Tiempo estimado: 1 hora 15 minutos";
+        
+        jTPdescripcion.setText(info);
+        jScrollPane1.setVisible(true);
+    } else {
+        jScrollPane1.setVisible(false);
+        jTPdescripcion.setText("");
+    }
+}
+            
     private void cargarHorariosDisponibles() {
         int idPeluquero = BarberoDAO.obtenerIdPeluquero(emailUsuario);
         if (idPeluquero == 0) return;
 
         JcomboHorarios.removeAllItems();
         JcomboHorarios.addItem("Agregue horarios...");
-
+        JcomboHorarios.addItem("08:00 - 09:00");
+        JcomboHorarios.addItem("09:00 - 10:00");
+        JcomboHorarios.addItem("10:00 - 11:00");
+        JcomboHorarios.addItem("11:00 - 12:00");
+        JcomboHorarios.addItem("14:00 - 15:00");
+        JcomboHorarios.addItem("16:00 - 17:00");
+        JcomboHorarios.addItem("18:00 - 19:00");
         for (DisponibilidadDAO.Horario horario : DisponibilidadDAO.obtenerHorarios(idPeluquero)) {
             JcomboHorarios.addItem(horario.toString());
         }
@@ -265,6 +383,69 @@ public class MenuBarbero extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+    
+    private void guardarDisponibilidad() {
+        int idPeluquero = BarberoDAO.obtenerIdPeluquero(emailUsuario);
+        if (idPeluquero == 0) {
+            JOptionPane.showMessageDialog(this, "No se pudo identificar al peluquero.");
+            return;
+        }
+
+        // Validar selección mínima
+        if (!chkLunesAViernes.isSelected() && !chkFinSemana.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un rango de días.");
+            return;
+        }
+
+        if (!chkAM.isSelected() && !chkPM.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un turno (AM/PM).");
+            return;
+        }
+
+        // Obtener horario seleccionado del ComboBox
+        String horario = (String) JcomboHorarios.getSelectedItem();
+        if (horario == null || horario.equals("Agregue horarios...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un horario válido.");
+            return;
+        }
+
+        // Procesar rangos horarios
+        String[] partesHorario = horario.split(" - ");
+        String horaInicioBase = partesHorario[0];
+        String horaFinBase = partesHorario[1];
+
+        // Lista de días a procesar
+        List<String> dias = new ArrayList<>();
+
+        if (chkLunesAViernes.isSelected()) {
+            dias.addAll(Arrays.asList("LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES"));
+        }
+        if (chkFinSemana.isSelected()) {
+            dias.addAll(Arrays.asList("SABADOS", "DOMINGO"));
+        }
+
+        // Procesar turnos (AM/PM)
+        List<String> turnos = new ArrayList<>();
+        if (chkAM.isSelected()) turnos.add("AM");
+        if (chkPM.isSelected()) turnos.add("PM");
+
+        // Eliminar disponibilidad existente
+        DisponibilidadDAO.eliminarHorarios(idPeluquero);
+
+        // Guardar cada combinación día/turno
+        for (String dia : dias) {
+            for (String turno : turnos) {
+                String horaInicio = DisponibilidadDAO.ajustarHoraParaTurno(horaInicioBase, turno);
+                String horaFin = DisponibilidadDAO.ajustarHoraParaTurno(horaFinBase, turno);
+
+                if (!DisponibilidadDAO.agregarHorario(idPeluquero, dia, horaInicio, horaFin)) {
+                    JOptionPane.showMessageDialog(this, "Error al guardar disponibilidad para " + dia);
+                }
+            }
+        }
+
+        JOptionPane.showMessageDialog(this, "Disponibilidad guardada correctamente.");
     }
     /**
      * @param args the command line arguments
@@ -290,15 +471,20 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLestilosdisp;
     private javax.swing.JLabel JLfondo;
     private javax.swing.JLabel JLhorarios;
-    private javax.swing.JLabel JLicono;
     private javax.swing.JLabel JLresumendeactividad;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JScrollPane JSPresumenActividad;
     private javax.swing.JComboBox<String> JcomboHorarios;
     private javax.swing.JButton btnCerrarApp;
     private javax.swing.JButton btnPortafolio;
+    private javax.swing.JCheckBox chkAM;
+    private javax.swing.JCheckBox chkFinSemana;
+    private javax.swing.JCheckBox chkLunesAViernes;
+    private javax.swing.JCheckBox chkPM;
     private javax.swing.JLabel iconBarber;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTPdescripcion;
     // End of variables declaration//GEN-END:variables
 }
