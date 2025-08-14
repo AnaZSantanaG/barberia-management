@@ -99,7 +99,7 @@ public class MenuCliente extends javax.swing.JFrame {
         });
         JPusuario.add(JBcerrarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 160, -1));
 
-        btnCerrarApp.setBackground(new java.awt.Color(153, 0, 51));
+        btnCerrarApp.setBackground(new java.awt.Color(51, 0, 0));
         btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         btnCerrarApp.setText("Salir Del Menu");
         btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
