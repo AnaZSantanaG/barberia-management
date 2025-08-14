@@ -30,6 +30,22 @@ public class EstiloCorteDAO {
             return nombre;
         }
     }
+        
+        public static boolean guardarNuevoEstiloCompleto(String nombre, String descripcion, double precio, int tiempo) {
+        String sql = "INSERT INTO estilos_corte (nombre_estilo, decripcion, precio, tiempo_estimado) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setString(2, descripcion);
+            ps.setDouble(3, precio);
+            ps.setInt(4, tiempo);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
         public static List<Estilo> obtenerEstilos() {
         List<Estilo> estilos = new ArrayList<>();
@@ -52,21 +68,5 @@ public class EstiloCorteDAO {
             e.printStackTrace();
         }
         return estilos;
-    }
-
-        public static boolean guardarNuevoEstiloCompleto(String nombre, String descripcion, double precio, int tiempo) {
-        String sql = "INSERT INTO estilos_corte (nombre_estilo, decripcion, precio, tiempo_estimado) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, nombre);
-            ps.setString(2, descripcion);
-            ps.setDouble(3, precio);
-            ps.setInt(4, tiempo);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+    }   
 }
