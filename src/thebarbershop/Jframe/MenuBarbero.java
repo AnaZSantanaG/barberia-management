@@ -27,9 +27,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         this.emailUsuario = email;
         initComponents();
          setLocationRelativeTo(null);
-        SwingUtilities.invokeLater(() -> {
         cargarDatosIniciales();
-    });
     }
 
     /**
@@ -145,7 +143,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkFinSemanaActionPerformed(evt);
             }
         });
-        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
+        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
 
         chkLunesAViernes.setForeground(new java.awt.Color(255, 255, 255));
         chkLunesAViernes.setText("LUNES A VIERNES");
