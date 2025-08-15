@@ -1,17 +1,16 @@
 package thebarbershop.Jframe;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JOptionPane;
 import thebarbershop.utilidades.*;
 import thebarbershop.*;
 import thebarbershop.utilidades.ClienteDAO;
-import java.nio.file.Files;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 /**
  *
  * @author jaelj
@@ -248,25 +247,40 @@ public class PerfilCliente extends javax.swing.JFrame {
         }
 
         // 4. Obtener foto de perfil (si existe)
-        byte[] fotoPerfil = null;
-        if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
-            // Código para convertir ImageIcon a byte[]
+    byte[] fotoPerfil = null;
+    if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
+        ImageIcon icon = (ImageIcon) JBicono.getIcon();
+        BufferedImage bi = new BufferedImage(
+            icon.getIconWidth(),
+            icon.getIconHeight(),
+            BufferedImage.TYPE_INT_RGB);
+        Graphics g = bi.createGraphics();
+        icon.paintIcon(null, g, 0, 0);
+        g.dispose();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(bi, "jpg", baos);
+            fotoPerfil = baos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-        // 5. Crear y actualizar cliente
-        Cliente cliente = new Cliente(correo, JTnombre.getText().trim(), 
-                                    telefono, ciudad, 
-                                    contrasenaEncriptada != null ? contrasenaEncriptada : "", 
-                                    fotoPerfil);
+    // 5. Crear y actualizar cliente
+    Cliente cliente = new Cliente(correo, JTnombre.getText().trim(), 
+                                telefono, ciudad, 
+                                contrasenaEncriptada != null ? contrasenaEncriptada : "", 
+                                fotoPerfil);
 
-        if (ClienteDAO.actualizarCliente(cliente)) {
-            JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", 
-                                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            JPcontraseña.setText("");
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", 
-                                        "Error", JOptionPane.ERROR_MESSAGE);
-        }        
+    if (ClienteDAO.actualizarCliente(cliente)) {
+        JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", 
+                                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JPcontraseña.setText("");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", 
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+    }                
     }//GEN-LAST:event_JBguardarActionPerformed
 
     private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
