@@ -217,30 +217,6 @@ public class PerfilCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
                 IconPerfilcliente selector = new IconPerfilcliente(JBicono);
                 selector.setVisible(true);
-                
-                JFileChooser fileChooser = new JFileChooser();
-    int result = fileChooser.showOpenDialog(this);
-
-    if (result == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile();
-
-        try {
-            // Leer la imagen como bytes
-            byte[] imageBytes = Files.readAllBytes(selectedFile.toPath());
-
-            // Guardar en la base de datos
-            if (ClienteDAO.actualizarFotoPerfil(emailUsuario, imageBytes)) {
-                JOptionPane.showMessageDialog(this, "Foto de perfil actualizada.");
-                // Mostrarla en el botón
-                mostrarImagenEnBoton(imageBytes);
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al guardar la foto.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al cargar la imagen.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     }//GEN-LAST:event_JBiconoActionPerformed
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
@@ -282,7 +258,7 @@ public class PerfilCliente extends javax.swing.JFrame {
         byte[] fotoPerfil = null;
 
     // 8. Crear objeto Cliente
-    Cliente cliente = new Cliente(correo, nombre, telefono, ciudad, "", fotoPerfil);
+    Cliente cliente = new Cliente(correo, nombre, telefono, ciudad, contrasenaEncriptada != null ? contrasenaEncriptada : "", fotoPerfil);
 
     // 9. Asignar contraseña encriptada si fue ingresada
     if (contrasenaEncriptada != null) {
