@@ -23,8 +23,8 @@ public class Barbero extends Usuario {
     private List<File> imagenesPortafolio;
     
     public Barbero(String nombre, String email, String ciudad, String telefono, 
-                   String contraseña, int experiencia, String nombreBarberia) {
-        super(nombre, email, ciudad, telefono, contraseña);
+                   String contraseña, int experiencia, String nombreBarberia,byte[] fotoPerfil) {
+        super(nombre, email, ciudad, telefono, contraseña,fotoPerfil);
         this.nombreBarberia = nombreBarberia;
         this.horarioAtencion = "9:00 AM - 6:00 PM"; // Horario por defecto
         this.disponible = true;
