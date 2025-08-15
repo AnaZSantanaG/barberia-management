@@ -126,4 +126,41 @@ public class CitaDAO {
             return false;
         }
     }
+    
+
+    /**
+     * Obtiene la próxima cita pendiente del cliente
+     * @param emailCliente Correo del cliente
+     * @return String con mensaje de la cita o null si no hay
+     */
+    public static String obtenerCitaCliente(String emailCliente) {
+        String sql = "SELECT c.fecha_cita, p.nombre_completo " +
+                     "FROM citas c " +
+                     "JOIN clientes cl ON c.id_cliente = cl.id_clientes " +
+                     "JOIN users u ON cl.id_users = u.idusers " +
+                     "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
+                     "WHERE u.email = ? AND c.estado = 'PENDIENTE' " +
+                     "ORDER BY c.fecha_cita LIMIT 1";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, emailCliente);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                LocalDateTime fechaHora = rs.getTimestamp("fecha_cita").toLocalDateTime();
+                String fecha = fechaHora.toLocalDate().toString();
+                String hora = fechaHora.toLocalTime().toString();
+
+                // Formato de hora: solo HH:mm
+                String horaCita = hora.substring(0, 5);
+
+                return "Tienes una cita para " + fecha + " a las " + horaCita;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
