@@ -42,7 +42,6 @@ public class MenuBarbero extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JLtitulo = new javax.swing.JLabel();
         iconBarber = new javax.swing.JLabel();
-        btnCerrarApp = new javax.swing.JButton();
         IconBarber2 = new javax.swing.JLabel();
         JLresumendeactividad = new javax.swing.JLabel();
         JSPresumenActividad = new javax.swing.JScrollPane();
@@ -56,10 +55,13 @@ public class MenuBarbero extends javax.swing.JFrame {
         chkLunesAViernes = new javax.swing.JCheckBox();
         JLhorarios = new javax.swing.JLabel();
         JcomboHorarios = new javax.swing.JComboBox<>();
-        btnPortafolio = new javax.swing.JButton();
-        btnInformacionBarbero = new javax.swing.JButton();
         JBguardar = new javax.swing.JButton();
         JLfondo = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jPerfil = new javax.swing.JMenu();
+        jPortafolioFotos = new javax.swing.JMenu();
+        jSalir = new javax.swing.JMenu();
+        jAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheBarberShop - Panel Barbero ");
@@ -77,17 +79,6 @@ public class MenuBarbero extends javax.swing.JFrame {
         iconBarber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(iconBarber, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 60, 70));
 
-        btnCerrarApp.setBackground(new java.awt.Color(153, 0, 51));
-        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        btnCerrarApp.setText("Salir");
-        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarAppActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 160, 50));
-
         IconBarber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/peluqueria(1).png"))); // NOI18N
         jPanel1.add(IconBarber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
 
@@ -96,13 +87,13 @@ public class MenuBarbero extends javax.swing.JFrame {
         JLresumendeactividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLresumendeactividad.setText("Resumen de Actividad:");
         jPanel1.add(JLresumendeactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 240, 30));
-        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 320, 240));
+        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 320, 340));
 
         JLestilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLestilosdisp.setForeground(new java.awt.Color(255, 255, 255));
         JLestilosdisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLestilosdisp.setText("Estilos disponibles:");
-        jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 230, 30));
+        jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 230, 30));
 
         chkAM.setForeground(new java.awt.Color(255, 255, 255));
         chkAM.setText("A.M.");
@@ -111,7 +102,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkAMActionPerformed(evt);
             }
         });
-        jPanel1.add(chkAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
+        jPanel1.add(chkAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
         chkPM.setForeground(new java.awt.Color(255, 255, 255));
         chkPM.setText("P.M.");
@@ -120,7 +111,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkPMActionPerformed(evt);
             }
         });
-        jPanel1.add(chkPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
+        jPanel1.add(chkPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
 
         JComboEstilosdisp.setBackground(new java.awt.Color(51, 51, 51));
         JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -130,11 +121,11 @@ public class MenuBarbero extends javax.swing.JFrame {
                 JComboEstilosdispActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 230, 60));
+        jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 230, 60));
 
         jScrollPane1.setViewportView(jTPdescripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 220, 60));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 220, 60));
 
         chkFinSemana.setForeground(new java.awt.Color(255, 255, 255));
         chkFinSemana.setText("FIN DE SEMANA");
@@ -143,7 +134,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkFinSemanaActionPerformed(evt);
             }
         });
-        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
+        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
 
         chkLunesAViernes.setForeground(new java.awt.Color(255, 255, 255));
         chkLunesAViernes.setText("LUNES A VIERNES");
@@ -152,43 +143,18 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkLunesAViernesActionPerformed(evt);
             }
         });
-        jPanel1.add(chkLunesAViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+        jPanel1.add(chkLunesAViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
         JLhorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLhorarios.setForeground(new java.awt.Color(255, 255, 255));
         JLhorarios.setText("Horarios disponibles");
-        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 230, 30));
+        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 230, 30));
 
         JcomboHorarios.setBackground(new java.awt.Color(51, 51, 51));
         JcomboHorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios..." }));
         JcomboHorarios.setPreferredSize(new java.awt.Dimension(180, 23));
-        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 230, 60));
-
-        btnPortafolio.setBackground(new java.awt.Color(153, 153, 153));
-        btnPortafolio.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        btnPortafolio.setForeground(new java.awt.Color(51, 51, 51));
-        btnPortafolio.setText("Mi Portafolio de Fotos");
-        btnPortafolio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnPortafolio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPortafolioActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnPortafolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 190, 50));
-
-        btnInformacionBarbero.setBackground(new java.awt.Color(153, 153, 153));
-        btnInformacionBarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        btnInformacionBarbero.setForeground(new java.awt.Color(51, 51, 51));
-        btnInformacionBarbero.setText("Mi informacion de Barbero");
-        btnInformacionBarbero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnInformacionBarbero.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInformacionBarbero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInformacionBarberoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnInformacionBarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 230, 50));
+        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 230, 60));
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -199,7 +165,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 210, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 210, 50));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -207,17 +173,41 @@ public class MenuBarbero extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
         jPanel1.getAccessibleContext().setAccessibleName("");
 
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+
+        jPerfil.setText("mi perfil");
+        jPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPerfilActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jPerfil);
+
+        jPortafolioFotos.setText("mi portafolio de fotos");
+        jPortafolioFotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPortafolioFotosActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jPortafolioFotos);
+
+        jSalir.setText("salir");
+        jSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSalirActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jSalir);
+
+        jAyuda.setText("ayuda");
+        jMenuBar1.add(jAyuda);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnInformacionBarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionBarberoActionPerformed
-        this.dispose();
-        new PerfilBarbero(emailUsuario).setVisible(true);
-    }//GEN-LAST:event_btnInformacionBarberoActionPerformed
-
-    private void btnPortafolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPortafolioActionPerformed
-      JOptionPane.showMessageDialog(this, "Proximamente...");       
-    }//GEN-LAST:event_btnPortafolioActionPerformed
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
     if (!validarCampos()) return;
@@ -248,18 +238,6 @@ public class MenuBarbero extends javax.swing.JFrame {
         mostrarInformacionEstilo();
     }//GEN-LAST:event_JComboEstilosdispActionPerformed
 
-    private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(
-            this,
-            "¿Estás seguro que quieres salir?",
-            "Confirmar salida",
-            JOptionPane.YES_NO_OPTION
-        );
-        if (confirm == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_btnCerrarAppActionPerformed
-
     private void chkLunesAViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLunesAViernesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkLunesAViernesActionPerformed
@@ -275,6 +253,19 @@ public class MenuBarbero extends javax.swing.JFrame {
     private void chkPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkPMActionPerformed
+
+    private void jPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPerfilActionPerformed
+        this.dispose();
+        new PerfilBarbero(emailUsuario).setVisible(true);
+    }//GEN-LAST:event_jPerfilActionPerformed
+
+    private void jPortafolioFotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPortafolioFotosActionPerformed
+        JOptionPane.showMessageDialog(this, "Proximamente...");   
+    }//GEN-LAST:event_jPortafolioFotosActionPerformed
+
+    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
+        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
+    }//GEN-LAST:event_jSalirActionPerformed
     private void cargarDatosIniciales() {
     Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
     if (barbero != null) {
@@ -475,15 +466,17 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JScrollPane JSPresumenActividad;
     private javax.swing.JComboBox<String> JcomboHorarios;
-    private javax.swing.JButton btnCerrarApp;
-    private javax.swing.JButton btnInformacionBarbero;
-    private javax.swing.JButton btnPortafolio;
     private javax.swing.JCheckBox chkAM;
     private javax.swing.JCheckBox chkFinSemana;
     private javax.swing.JCheckBox chkLunesAViernes;
     private javax.swing.JCheckBox chkPM;
     private javax.swing.JLabel iconBarber;
+    private javax.swing.JMenu jAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu jPerfil;
+    private javax.swing.JMenu jPortafolioFotos;
+    private javax.swing.JMenu jSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTPdescripcion;
     // End of variables declaration//GEN-END:variables
