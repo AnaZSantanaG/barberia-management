@@ -8,7 +8,6 @@ import thebarbershop.db.DatabaseConnection;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
