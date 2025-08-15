@@ -30,28 +30,52 @@ public class DisponibilidadDAO {
     }
 
     // Obtener horarios por ID de peluquero
-    public static List<Horario> obtenerHorarios(int idPeluquero) {
-        List<Horario> horarios = new ArrayList<>();
-        String sql = "SELECT dia_semana, hora_inicio, hora_fin FROM disponibilidad_pel WHERE id_peluquero = ?";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setInt(1, idPeluquero);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    horarios.add(new Horario(
-                        rs.getString("dia_semana"),
-                        rs.getString("hora_inicio"),
-                        rs.getString("hora_fin")
-                    ));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return horarios;
+    public static List<String> obtenerHorariosDisponibles(int idPeluquero, String nombreBarbero, String diaSemana) {
+    List<String> horarios = new ArrayList<>();
+    StringBuilder sql = new StringBuilder(
+        "SELECT dp.hora_inicio, dp.hora_fin " +
+        "FROM disponibilidad_pel dp " +
+        "JOIN peluqueros p ON dp.id_peluquero = p.id_Peluquero " +
+        "WHERE p.id_Peluquero = ?"
+    );
+    
+    // Manejar nombreBarbero
+    if (nombreBarbero != null) {
+        sql.append(" AND p.nombre_completo = ?");
     }
+    
+    // Manejar diaSemana
+    if (diaSemana != null) {
+        sql.append(" AND dp.dia_semana = ?");
+    }
+    
+    sql.append(" ORDER BY dp.hora_inicio");
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+        int paramIndex = 1;
+        ps.setInt(paramIndex++, idPeluquero);
+        
+        if (nombreBarbero != null) {
+            ps.setString(paramIndex++, nombreBarbero);
+        }
+        
+        if (diaSemana != null) {
+            ps.setString(paramIndex++, diaSemana.toUpperCase());
+        }
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Time inicio = rs.getTime("hora_inicio");
+            Time fin = rs.getTime("hora_fin");
+            horarios.add(inicio + " - " + fin); // Formato HH:mm - HH:mm
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return horarios;
+}
 
     // Agregar nuevo horario
     public static boolean agregarHorario(int idPeluquero, String diaSemana, String horaInicio, String horaFin) {
