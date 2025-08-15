@@ -22,26 +22,6 @@ public class Sistema {
         citas = new ArrayList<>();
         usuarioActual = null;
         
-        // Crear algunos datos de ejemplo
-        inicializarDatosEjemplo();
-    }
-    
-    private void inicializarDatosEjemplo() {
-        // Agregar algunos barberos de ejemplo
-        Barbero barbero1 = new Barbero("Carlos Pérez", "carlos@email.com", 
-                                      "Santo Domingo", "809-123-4567", 
-                                      "123", 3, "Barbería El Corte");
-        Barbero barbero2 = new Barbero("Miguel García", "miguel@email.com", 
-                                      "Santiago", "809-987-6543", 
-                                      "456", 5, "Style Barber Shop");
-        
-        usuarios.add(barbero1);
-        usuarios.add(barbero2);
-        
-        // Agregar un cliente de ejemplo
-        //Cliente cliente1 = new Cliente("Juan Rodríguez", "juan@email.com", 
-                                      //"Santo Domingo", "809-555-1234", "789");
-        //usuarios.add(cliente1);
     }
     
     // Método para registrar usuario
@@ -55,11 +35,11 @@ public class Sistema {
             }
         }
         
+        byte[] fotoPerfil = null;
         Usuario nuevoUsuario;
         if (tipoUsuario.equals("Barbero")) {
-            nuevoUsuario = new Barbero(nombre, email, ciudad, telefono, contraseña, experiencia, nombreBarberia);
+            nuevoUsuario = new Barbero(nombre, email, ciudad, telefono, contraseña, experiencia, nombreBarberia,fotoPerfil);
         } else {
-            byte[] fotoPerfil = null;
             nuevoUsuario = new Cliente(nombre, email, ciudad, telefono, contraseña, fotoPerfil);
         }
         
