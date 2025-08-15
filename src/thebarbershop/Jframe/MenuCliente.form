@@ -8,7 +8,7 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
     </Container>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+    <Menu class="javax.swing.JMenuBar" name="jMenuOpciones">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -23,21 +23,50 @@
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="menu"/>
       </AccessibilityProperties>
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jPerfil">
+        <Menu class="javax.swing.JMenu" name="jMiPerfil">
           <Properties>
             <Property name="text" type="java.lang.String" value="mi perfil"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Light" size="12" style="0"/>
+            </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPerfilActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMiPerfilActionPerformed"/>
           </Events>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jPerfil">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="perfil"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Copperplate Gothic Light" size="12" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPerfilActionPerformed"/>
+              </Events>
+            </Menu>
+          </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jAgendarCita">
+        <Menu class="javax.swing.JMenu" name="jAgendar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="agendar cita"/>
+            <Property name="text" type="java.lang.String" value="agendar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAgendarCitaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAgendarActionPerformed"/>
           </Events>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jAgendarCita">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="agendar cita"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Copperplate Gothic Light" size="12" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAgendarCitaActionPerformed"/>
+              </Events>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Jsalir">
           <Properties>
@@ -46,6 +75,19 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JsalirActionPerformed"/>
           </Events>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jCerrar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="salir"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Copperplate Gothic Light" size="12" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCerrarActionPerformed"/>
+              </Events>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jayuda">
           <Properties>
@@ -62,6 +104,16 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
           </AccessibilityProperties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jAcercaDe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="acerca de.."/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Copperplate Gothic Light" size="12" style="0"/>
+                </Property>
+              </Properties>
+            </Menu>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -72,7 +124,7 @@
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuOpciones"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
