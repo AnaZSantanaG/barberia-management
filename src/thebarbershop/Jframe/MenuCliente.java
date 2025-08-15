@@ -3,8 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import thebarbershop.Cliente;
+import thebarbershop.utilidades.CitaDAO;
 import thebarbershop.utilidades.ClienteDAO;
 
 /**
@@ -36,19 +43,19 @@ public class MenuCliente extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         JPusuario = new javax.swing.JPanel();
         JLBienvenido = new javax.swing.JLabel();
-        JLiconoUser = new javax.swing.JLabel();
-        JBperfil = new javax.swing.JButton();
-        JBagendarcita = new javax.swing.JButton();
-        JBcerrarsesion = new javax.swing.JButton();
-        btnCerrarApp = new javax.swing.JButton();
+        JLiconoUserimage = new javax.swing.JLabel();
         JPmenu = new javax.swing.JPanel();
         JBtitle = new javax.swing.JLabel();
-        JBseleccioneopcion = new javax.swing.JLabel();
         JBcitasagendadas = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         JBeslogan = new javax.swing.JLabel();
         JBimagen = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jPerfil = new javax.swing.JMenu();
+        jAgendarCita = new javax.swing.JMenu();
+        Jsalir = new javax.swing.JMenu();
+        jayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheBarberShop - Menu Principal ");
@@ -63,52 +70,11 @@ public class MenuCliente extends javax.swing.JFrame {
         JLBienvenido.setText("BIENVENIDO");
         JPusuario.add(JLBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 20, 140, -1));
 
-        JLiconoUser.setBackground(new java.awt.Color(255, 255, 255));
-        JLiconoUser.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        JLiconoUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JLiconoUser.setText("ICON");
-        JPusuario.add(JLiconoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, 130));
-
-        JBperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JBperfil.setText("Mi Pefil");
-        JBperfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        JBperfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBperfilActionPerformed(evt);
-            }
-        });
-        JPusuario.add(JBperfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 160, -1));
-
-        JBagendarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JBagendarcita.setText("Agendar Cita");
-        JBagendarcita.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        JBagendarcita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBagendarcitaActionPerformed(evt);
-            }
-        });
-        JPusuario.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 160, -1));
-
-        JBcerrarsesion.setBackground(new java.awt.Color(153, 0, 51));
-        JBcerrarsesion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JBcerrarsesion.setText("Cerrar Sesion ");
-        JBcerrarsesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBcerrarsesionActionPerformed(evt);
-            }
-        });
-        JPusuario.add(JBcerrarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 160, -1));
-
-        btnCerrarApp.setBackground(new java.awt.Color(51, 0, 0));
-        btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        btnCerrarApp.setText("Salir Del Menu");
-        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarAppActionPerformed(evt);
-            }
-        });
-        JPusuario.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 160, -1));
+        JLiconoUserimage.setBackground(new java.awt.Color(255, 255, 255));
+        JLiconoUserimage.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLiconoUserimage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLiconoUserimage.setText("ICON");
+        JPusuario.add(JLiconoUserimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, 130));
 
         getContentPane().add(JPusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
 
@@ -122,19 +88,12 @@ public class MenuCliente extends javax.swing.JFrame {
         JBtitle.setText("T.B.S");
         JPmenu.add(JBtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 200, -1));
 
-        JBseleccioneopcion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JBseleccioneopcion.setForeground(new java.awt.Color(0, 0, 0));
-        JBseleccioneopcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JBseleccioneopcion.setText("Seleccione una opcion del menu lateral");
-        JBseleccioneopcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPmenu.add(JBseleccioneopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 340, 30));
-
         JBcitasagendadas.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBcitasagendadas.setForeground(new java.awt.Color(0, 0, 0));
         JBcitasagendadas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JBcitasagendadas.setText("MIS CITAS AGENDADAS:");
         JBcitasagendadas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPmenu.add(JBcitasagendadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 330, 20));
+        JPmenu.add(JBcitasagendadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 330, 20));
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(51, 51, 51));
@@ -155,13 +114,13 @@ public class MenuCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTextArea1);
 
-        JPmenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 330, 200));
+        JPmenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 330, 340));
 
         JBeslogan.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBeslogan.setForeground(new java.awt.Color(0, 0, 0));
         JBeslogan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JBeslogan.setText("TheBarberShop - Tus barerias de confianza");
-        JPmenu.add(JBeslogan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 360, 20));
+        JPmenu.add(JBeslogan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 360, 20));
 
         JBimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/fashion-8254063_1280.jpg"))); // NOI18N
         JBimagen.setText("jLabel7");
@@ -169,46 +128,96 @@ public class MenuCliente extends javax.swing.JFrame {
 
         getContentPane().add(JPmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 720, 510));
 
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuBar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+
+        jPerfil.setText("mi perfil");
+        jPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPerfilActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jPerfil);
+
+        jAgendarCita.setText("agendar cita");
+        jAgendarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAgendarCitaActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jAgendarCita);
+
+        Jsalir.setText("Salir");
+        Jsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JsalirActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(Jsalir);
+
+        jayuda.setText("Ayuda");
+        jayuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jayuda.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jayuda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jayuda.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jMenuBar1.add(jayuda);
+        jayuda.getAccessibleContext().setAccessibleDescription("");
+
+        setJMenuBar(jMenuBar1);
+        jMenuBar1.getAccessibleContext().setAccessibleDescription("menu");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JBagendarcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagendarcitaActionPerformed
-        this.dispose();
-        new AgendarCita(emailUsuario).setVisible(true);
-    }//GEN-LAST:event_JBagendarcitaActionPerformed
-
-    private void JBperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBperfilActionPerformed
-        this.dispose();
-        new PerfilCliente(emailUsuario).setVisible(true);
-    }//GEN-LAST:event_JBperfilActionPerformed
-
-    private void JBcerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcerrarsesionActionPerformed
-        this.dispose();
-        new IniciarSesion().setVisible(true);
-    }//GEN-LAST:event_JBcerrarsesionActionPerformed
 
     private void jTextArea1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTextArea1AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextArea1AncestorAdded
 
-    private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(
-        this, 
-        "¿Estás seguro que quieres salir?", 
-        "Confirmar salida", 
-        JOptionPane.YES_NO_OPTION
-    );
-    if (confirm == JOptionPane.YES_OPTION) {
-        System.exit(0);
-    }
-    }//GEN-LAST:event_btnCerrarAppActionPerformed
+    private void jPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPerfilActionPerformed
+        this.dispose();
+        new PerfilCliente(emailUsuario).setVisible(true);
+    }//GEN-LAST:event_jPerfilActionPerformed
+
+    private void jAgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgendarCitaActionPerformed
+        this.dispose();
+        new AgendarCita(emailUsuario).setVisible(true);
+    }//GEN-LAST:event_jAgendarCitaActionPerformed
+
+    private void JsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JsalirActionPerformed
+        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
+    }//GEN-LAST:event_JsalirActionPerformed
 
     private void cargarDatosUsuario() {
-        Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
-        if (cliente != null) {
-            JLBienvenido.setText("HOLA, " + cliente.getNombre().split(" ")[0].toUpperCase());
+    Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
+    if (cliente != null) {
+        JLBienvenido.setText("HOLA, " + cliente.getNombre().split(" ")[0].toUpperCase());
+
+        // Mostrar foto de perfil
+        byte[] fotoPerfil = cliente.getFotoPerfil();
+        if (fotoPerfil != null && fotoPerfil.length > 0) {
+            try {
+                BufferedImage img = ImageIO.read(new ByteArrayInputStream(fotoPerfil));
+                ImageIcon icon = new ImageIcon(img.getScaledInstance(JLiconoUserimage.getWidth(), JLiconoUserimage.getHeight(), Image.SCALE_SMOOTH));
+                JLiconoUserimage.setIcon(icon);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            JLiconoUserimage.setIcon(new ImageIcon(getClass().getResource("/com/images/default_profile.jpeg")));
         }
+
+        // Cargar cita
+        String mensajeCita = CitaDAO.obtenerCitaCliente(emailUsuario);
+        if (mensajeCita != null) {
+            jTextArea1.setText(mensajeCita);
+        } else {
+            jTextArea1.setText("NO HAY CITAS AGENDADAS");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
     ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
@@ -228,21 +237,21 @@ public class MenuCliente extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBagendarcita;
-    private javax.swing.JButton JBcerrarsesion;
     private javax.swing.JLabel JBcitasagendadas;
     private javax.swing.JLabel JBeslogan;
     private javax.swing.JLabel JBimagen;
-    private javax.swing.JButton JBperfil;
-    private javax.swing.JLabel JBseleccioneopcion;
     private javax.swing.JLabel JBtitle;
     private javax.swing.JLabel JLBienvenido;
-    private javax.swing.JLabel JLiconoUser;
+    private javax.swing.JLabel JLiconoUserimage;
     private javax.swing.JPanel JPmenu;
     private javax.swing.JPanel JPusuario;
-    private javax.swing.JButton btnCerrarApp;
+    private javax.swing.JMenu Jsalir;
+    private javax.swing.JMenu jAgendarCita;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jPerfil;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenu jayuda;
     // End of variables declaration//GEN-END:variables
 }
