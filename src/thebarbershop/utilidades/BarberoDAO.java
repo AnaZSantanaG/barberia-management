@@ -142,4 +142,20 @@ public class BarberoDAO {
             return false;
         }
     }      
+    
+    public static boolean actualizarFotoPerfil(String email, byte[] fotoPerfil) {
+    String sql = "UPDATE peluqueros SET foto_perfil = ? " +
+                 "WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setBytes(1, fotoPerfil);
+        ps.setString(2, email);
+        return ps.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }
