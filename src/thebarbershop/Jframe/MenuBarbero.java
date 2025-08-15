@@ -74,6 +74,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         Jcerrar = new javax.swing.JMenuItem();
         jAyuda = new javax.swing.JMenu();
         jAcercaDe = new javax.swing.JMenu();
+        JacercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheBarberShop - Panel Barbero ");
@@ -283,6 +284,15 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jAcercaDeActionPerformed(evt);
             }
         });
+
+        JacercaDe.setText("Acerca De");
+        JacercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JacercaDeActionPerformed(evt);
+            }
+        });
+        jAcercaDe.add(JacercaDe);
+
         jAyuda.add(jAcercaDe);
 
         jMenuOpcion.add(jAyuda);
@@ -383,6 +393,23 @@ public class MenuBarbero extends javax.swing.JFrame {
         // TODO add your handling code here:
         thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
     }//GEN-LAST:event_JcerrarActionPerformed
+
+    private void JacercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JacercaDeActionPerformed
+        // Configuración de la ventana AcercaDe
+    AcercaDe acercaDe = new AcercaDe(this);
+    
+    // Asegurar que se cierre al perder el foco
+    acercaDe.addWindowFocusListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            acercaDe.dispose();
+        }
+    });
+    
+    // Mostrar centrada respecto a la ventana principal
+    acercaDe.setLocationRelativeTo(this);
+    acercaDe.setVisible(true);
+    }//GEN-LAST:event_JacercaDeActionPerformed
     
     private void cargarDatosIniciales() {
     Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
@@ -584,6 +611,7 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLresumendeactividad;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JScrollPane JSPresumenActividad;
+    private javax.swing.JMenuItem JacercaDe;
     private javax.swing.JMenuItem Jcerrar;
     private javax.swing.JComboBox<String> JcomboHorarios;
     private javax.swing.JMenuItem Jperfil;
