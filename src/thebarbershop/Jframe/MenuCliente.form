@@ -172,6 +172,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="JLBienvenido">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Copperplate Gothic Bold" size="14" style="1"/>
             </Property>
@@ -197,7 +200,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="60" width="140" height="130"/>
+              <AbsoluteConstraints x="20" y="50" width="160" height="140"/>
             </Constraint>
           </Constraints>
         </Component>
