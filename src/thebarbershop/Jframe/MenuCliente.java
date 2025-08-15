@@ -27,8 +27,15 @@ public class MenuCliente extends javax.swing.JFrame {
     public MenuCliente(String email) {
         this.emailUsuario = email;
         initComponents();
-         setLocationRelativeTo(null);
-         cargarDatosUsuario();
+        setLocationRelativeTo(null);
+        cargarDatosUsuario();
+        
+        // Asegurar visibilidad y habilitar menús
+        jMenuBar1.setVisible(true);
+        jPerfil.setEnabled(true);
+        jAgendarCita.setEnabled(true);
+        Jsalir.setEnabled(true);
+        jayuda.setEnabled(true);
     }
 
     /**
@@ -217,6 +224,8 @@ public class MenuCliente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+    
+    
 
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
