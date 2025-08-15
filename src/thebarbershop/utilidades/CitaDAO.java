@@ -6,8 +6,12 @@ package thebarbershop.utilidades;
 
 import thebarbershop.db.DatabaseConnection;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 /**
  *
  * @author Mamore e Ika
@@ -45,6 +49,54 @@ public class CitaDAO {
             e.printStackTrace();
         }
     }
+    
+    /**
+ * Obtiene los horarios disponibles de un barbero para un día de la semana
+ * @param nombreBarbero Nombre del barbero
+ * @param diaSemana Día de la semana (ej: "LUNES")
+ * @return Lista de horarios disponibles en formato "HH:mm"
+ */
+    public static List<String> obtenerHorariosDisponibles(String nombreBarbero, String diaSemana) {
+        List<String> horarios = new ArrayList<>();
+        String sql = "SELECT dp.hora_inicio, dp.hora_fin " +
+                     "FROM disponibilidad_pel dp " +
+                     "JOIN peluqueros p ON dp.id_peluquero = p.id_Peluquero " +
+                     "WHERE p.nombre_completo = ? AND dp.dia_semana = ? " +
+                     "ORDER BY dp.hora_inicio";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombreBarbero);
+            ps.setString(2, diaSemana.toUpperCase());
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Time inicio = rs.getTime("hora_inicio");
+                Time fin = rs.getTime("hora_fin");
+
+                // Generar intervalos de 30 min o 45 min según duración del corte
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(inicio);
+
+                while (cal.getTime().before(fin)) {
+                    String hora = new SimpleDateFormat("HH:mm").format(cal.getTime());
+                    // Verificar si ya hay cita en ese horario
+                    if (esDisponible(nombreBarbero, diaSemana, hora)) {
+                        horarios.add(hora);
+                    }
+                    cal.add(Calendar.MINUTE, 30); // Ajusta según duración del servicio
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return horarios;
+    }
+
+/**
+ * Verifica si una hora específica está disponible (no hay cita)
+ */
     // Verificar si un barbero está disponible en una fecha y hora
     public static boolean esDisponible(String nombreBarbero, String fecha, String hora) {
         String sql = "SELECT COUNT(*) FROM citas c " +
