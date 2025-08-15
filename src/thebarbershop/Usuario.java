@@ -15,15 +15,18 @@ public abstract class Usuario {
     protected String ciudad;
     protected String telefono;
     protected String contraseña;
+    protected byte[] fotoPerfil;
+    
     
     // Constructor
     
-    public Usuario(String nombre, String email, String ciudad, String telefono, String contraseña) {
+    public Usuario(String nombre, String email, String ciudad, String telefono, String contraseña, byte[] fotoPerfil) {
         this.nombre = nombre;
         this.email = email;
         this.ciudad = ciudad;
         this.telefono = telefono;
         this.contraseña = contraseña;
+        this.fotoPerfil = fotoPerfil;
     }
     
     // Getters y Setters
@@ -41,6 +44,9 @@ public abstract class Usuario {
     
     public String getContraseña() { return contraseña; }
     public void setContraseña(String contraseña) { this.contraseña = contraseña; }
+    
+    public byte[] getFotoPerfil(){return fotoPerfil;}
+    public void setFotoPerfil(byte[] fotoPerfil){ this.fotoPerfil = fotoPerfil; }
     
     // Método abstracto que cada tipo de usuario implementará
     public abstract String getTipoUsuario();
