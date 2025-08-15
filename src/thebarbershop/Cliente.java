@@ -12,7 +12,7 @@ package thebarbershop;
 public class Cliente extends Usuario {
     
     public Cliente(String nombre, String email, String ciudad, String telefono, String contraseña,byte[] fotoPerfil) {
-        super(nombre, email, ciudad, telefono, contraseña);
+        super(nombre, email, ciudad, telefono, contraseña,fotoPerfil);
     }
     
     @Override
