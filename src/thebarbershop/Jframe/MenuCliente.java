@@ -60,13 +60,13 @@ public class MenuCliente extends javax.swing.JFrame {
         JBimagen = new javax.swing.JLabel();
         jMenuOpciones = new javax.swing.JMenuBar();
         jMiPerfil = new javax.swing.JMenu();
-        jPerfil = new javax.swing.JMenu();
+        jPerfil = new javax.swing.JMenuItem();
         jAgendar = new javax.swing.JMenu();
-        jAgendarCita = new javax.swing.JMenu();
+        jAgendarCita = new javax.swing.JMenuItem();
         Jsalir = new javax.swing.JMenu();
-        jCerrar = new javax.swing.JMenu();
+        jCerrar = new javax.swing.JMenuItem();
         jayuda = new javax.swing.JMenu();
-        jAcercaDe = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheBarberShop - Menu Principal ");
@@ -150,8 +150,8 @@ public class MenuCliente extends javax.swing.JFrame {
             }
         });
 
-        jPerfil.setText("perfil");
         jPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jPerfil.setText("perfil");
         jPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPerfilActionPerformed(evt);
@@ -162,14 +162,15 @@ public class MenuCliente extends javax.swing.JFrame {
         jMenuOpciones.add(jMiPerfil);
 
         jAgendar.setText("agendar");
+        jAgendar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         jAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAgendarActionPerformed(evt);
             }
         });
 
-        jAgendarCita.setText("agendar cita");
         jAgendarCita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jAgendarCita.setText("agendar cita");
         jAgendarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAgendarCitaActionPerformed(evt);
@@ -180,14 +181,15 @@ public class MenuCliente extends javax.swing.JFrame {
         jMenuOpciones.add(jAgendar);
 
         Jsalir.setText("Salir");
+        Jsalir.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         Jsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JsalirActionPerformed(evt);
             }
         });
 
-        jCerrar.setText("salir");
         jCerrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jCerrar.setText("salir");
         jCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCerrarActionPerformed(evt);
@@ -203,9 +205,8 @@ public class MenuCliente extends javax.swing.JFrame {
         jayuda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jayuda.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jAcercaDe.setText("acerca de..");
-        jAcercaDe.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        jayuda.add(jAcercaDe);
+        jMenuItem3.setText("jMenuItem3");
+        jayuda.add(jMenuItem3);
 
         jMenuOpciones.add(jayuda);
         jayuda.getAccessibleContext().setAccessibleDescription("");
@@ -233,17 +234,20 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JsalirActionPerformed
 
     private void jPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPerfilActionPerformed
+        // TODO add your handling code here:
         this.dispose();
         new PerfilCliente(emailUsuario).setVisible(true);
     }//GEN-LAST:event_jPerfilActionPerformed
 
     private void jAgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgendarCitaActionPerformed
+        // TODO add your handling code here:
         this.dispose();
         new AgendarCita(emailUsuario).setVisible(true);
     }//GEN-LAST:event_jAgendarCitaActionPerformed
 
     private void jCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCerrarActionPerformed
-    thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);        // TODO add your handling code here:
+        // TODO add your handling code here:
+         thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
     }//GEN-LAST:event_jCerrarActionPerformed
 
     private void cargarDatosUsuario() {
@@ -307,14 +311,14 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JPanel JPmenu;
     private javax.swing.JPanel JPusuario;
     private javax.swing.JMenu Jsalir;
-    private javax.swing.JMenu jAcercaDe;
     private javax.swing.JMenu jAgendar;
-    private javax.swing.JMenu jAgendarCita;
-    private javax.swing.JMenu jCerrar;
+    private javax.swing.JMenuItem jAgendarCita;
+    private javax.swing.JMenuItem jCerrar;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar jMenuOpciones;
     private javax.swing.JMenu jMiPerfil;
-    private javax.swing.JMenu jPerfil;
+    private javax.swing.JMenuItem jPerfil;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenu jayuda;
