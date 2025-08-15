@@ -11,7 +11,7 @@ package thebarbershop;
 // ===== CLASE CLIENTE =====
 public class Cliente extends Usuario {
     
-    public Cliente(String nombre, String email, String ciudad, String telefono, String contraseña) {
+    public Cliente(String nombre, String email, String ciudad, String telefono, String contraseña,byte[] fotoPerfil) {
         super(nombre, email, ciudad, telefono, contraseña);
     }
     
