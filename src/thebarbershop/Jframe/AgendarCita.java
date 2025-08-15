@@ -248,71 +248,61 @@ public class AgendarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextArea1AncestorAdded
 
     private void JBagendarcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagendarcitaActionPerformed
+        // Validar campos obligatorios
+        if (JComboElegirbarbero.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un barbero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (JcomboTipodeservicio.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un servicio", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (JComboHORA.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una hora válida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         Date fechaSeleccionada = Jcalendario.getDate();
         if (fechaSeleccionada == null) {
-            JOptionPane.showMessageDialog(this, "Seleccione una fecha.");
+            JOptionPane.showMessageDialog(this, "Seleccione una fecha válida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Validar fecha no pasada
-        Calendar calFecha = Calendar.getInstance();
-        calFecha.setTime(fechaSeleccionada);
-        calFecha.set(Calendar.HOUR_OF_DAY, 0);
-        calFecha.set(Calendar.MINUTE, 0);
+        // Validar que la fecha no sea pasada
+        Calendar fechaCita = Calendar.getInstance();
+        fechaCita.setTime(fechaSeleccionada);
 
-        Calendar calHoy = Calendar.getInstance();
-        calHoy.set(Calendar.HOUR_OF_DAY, 0);
-        calHoy.set(Calendar.MINUTE, 0);
-
-        if (calFecha.before(calHoy)) {
-            JOptionPane.showMessageDialog(this, "No puedes agendar citas en fechas pasadas.");
+        Calendar hoy = Calendar.getInstance();
+        if (fechaCita.before(hoy)) {
+            JOptionPane.showMessageDialog(this, "No puede agendar citas en fechas pasadas", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Obtener día de la semana
-        String[] dias = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADOS"};
-        String diaSemana = dias[calFecha.get(Calendar.DAY_OF_WEEK)];
-
-        String hora = (String) JComboHORA.getSelectedItem();
+        // Obtener datos del formulario
         String barbero = (String) JComboElegirbarbero.getSelectedItem();
         String servicio = (String) JcomboTipodeservicio.getSelectedItem();
-        String lugar = (String) JComboLugarcita.getSelectedItem();
+        String hora = (String) JComboHORA.getSelectedItem();
         String notas = jTextArea1.getText();
 
-        // Validaciones
-        if (hora == null || hora.equals("Seleccione hora...") || hora.equals("No trabaja este día")) {
-            JOptionPane.showMessageDialog(this, "Seleccione una hora válida.");
-            return;
-        }
-        if (barbero == null || barbero.equals("Seleccione Barbero...")) {
-            JOptionPane.showMessageDialog(this, "Seleccione un barbero.");
-            return;
-        }
-        if (servicio == null || servicio.equals("Seleccione Servicio...")) {
-            JOptionPane.showMessageDialog(this, "Seleccione un servicio.");
-            return;
-        }
-        if (lugar == null || lugar.equals("Seleccion lugar...")) {
-            JOptionPane.showMessageDialog(this, "Seleccione un lugar.");
-            return;
-        }
+        // Formatear fecha
+        SimpleDateFormat sdfFecha = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaStr = sdfFecha.format(fechaSeleccionada);
 
-        // Formato fecha: yyyy-MM-dd HH:mm:ss
-        String fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaSeleccionada) + " " + hora + ":00";
-
-        // Verificar disponibilidad (doble verificación)
-        if (!CitaDAO.esDisponible(barbero, fechaStr.split(" ")[0], hora)) {
-            JOptionPane.showMessageDialog(this, "El barbero ya tiene una cita en ese horario.");
+        // Verificar disponibilidad
+        if (!CitaDAO.esDisponible(barbero, fechaStr, hora)) {
+            JOptionPane.showMessageDialog(this, "El barbero no está disponible en ese horario", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Agendar cita
-        if (CitaDAO.agendarCita(emailUsuario, barbero, servicio, fechaStr.split(" ")[0], hora, notas)) {
-            JOptionPane.showMessageDialog(this, "Cita agendada con éxito.");
+        if (CitaDAO.agendarCita(emailUsuario, barbero, servicio, fechaStr, hora, notas)) {
+            JOptionPane.showMessageDialog(this, "Cita agendada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             new MenuCliente(emailUsuario).setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Error al agendar la cita.");
+            JOptionPane.showMessageDialog(this, "Error al agendar la cita", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBagendarcitaActionPerformed
 
