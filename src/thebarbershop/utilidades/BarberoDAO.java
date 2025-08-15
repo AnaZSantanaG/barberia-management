@@ -13,7 +13,7 @@ import java.sql.*;
 public class BarberoDAO {
     // Obtener datos del barbero por email
     public static Barbero obtenerBarberoPorEmail(String email) {
-        String sql = "SELECT u.email, p.nombre_completo, p.telefono, p.Ciudad, p.years_experiencia, p.nombreBarberia,p.foto_perfil u.clave " +
+        String sql = "SELECT u.email, p.nombre_completo, p.telefono, p.Ciudad, p.years_experiencia, p.nombreBarberia,p.foto_perfil, u.clave " +
                      "FROM users u " +
                      "JOIN peluqueros p ON u.idusers = p.id_users " +
                      "WHERE u.email = ? AND u.tipo = 'peluquero'";
