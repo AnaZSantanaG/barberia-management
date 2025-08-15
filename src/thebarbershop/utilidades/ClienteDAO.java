@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import thebarbershop.db.DatabaseConnection;
 import thebarbershop.*;
 /**
@@ -46,7 +47,7 @@ public class ClienteDAO {
 
     // Método para actualizar los datos del cliente
     public static boolean actualizarCliente(Cliente cliente) {
-        String sqlCliente = "UPDATE clientes SET nombre = ?, telefono = ?, Ciudad = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+        String sqlCliente = "UPDATE clientes SET nombre = ?, telefono = ?, Ciudad = ?, foto_perfil = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
         String sqlUser = "UPDATE users SET clave = ? WHERE email = ?";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -57,7 +58,15 @@ public class ClienteDAO {
                 psCliente.setString(1, cliente.getNombre());
                 psCliente.setString(2, cliente.getTelefono());
                 psCliente.setString(3, cliente.getCiudad());
-                psCliente.setString(4, cliente.getEmail());
+
+                // Manejar foto de perfil (puede ser null)
+                if (cliente.getFotoPerfil() != null && cliente.getFotoPerfil().length > 0) {
+                    psCliente.setBytes(4, cliente.getFotoPerfil());
+                } else {
+                    psCliente.setNull(4, Types.BLOB);
+                }
+
+                psCliente.setString(5, cliente.getEmail());
 
                 int filasCliente = psCliente.executeUpdate();
                 if (filasCliente == 0) {
@@ -68,20 +77,10 @@ public class ClienteDAO {
 
             // Actualizar contraseña solo si no está vacía
             if (cliente.getContraseña() != null && !cliente.getContraseña().isEmpty()) {
-            String contrasenaEncriptada = Seguridad.encriptarContraseña(cliente.getContraseña());
-            try (PreparedStatement psUser = conn.prepareStatement(sqlUser)) {
-                psUser.setString(1, contrasenaEncriptada);
-                psUser.setString(2, cliente.getEmail());
-                psUser.executeUpdate();
-                }
-            }
-            
-            if (cliente.getFotoPerfil() != null) {
-            String sqlFoto = "UPDATE clientes SET foto_perfil = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
-            try (PreparedStatement psFoto = conn.prepareStatement(sqlFoto)) {
-                    psFoto.setBytes(1, cliente.getFotoPerfil());
-                    psFoto.setString(2, cliente.getEmail());
-                    psFoto.executeUpdate();
+                try (PreparedStatement psUser = conn.prepareStatement(sqlUser)) {
+                    psUser.setString(1, cliente.getContraseña());
+                    psUser.setString(2, cliente.getEmail());
+                    psUser.executeUpdate();
                 }
             }
 
@@ -119,33 +118,30 @@ public class ClienteDAO {
 }
     
     public static boolean actualizarFotoPerfil(String email, byte[] foto) {
-   
-    
-
         Connection conn = null;
-    PreparedStatement stmt = null;
+        PreparedStatement stmt = null;
 
-    try {
-        conn = DatabaseConnection.getConnection();
-        String sql = "UPDATE clientes SET foto_perfil = ? " +
-                     "WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
-        stmt = conn.prepareStatement(sql);
-        stmt.setBytes(1, foto);
-        stmt.setString(2, email);
-        return stmt.executeUpdate() > 0;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return false;
-    } finally {
-        closeResources(null, stmt, conn);
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "UPDATE clientes SET foto_perfil = ? " +
+                         "WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setBytes(1, foto);
+            stmt.setString(2, email);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            closeResources(null, stmt, conn);
+        }
     }
-}
-    
-    private static void closeResources(ResultSet rs, PreparedStatement stmt, Connection conn) {
-    try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
-    try { if (stmt != null) stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
-    try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
-    }
+
+        private static void closeResources(ResultSet rs, PreparedStatement stmt, Connection conn) {
+        try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (stmt != null) stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
+        }
 }
 
 
