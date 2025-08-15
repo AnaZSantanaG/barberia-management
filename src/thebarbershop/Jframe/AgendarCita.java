@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat; // Para formatear la fecha a String
 import javax.swing.JOptionPane; // Para los mensajes emergentes
 import thebarbershop.utilidades.CitaDAO;
 import java.util.Calendar;
+import java.util.List;
 /**
  *
  * @author jaelj
@@ -17,10 +18,11 @@ public class AgendarCita extends javax.swing.JFrame {
     public AgendarCita(String email) {
         this.emailUsuario = email;
         initComponents();
+        Jcalendario.addPropertyChangeListener(this::JcalendarioPropertyChange);
         setLocationRelativeTo(null);
         // Cargar datos desde la BD
-    CitaDAO.cargarBarberos(JComboElegirbarbero);
-    CitaDAO.cargarServicios(JcomboTipodeservicio);
+        CitaDAO.cargarBarberos(JComboElegirbarbero);
+        CitaDAO.cargarServicios(JcomboTipodeservicio);
     }
     
     /**
@@ -206,6 +208,11 @@ public class AgendarCita extends javax.swing.JFrame {
 
         Jcalendario.setBackground(new java.awt.Color(51, 51, 51));
         Jcalendario.setForeground(new java.awt.Color(51, 51, 51));
+        Jcalendario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JcalendarioPropertyChange(evt);
+            }
+        });
         jPanel1.add(Jcalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 330, 230));
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
@@ -241,7 +248,6 @@ public class AgendarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextArea1AncestorAdded
 
     private void JBagendarcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagendarcitaActionPerformed
-        // Obtener fecha del calendario
         Date fechaSeleccionada = Jcalendario.getDate();
         if (fechaSeleccionada == null) {
             JOptionPane.showMessageDialog(this, "Seleccione una fecha.");
@@ -263,7 +269,10 @@ public class AgendarCita extends javax.swing.JFrame {
             return;
         }
 
-        String fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaSeleccionada);
+        // Obtener día de la semana
+        String[] dias = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADOS"};
+        String diaSemana = dias[calFecha.get(Calendar.DAY_OF_WEEK)];
+
         String hora = (String) JComboHORA.getSelectedItem();
         String barbero = (String) JComboElegirbarbero.getSelectedItem();
         String servicio = (String) JcomboTipodeservicio.getSelectedItem();
@@ -271,8 +280,8 @@ public class AgendarCita extends javax.swing.JFrame {
         String notas = jTextArea1.getText();
 
         // Validaciones
-        if (hora == null || hora.equals("Seleccione hora...")) {
-            JOptionPane.showMessageDialog(this, "Seleccione una hora.");
+        if (hora == null || hora.equals("Seleccione hora...") || hora.equals("No trabaja este día")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una hora válida.");
             return;
         }
         if (barbero == null || barbero.equals("Seleccione Barbero...")) {
@@ -288,14 +297,17 @@ public class AgendarCita extends javax.swing.JFrame {
             return;
         }
 
-        // Verificar disponibilidad
-        if (!CitaDAO.esDisponible(barbero, fechaStr, hora)) {
-            JOptionPane.showMessageDialog(this, "El barbero no está disponible en esa fecha y hora.");
+        // Formato fecha: yyyy-MM-dd HH:mm:ss
+        String fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fechaSeleccionada) + " " + hora + ":00";
+
+        // Verificar disponibilidad (doble verificación)
+        if (!CitaDAO.esDisponible(barbero, fechaStr.split(" ")[0], hora)) {
+            JOptionPane.showMessageDialog(this, "El barbero ya tiene una cita en ese horario.");
             return;
         }
 
         // Agendar cita
-        if (CitaDAO.agendarCita(emailUsuario, barbero, servicio, fechaStr, hora, notas)) {
+        if (CitaDAO.agendarCita(emailUsuario, barbero, servicio, fechaStr.split(" ")[0], hora, notas)) {
             JOptionPane.showMessageDialog(this, "Cita agendada con éxito.");
             this.dispose();
             new MenuCliente(emailUsuario).setVisible(true);
@@ -313,7 +325,9 @@ public class AgendarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_JcomboTipodeservicioActionPerformed
 
     private void JComboElegirbarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboElegirbarberoActionPerformed
-        
+        // Limpiar combo de horas
+        JComboHORA.removeAllItems();
+        JComboHORA.addItem("Seleccione hora...");
     }//GEN-LAST:event_JComboElegirbarberoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -332,6 +346,43 @@ public class AgendarCita extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_btnCerrarApp2ActionPerformed
+
+    private void JcalendarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JcalendarioPropertyChange
+        if ("calendar".equals(evt.getPropertyName())) {
+        Date fecha = Jcalendario.getDate();
+        if (fecha == null) return;
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+
+        // Obtener día de la semana
+        String[] dias = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADOS"};
+        String diaSemana = dias[cal.get(Calendar.DAY_OF_WEEK)];
+
+        String barbero = (String) JComboElegirbarbero.getSelectedItem();
+        if (barbero == null || barbero.equals("Seleccione Barbero...")) {
+            JOptionPane.showMessageDialog(this, "Primero seleccione un barbero.");
+            return;
+        }
+
+        // Verificar si el barbero trabaja ese día
+        if (!CitaDAO.trabajaDia(barbero, diaSemana)) {
+            JOptionPane.showMessageDialog(this, "El barbero " + barbero + " no trabaja los " + diaSemana.toLowerCase() + ".");
+            JComboHORA.removeAllItems();
+            JComboHORA.addItem("No trabaja este día");
+            return;
+        }
+
+        // Obtener horarios disponibles
+        List<String> horarios = CitaDAO.obtenerHorariosDisponibles(barbero, diaSemana);
+        JComboHORA.removeAllItems();
+        JComboHORA.addItem("Seleccione hora...");
+        for (String hora : horarios) {
+            JComboHORA.addItem(hora);
+        }
+    }
+
+    }//GEN-LAST:event_JcalendarioPropertyChange
 
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
