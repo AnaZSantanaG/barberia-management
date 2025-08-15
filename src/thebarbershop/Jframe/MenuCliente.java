@@ -206,6 +206,11 @@ public class MenuCliente extends javax.swing.JFrame {
         jayuda.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jayuda.add(jMenuItem3);
 
         jMenuOpciones.add(jayuda);
@@ -249,6 +254,23 @@ public class MenuCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
          thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
     }//GEN-LAST:event_jCerrarActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        AcercaDe acercaDe = new AcercaDe(this);
+    
+    // Asegurar que se cierre al perder el foco
+    acercaDe.addWindowFocusListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            acercaDe.dispose();
+        }
+    });
+    
+    // Mostrar centrada respecto a la ventana principal
+    acercaDe.setLocationRelativeTo(this);
+    acercaDe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void cargarDatosUsuario() {
     Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
