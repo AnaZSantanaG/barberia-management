@@ -95,23 +95,27 @@ public class CitaDAO {
 
 /**
  * Verifica si una hora específica está disponible (no hay cita)
+     * @param nombreBarbero
+     * @param fecha
+     * @param hora
+     * @return 
  */
     // Verificar si un barbero está disponible en una fecha y hora
     public static boolean esDisponible(String nombreBarbero, String fecha, String hora) {
         String sql = "SELECT COUNT(*) FROM citas c " +
-                     "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
-                     "WHERE p.nombre_completo = ? AND c.fecha_cita = ? AND c.estado = 'PENDIENTE'";
-        
-        String fechaHora = fecha + " " + hora; // "2025-04-05 09:00:00"
+                 "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
+                 "WHERE p.nombre_completo = ? AND DATE(c.fecha_cita) = ? AND TIME(c.fecha_cita) = ? AND c.estado = 'PENDIENTE'";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, nombreBarbero);
-            ps.setString(2, fechaHora);
+            ps.setString(2, fecha);
+            ps.setString(3, hora + ":00");
+
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) == 0; // true si no hay cita
+                return rs.getInt(1) == 0; // true si NO hay cita
             }
         } catch (SQLException e) {
             e.printStackTrace();
