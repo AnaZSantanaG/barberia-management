@@ -22,6 +22,17 @@ public class Barbero extends Usuario {
     // NUEVO: Lista para guardar las rutas de las imágenes del portafolio
     private List<File> imagenesPortafolio;
     
+    /**
+     *
+     * @param nombre
+     * @param email
+     * @param ciudad
+     * @param telefono
+     * @param contraseña
+     * @param experiencia
+     * @param nombreBarberia
+     * @param fotoPerfil
+     */
     public Barbero(String nombre, String email, String ciudad, String telefono, 
                    String contraseña, int experiencia, String nombreBarberia,byte[] fotoPerfil) {
         super(nombre, email, ciudad, telefono, contraseña,fotoPerfil);
@@ -33,6 +44,8 @@ public class Barbero extends Usuario {
         // NUEVO: Inicializar la lista de imágenes vacía
         this.imagenesPortafolio = new ArrayList<>();
     }
+
+    
     
     @Override
     public String getTipoUsuario() {
