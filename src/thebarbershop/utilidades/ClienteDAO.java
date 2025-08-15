@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import thebarbershop.db.DatabaseConnection;
 import thebarbershop.*;
 /**
@@ -30,7 +31,8 @@ public class ClienteDAO {
                     rs.getString("email"),
                     rs.getString("Ciudad"),
                     rs.getString("telefono"),
-                    "" // contraseña vacía (no se devuelve)
+                    "",// contraseña vacía (no se devuelve)
+                    rs.getBytes("ruta_foto_perfil")
                 );
             }
         } catch (SQLException e) {
@@ -103,5 +105,32 @@ public class ClienteDAO {
     }
     return false;
 }
+    public static boolean actualizarFotoPerfil(String email, byte[] fotoPerfil) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = DatabaseConnection.getConnection();
+            String query = "UPDATE clientes SET foto_perfil = ? WHERE email = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setBytes(1, fotoPerfil); // Establecer la imagen como bytes
+            stmt.setString(2, email); // Establecer el correo electrónico
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0; // Devuelve true si se actualizó correctamente
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // Cerrar recursos
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
 
