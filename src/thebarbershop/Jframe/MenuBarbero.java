@@ -26,8 +26,15 @@ public class MenuBarbero extends javax.swing.JFrame {
     public MenuBarbero(String email) {
         this.emailUsuario = email;
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         cargarDatosIniciales();
+        
+        // Asegurar visibilidad y habilitar menús
+        jMenuBar1.setVisible(true);
+        jPerfil.setEnabled(true);
+        jPortafolioFotos.setEnabled(true);
+        jSalir.setEnabled(true);
+        jAyuda.setEnabled(true);
     }
 
     /**
