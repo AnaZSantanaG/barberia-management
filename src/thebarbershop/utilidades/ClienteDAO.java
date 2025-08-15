@@ -75,6 +75,15 @@ public class ClienteDAO {
                 psUser.executeUpdate();
                 }
             }
+            
+            if (cliente.getFotoPerfil() != null) {
+            String sqlFoto = "UPDATE clientes SET foto_perfil = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+            try (PreparedStatement psFoto = conn.prepareStatement(sqlFoto)) {
+                    psFoto.setBytes(1, cliente.getFotoPerfil());
+                    psFoto.setString(2, cliente.getEmail());
+                    psFoto.executeUpdate();
+                }
+            }
 
             conn.commit();
             return true;
@@ -110,7 +119,10 @@ public class ClienteDAO {
 }
     
     public static boolean actualizarFotoPerfil(String email, byte[] foto) {
-    Connection conn = null;
+   
+    
+
+        Connection conn = null;
     PreparedStatement stmt = null;
 
     try {
