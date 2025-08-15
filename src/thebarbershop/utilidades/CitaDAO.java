@@ -214,4 +214,25 @@ public class CitaDAO {
         }
         return null;
     }
+    
+    public static boolean trabajaDia(String nombreBarbero, String diaSemana) {
+        String sql = "SELECT COUNT(*) FROM disponibilidad_pel dp " +
+                     "JOIN peluqueros p ON dp.id_peluquero = p.id_Peluquero " +
+                     "WHERE p.nombre_completo = ? AND dp.dia_semana = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombreBarbero);
+            ps.setString(2, diaSemana.toUpperCase());
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
