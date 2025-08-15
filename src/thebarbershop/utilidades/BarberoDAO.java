@@ -13,7 +13,7 @@ import java.sql.*;
 public class BarberoDAO {
     // Obtener datos del barbero por email
     public static Barbero obtenerBarberoPorEmail(String email) {
-        String sql = "SELECT u.email, p.nombre_completo, p.telefono, p.Ciudad, p.years_experiencia, p.nombreBarberia, u.clave " +
+        String sql = "SELECT u.email, p.nombre_completo, p.telefono, p.Ciudad, p.years_experiencia, p.nombreBarberia,p.foto_perfil u.clave " +
                      "FROM users u " +
                      "JOIN peluqueros p ON u.idusers = p.id_users " +
                      "WHERE u.email = ? AND u.tipo = 'peluquero'";
@@ -31,6 +31,7 @@ public class BarberoDAO {
                 if (rs.wasNull()) {
                     experiencia = 0; // o 3 si quieres "1-2 años" por defecto
                 }
+                byte[] fotoPerfil = rs.getBinaryStream("foto_perfil") != null ? rs.getBytes("foto_perfil") : null;
 
                 return new Barbero(
                     rs.getString("nombre_completo"),
@@ -39,7 +40,8 @@ public class BarberoDAO {
                     rs.getString("telefono"),
                     rs.getString("clave"),
                     experiencia,
-                    rs.getString("nombreBarberia")
+                    rs.getString("nombreBarberia"),
+                    fotoPerfil 
                 );
             }
         } catch (SQLException e) {
