@@ -39,9 +39,9 @@ public class Sistema {
         usuarios.add(barbero2);
         
         // Agregar un cliente de ejemplo
-        Cliente cliente1 = new Cliente("Juan Rodríguez", "juan@email.com", 
-                                      "Santo Domingo", "809-555-1234", "789");
-        usuarios.add(cliente1);
+        //Cliente cliente1 = new Cliente("Juan Rodríguez", "juan@email.com", 
+                                      //"Santo Domingo", "809-555-1234", "789");
+        //usuarios.add(cliente1);
     }
     
     // Método para registrar usuario
@@ -59,7 +59,8 @@ public class Sistema {
         if (tipoUsuario.equals("Barbero")) {
             nuevoUsuario = new Barbero(nombre, email, ciudad, telefono, contraseña, experiencia, nombreBarberia);
         } else {
-            nuevoUsuario = new Cliente(nombre, email, ciudad, telefono, contraseña);
+            byte[] fotoPerfil = null;
+            nuevoUsuario = new Cliente(nombre, email, ciudad, telefono, contraseña, fotoPerfil);
         }
         
         usuarios.add(nuevoUsuario);
