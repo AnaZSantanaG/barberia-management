@@ -281,12 +281,14 @@ public class PerfilBarbero extends javax.swing.JFrame {
 
         // Crear objeto
         String nombreBarberiaActual = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
+        byte[] fotoPerfil = null;
 
         Barbero barbero = new Barbero(
             nombre, correo, ciudad, telefono, 
             contrasenaEncriptada != null ? contrasenaEncriptada : "", 
             experiencia, 
-            nombreBarberiaActual  // o obtén de otro campo si lo tienes
+            nombreBarberiaActual,
+                fotoPerfil// o obtén de otro campo si lo tienes
         );
 
         // Guardar
