@@ -97,14 +97,14 @@ public class BarberoDAO {
     }
     
     public static int obtenerIdPeluquero(String email) {
-        String sql = "SELECT p.id_Peluquero FROM peluqueros p JOIN users u ON p.id_users = u.idusers WHERE u.email = ?";
+        String sql = "SELECT p.id_Peluquero, p.nombre_completo FROM peluqueros p JOIN users u ON p.id_users = u.idusers WHERE u.email = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("id_Peluquero");
+                    return rs.getInt("id_peluquero");
                 }
             }
         } catch (SQLException e) {
