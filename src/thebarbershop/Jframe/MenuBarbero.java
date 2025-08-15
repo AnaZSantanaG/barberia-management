@@ -24,10 +24,10 @@ public class MenuBarbero extends javax.swing.JFrame {
      * @param email
      */
     public MenuBarbero(String email) {
+        cargarDatosIniciales();
         this.emailUsuario = email;
         initComponents();
         setLocationRelativeTo(null);
-        cargarDatosIniciales();
         
         // Asegurar visibilidad y habilitar menús
         jMenuBar1.setVisible(true);
