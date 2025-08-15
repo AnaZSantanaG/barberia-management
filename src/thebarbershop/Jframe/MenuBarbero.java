@@ -65,10 +65,13 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMenuOpcion = new javax.swing.JMenuBar();
         jMiPerfil = new javax.swing.JMenu();
         jPerfil = new javax.swing.JMenu();
+        Jperfil = new javax.swing.JMenuItem();
         jPortafolio = new javax.swing.JMenu();
         jPortafolioFoto = new javax.swing.JMenu();
+        Jportafolio = new javax.swing.JMenuItem();
         jSalir = new javax.swing.JMenu();
         jCerrar = new javax.swing.JMenu();
+        Jcerrar = new javax.swing.JMenuItem();
         jAyuda = new javax.swing.JMenu();
         jAcercaDe = new javax.swing.JMenu();
 
@@ -182,7 +185,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
         jPanel1.getAccessibleContext().setAccessibleName("");
 
-        jMenuOpcion.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuOpcion.setBackground(new java.awt.Color(51, 51, 51));
         jMenuOpcion.setForeground(new java.awt.Color(255, 255, 255));
         jMenuOpcion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
 
@@ -200,6 +203,16 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jPerfilActionPerformed(evt);
             }
         });
+
+        Jperfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        Jperfil.setLabel("Perfil");
+        Jperfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JperfilActionPerformed(evt);
+            }
+        });
+        jPerfil.add(Jperfil);
+
         jMiPerfil.add(jPerfil);
 
         jMenuOpcion.add(jMiPerfil);
@@ -218,6 +231,16 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jPortafolioFotoActionPerformed(evt);
             }
         });
+
+        Jportafolio.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        Jportafolio.setText("Galeria de Fotos");
+        Jportafolio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JportafolioActionPerformed(evt);
+            }
+        });
+        jPortafolioFoto.add(Jportafolio);
+
         jPortafolio.add(jPortafolioFoto);
 
         jMenuOpcion.add(jPortafolio);
@@ -237,6 +260,16 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jCerrarActionPerformed(evt);
             }
         });
+
+        Jcerrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        Jcerrar.setText("Salir");
+        Jcerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcerrarActionPerformed(evt);
+            }
+        });
+        jCerrar.add(Jcerrar);
+
         jSalir.add(jCerrar);
 
         jMenuOpcion.add(jSalir);
@@ -318,23 +351,39 @@ public class MenuBarbero extends javax.swing.JFrame {
 
     private void jPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPerfilActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        new PerfilBarbero(emailUsuario).setVisible(true);
+        
     }//GEN-LAST:event_jPerfilActionPerformed
 
     private void jPortafolioFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPortafolioFotoActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Proximamente..."); 
+        
     }//GEN-LAST:event_jPortafolioFotoActionPerformed
 
     private void jCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCerrarActionPerformed
         // TODO add your handling code here:
-        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
+        
     }//GEN-LAST:event_jCerrarActionPerformed
 
     private void jAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcercaDeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jAcercaDeActionPerformed
+
+    private void JperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JperfilActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new PerfilBarbero(emailUsuario).setVisible(true);
+    }//GEN-LAST:event_JperfilActionPerformed
+
+    private void JportafolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JportafolioActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Proximamente..."); 
+    }//GEN-LAST:event_JportafolioActionPerformed
+
+    private void JcerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcerrarActionPerformed
+        // TODO add your handling code here:
+        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
+    }//GEN-LAST:event_JcerrarActionPerformed
+    
     private void cargarDatosIniciales() {
     Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
     if (barbero != null) {
@@ -535,7 +584,10 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLresumendeactividad;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JScrollPane JSPresumenActividad;
+    private javax.swing.JMenuItem Jcerrar;
     private javax.swing.JComboBox<String> JcomboHorarios;
+    private javax.swing.JMenuItem Jperfil;
+    private javax.swing.JMenuItem Jportafolio;
     private javax.swing.JCheckBox chkAM;
     private javax.swing.JCheckBox chkFinSemana;
     private javax.swing.JCheckBox chkLunesAViernes;
