@@ -1,8 +1,17 @@
 package thebarbershop.Jframe;
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import thebarbershop.utilidades.*;
 import thebarbershop.*;
 import thebarbershop.utilidades.ClienteDAO;
+import java.nio.file.Files;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 /**
  *
  * @author jaelj
@@ -208,6 +217,30 @@ public class PerfilCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
                 IconPerfilcliente selector = new IconPerfilcliente(JBicono);
                 selector.setVisible(true);
+                
+                JFileChooser fileChooser = new JFileChooser();
+    int result = fileChooser.showOpenDialog(this);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+
+        try {
+            // Leer la imagen como bytes
+            byte[] imageBytes = Files.readAllBytes(selectedFile.toPath());
+
+            // Guardar en la base de datos
+            if (ClienteDAO.actualizarFotoPerfil(emailUsuario, imageBytes)) {
+                JOptionPane.showMessageDialog(this, "Foto de perfil actualizada.");
+                // Mostrarla en el botón
+                mostrarImagenEnBoton(imageBytes);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al guardar la foto.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al cargar la imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     }//GEN-LAST:event_JBiconoActionPerformed
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
@@ -246,9 +279,10 @@ public class PerfilCliente extends javax.swing.JFrame {
         //Encriptar solo si pasó la validación
         contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
     }
+        byte[] fotoPerfil = null;
 
     // 8. Crear objeto Cliente
-    Cliente cliente = new Cliente(correo, nombre, telefono, ciudad, "");
+    Cliente cliente = new Cliente(correo, nombre, telefono, ciudad, "", fotoPerfil);
 
     // 9. Asignar contraseña encriptada si fue ingresada
     if (contrasenaEncriptada != null) {
@@ -280,10 +314,30 @@ public class PerfilCliente extends javax.swing.JFrame {
         JTcorreo.setText(cliente.getEmail());
         JFtelefono.setText(cliente.getTelefono());
         JCOMBOciudad.setSelectedItem(cliente.getCiudad());
+
+        // Cargar foto de perfil
+        byte[] foto = cliente.getFotoPerfil();
+        if (foto != null && foto.length > 0) {
+            mostrarImagenEnBoton(foto);
+        } else {
+            JBicono.setText("Subir foto");
+            JBicono.setIcon(null);
+        }
     } else {
         JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+    private void mostrarImagenEnBoton(byte[] imageBytes) {
+    try {
+        BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
+        ImageIcon icon = new ImageIcon(img.getScaledInstance(JBicono.getWidth(), JBicono.getHeight(), Image.SCALE_SMOOTH));
+        JBicono.setIcon(icon);
+        JBicono.setText(""); // Opcional: quita el texto "jButton3"
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
     ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
