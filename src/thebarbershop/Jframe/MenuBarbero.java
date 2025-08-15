@@ -17,17 +17,15 @@ import javax.swing.*;
  */
 public class MenuBarbero extends javax.swing.JFrame {
     private final String emailUsuario; //a esta variable le llamamos modificaciones de lugar.
-
-
     /**
      * Creates new form MenuBarbero
      * @param email
      */
     public MenuBarbero(String email) {
-        cargarDatosIniciales();
         this.emailUsuario = email;
         initComponents();
         setLocationRelativeTo(null);
+        cargarDatosIniciales();
         
         // Asegurar visibilidad y habilitar menús
         jMenuOpcion.setVisible(true);
