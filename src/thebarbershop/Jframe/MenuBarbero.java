@@ -438,6 +438,7 @@ public class MenuBarbero extends javax.swing.JFrame {
             }
         }
     }
+    
     /**
      * @param args the command line arguments
      */
