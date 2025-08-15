@@ -30,9 +30,9 @@ public class MenuBarbero extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         // Asegurar visibilidad y habilitar menús
-        jMenuBar1.setVisible(true);
-        jPerfil.setEnabled(true);
-        jPortafolioFotos.setEnabled(true);
+        jMenuOpcion.setVisible(true);
+        jMiPerfil.setEnabled(true);
+        jPortafolio.setEnabled(true);
         jSalir.setEnabled(true);
         jAyuda.setEnabled(true);
     }
@@ -64,11 +64,15 @@ public class MenuBarbero extends javax.swing.JFrame {
         JcomboHorarios = new javax.swing.JComboBox<>();
         JBguardar = new javax.swing.JButton();
         JLfondo = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuOpcion = new javax.swing.JMenuBar();
+        jMiPerfil = new javax.swing.JMenu();
         jPerfil = new javax.swing.JMenu();
-        jPortafolioFotos = new javax.swing.JMenu();
+        jPortafolio = new javax.swing.JMenu();
+        jPortafolioFoto = new javax.swing.JMenu();
         jSalir = new javax.swing.JMenu();
+        jCerrar = new javax.swing.JMenu();
         jAyuda = new javax.swing.JMenu();
+        jAcercaDe = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheBarberShop - Panel Barbero ");
@@ -180,25 +184,35 @@ public class MenuBarbero extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
         jPanel1.getAccessibleContext().setAccessibleName("");
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
-        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuBar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jMenuOpcion.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuOpcion.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuOpcion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
 
-        jPerfil.setText("mi perfil");
-        jPerfil.addActionListener(new java.awt.event.ActionListener() {
+        jMiPerfil.setText("mi perfil");
+        jMiPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPerfilActionPerformed(evt);
+                jMiPerfilActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jPerfil);
 
-        jPortafolioFotos.setText("mi portafolio de fotos");
-        jPortafolioFotos.addActionListener(new java.awt.event.ActionListener() {
+        jPerfil.setText("Perfil");
+        jPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jMiPerfil.add(jPerfil);
+
+        jMenuOpcion.add(jMiPerfil);
+
+        jPortafolio.setText("mi portafolio");
+        jPortafolio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPortafolioFotosActionPerformed(evt);
+                jPortafolioActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jPortafolioFotos);
+
+        jPortafolioFoto.setText("portafolio de imagenes.");
+        jPortafolioFoto.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jPortafolio.add(jPortafolioFoto);
+
+        jMenuOpcion.add(jPortafolio);
 
         jSalir.setText("salir");
         jSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -206,12 +220,23 @@ public class MenuBarbero extends javax.swing.JFrame {
                 jSalirActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jSalir);
+
+        jCerrar.setText("salir");
+        jCerrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jCerrar.setHideActionText(true);
+        jSalir.add(jCerrar);
+
+        jMenuOpcion.add(jSalir);
 
         jAyuda.setText("ayuda");
-        jMenuBar1.add(jAyuda);
 
-        setJMenuBar(jMenuBar1);
+        jAcercaDe.setText("acerca de...");
+        jAcercaDe.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jAyuda.add(jAcercaDe);
+
+        jMenuOpcion.add(jAyuda);
+
+        setJMenuBar(jMenuOpcion);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -261,14 +286,14 @@ public class MenuBarbero extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkPMActionPerformed
 
-    private void jPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPerfilActionPerformed
+    private void jMiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMiPerfilActionPerformed
         this.dispose();
         new PerfilBarbero(emailUsuario).setVisible(true);
-    }//GEN-LAST:event_jPerfilActionPerformed
+    }//GEN-LAST:event_jMiPerfilActionPerformed
 
-    private void jPortafolioFotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPortafolioFotosActionPerformed
+    private void jPortafolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPortafolioActionPerformed
         JOptionPane.showMessageDialog(this, "Proximamente...");   
-    }//GEN-LAST:event_jPortafolioFotosActionPerformed
+    }//GEN-LAST:event_jPortafolioActionPerformed
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
         thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
@@ -479,11 +504,15 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkLunesAViernes;
     private javax.swing.JCheckBox chkPM;
     private javax.swing.JLabel iconBarber;
+    private javax.swing.JMenu jAcercaDe;
     private javax.swing.JMenu jAyuda;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jCerrar;
+    private javax.swing.JMenuBar jMenuOpcion;
+    private javax.swing.JMenu jMiPerfil;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jPerfil;
-    private javax.swing.JMenu jPortafolioFotos;
+    private javax.swing.JMenu jPortafolio;
+    private javax.swing.JMenu jPortafolioFoto;
     private javax.swing.JMenu jSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTPdescripcion;
