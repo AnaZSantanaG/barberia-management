@@ -19,6 +19,7 @@ public class AcercaDe extends javax.swing.JFrame {
      */
     public AcercaDe(JFrame parent) {
         initComponents();
+        
         customizeComponents();
         setupBehavior(parent);
     }
