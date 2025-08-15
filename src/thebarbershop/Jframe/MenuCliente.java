@@ -205,7 +205,8 @@ public class MenuCliente extends javax.swing.JFrame {
         jayuda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jayuda.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jMenuItem3.setText("Acerca de");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
