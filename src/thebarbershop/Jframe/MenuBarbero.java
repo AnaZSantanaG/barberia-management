@@ -197,6 +197,11 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         jPerfil.setText("Perfil");
         jPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPerfilActionPerformed(evt);
+            }
+        });
         jMiPerfil.add(jPerfil);
 
         jMenuOpcion.add(jMiPerfil);
@@ -210,6 +215,11 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         jPortafolioFoto.setText("portafolio de imagenes.");
         jPortafolioFoto.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jPortafolioFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPortafolioFotoActionPerformed(evt);
+            }
+        });
         jPortafolio.add(jPortafolioFoto);
 
         jMenuOpcion.add(jPortafolio);
@@ -224,6 +234,11 @@ public class MenuBarbero extends javax.swing.JFrame {
         jCerrar.setText("salir");
         jCerrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         jCerrar.setHideActionText(true);
+        jCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCerrarActionPerformed(evt);
+            }
+        });
         jSalir.add(jCerrar);
 
         jMenuOpcion.add(jSalir);
@@ -232,6 +247,11 @@ public class MenuBarbero extends javax.swing.JFrame {
 
         jAcercaDe.setText("acerca de...");
         jAcercaDe.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAcercaDeActionPerformed(evt);
+            }
+        });
         jAyuda.add(jAcercaDe);
 
         jMenuOpcion.add(jAyuda);
@@ -287,17 +307,36 @@ public class MenuBarbero extends javax.swing.JFrame {
     }//GEN-LAST:event_chkPMActionPerformed
 
     private void jMiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMiPerfilActionPerformed
-        this.dispose();
-        new PerfilBarbero(emailUsuario).setVisible(true);
+        
     }//GEN-LAST:event_jMiPerfilActionPerformed
 
     private void jPortafolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPortafolioActionPerformed
-        JOptionPane.showMessageDialog(this, "Proximamente...");   
+          
     }//GEN-LAST:event_jPortafolioActionPerformed
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
-        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
+        
     }//GEN-LAST:event_jSalirActionPerformed
+
+    private void jPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPerfilActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new PerfilBarbero(emailUsuario).setVisible(true);
+    }//GEN-LAST:event_jPerfilActionPerformed
+
+    private void jPortafolioFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPortafolioFotoActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Proximamente..."); 
+    }//GEN-LAST:event_jPortafolioFotoActionPerformed
+
+    private void jCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCerrarActionPerformed
+        // TODO add your handling code here:
+        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
+    }//GEN-LAST:event_jCerrarActionPerformed
+
+    private void jAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcercaDeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAcercaDeActionPerformed
     private void cargarDatosIniciales() {
     Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
     if (barbero != null) {
