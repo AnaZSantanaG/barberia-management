@@ -76,10 +76,10 @@ public class MenuCliente extends javax.swing.JFrame {
         JPusuario.setBackground(new java.awt.Color(51, 51, 51));
         JPusuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JLBienvenido.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        JLBienvenido.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 14)); // NOI18N
         JLBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLBienvenido.setText("BIENVENIDO");
-        JPusuario.add(JLBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 20, 140, -1));
+        JPusuario.add(JLBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 20, 180, -1));
 
         JLiconoUserimage.setBackground(new java.awt.Color(255, 255, 255));
         JLiconoUserimage.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
