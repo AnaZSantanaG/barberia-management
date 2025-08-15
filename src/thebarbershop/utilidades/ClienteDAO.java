@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import thebarbershop.db.DatabaseConnection;
 import thebarbershop.*;
 /**
@@ -14,32 +13,36 @@ import thebarbershop.*;
 public class ClienteDAO {
     // Método para obtener los datos del cliente por email (o id)
     public static Cliente obtenerClientePorEmail(String email) {
-        String sql = "SELECT u.email, c.nombre, c.telefono, c.Ciudad " +
-                 "FROM users u " +
-                 "JOIN clientes c ON u.idusers = c.id_users " +
-                 "WHERE u.email = ? AND u.tipo = 'cliente' AND c.activo = 1";
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+    try {
+        conn = DatabaseConnection.getConnection();
+        String sql = "SELECT c.nombre, c.telefono, c.ciudad, c.foto_perfil, u.clave " +
+                     "FROM clientes c " +
+                     "JOIN users u ON c.id_users = u.idusers " +
+                     "WHERE u.email = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setString(1, email);
+        rs = stmt.executeQuery();
 
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            String nombre = rs.getString("nombre");
+            String telefono = rs.getString("telefono");
+            String ciudad = rs.getString("ciudad");
+            String contraseña = rs.getString("clave");
+            byte[] fotoPerfil = rs.getBinaryStream("foto_perfil") != null ? rs.getBytes("foto_perfil") : null;
 
-            if (rs.next()) {
-                return new Cliente(
-                    rs.getString("nombre"),
-                    rs.getString("email"),
-                    rs.getString("Ciudad"),
-                    rs.getString("telefono"),
-                    "",// contraseña vacía (no se devuelve)
-                    rs.getBytes("ruta_foto_perfil")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return new Cliente(nombre, email, ciudad, telefono, contraseña, fotoPerfil);
         }
-        return null;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        closeResources(rs, stmt, conn);
     }
+    return null;
+}
 
     // Método para actualizar los datos del cliente
     public static boolean actualizarCliente(Cliente cliente) {
@@ -130,6 +133,12 @@ public class ClienteDAO {
                 e.printStackTrace();
             }
         }
+    }
+    
+    private static void closeResources(ResultSet rs, PreparedStatement stmt, Connection conn) {
+    try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+    try { if (stmt != null) stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+    try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
     }
 }
 
