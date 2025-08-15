@@ -499,9 +499,21 @@ public class MenuBarbero extends javax.swing.JFrame {
         JcomboHorarios.addItem("14:00 - 15:00");
         JcomboHorarios.addItem("16:00 - 17:00");
         JcomboHorarios.addItem("18:00 - 19:00");
-        for (DisponibilidadDAO.Horario horario : DisponibilidadDAO.obtenerHorarios(idPeluquero)) {
-            JcomboHorarios.addItem(horario.toString());
-        }
+        
+        // Obtener nombre del barbero
+    Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
+    if (barbero == null) return;
+    
+    // Obtener horarios sin día específico
+    List<String> horarios = DisponibilidadDAO.obtenerHorariosDisponibles(
+        idPeluquero, 
+        barbero.getNombre(),  // Nombre del barbero
+        null                  // Sin día específico
+    );
+    
+    for (String horario : horarios) {
+        JcomboHorarios.addItem(horario);
+    }
     }
 
     private void mostrarResumenActividad() {
