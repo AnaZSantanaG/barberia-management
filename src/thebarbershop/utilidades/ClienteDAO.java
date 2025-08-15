@@ -108,32 +108,26 @@ public class ClienteDAO {
     }
     return false;
 }
-    public static boolean actualizarFotoPerfil(String email, byte[] fotoPerfil) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
+    
+    public static boolean actualizarFotoPerfil(String email, byte[] foto) {
+    Connection conn = null;
+    PreparedStatement stmt = null;
 
-        try {
-            conn = DatabaseConnection.getConnection();
-            String query = "UPDATE clientes SET foto_perfil = ? WHERE email = ?";
-            stmt = conn.prepareStatement(query);
-            stmt.setBytes(1, fotoPerfil); // Establecer la imagen como bytes
-            stmt.setString(2, email); // Establecer el correo electrónico
-
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; // Devuelve true si se actualizó correctamente
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            // Cerrar recursos
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    try {
+        conn = DatabaseConnection.getConnection();
+        String sql = "UPDATE clientes SET foto_perfil = ? " +
+                     "WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+        stmt = conn.prepareStatement(sql);
+        stmt.setBytes(1, foto);
+        stmt.setString(2, email);
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    } finally {
+        closeResources(null, stmt, conn);
     }
+}
     
     private static void closeResources(ResultSet rs, PreparedStatement stmt, Connection conn) {
     try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
