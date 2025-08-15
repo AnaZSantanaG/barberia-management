@@ -220,59 +220,53 @@ public class PerfilCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JBiconoActionPerformed
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
-        // 1. Validar nombre
-    if (!Validaciones.validarNombre(JTnombre)) {return;}
+        // 1. Validar campos
+        if (!Validaciones.validarNombre(JTnombre)) return;
+        if (!Validaciones.validarEmail(JTcorreo)) return;
 
-    // 2. Validar correo
-    if (!Validaciones.validarEmail(JTcorreo)) {return;}
+        String telefonoFormateado = JFtelefono.getText();
+        if (!Validaciones.validarTelefono(telefonoFormateado)) return;
+        String telefono = telefonoFormateado.replaceAll("[^0-9]", "");
 
-    // 3. Validar teléfono
-    String telefonoFormateado = JFtelefono.getText();
-    if (!Validaciones.validarTelefono(telefonoFormateado)) {return;}
-    String telefono = telefonoFormateado.replaceAll("[^0-9]", "");
+        if (!Validaciones.validarCiudad(JCOMBOciudad)) return;
+        String ciudad = (String) JCOMBOciudad.getSelectedItem();
 
-    // 4. Validar ciudad
-    if (!Validaciones.validarCiudad(JCOMBOciudad)) {return; }
-    String ciudad = (String) JCOMBOciudad.getSelectedItem();
-
-    // 5. Obtener otros datos
-    String nombre = JTnombre.getText().trim();
-    String correo = JTcorreo.getText().trim();
-
-    // 6. Verificar que no cambie el correo (opcional)
-    if (!correo.equals(emailUsuario)) {
-        JOptionPane.showMessageDialog(this, "No se puede cambiar el correo electrónico.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // 7. Validar contraseña solo si fue ingresada
-    String contrasena = new String(JPcontraseña.getPassword()).trim();
-    String contrasenaEncriptada = null;
-    if (!contrasena.isEmpty()) {
-        if (!Validaciones.validarContraseña(JPcontraseña)) {
+        // 2. Verificar correo no cambiado
+        String correo = JTcorreo.getText().trim();
+        if (!correo.equals(emailUsuario)) {
+            JOptionPane.showMessageDialog(this, "No se puede cambiar el correo electrónico.", 
+                                       "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //Encriptar solo si pasó la validación
-        contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
-    }
+
+        // 3. Procesar contraseña
+        String contrasena = new String(JPcontraseña.getPassword()).trim();
+        String contrasenaEncriptada = null;
+        if (!contrasena.isEmpty()) {
+            if (!Validaciones.validarContraseña(JPcontraseña)) return;
+            contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
+        }
+
+        // 4. Obtener foto de perfil (si existe)
         byte[] fotoPerfil = null;
+        if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
+            // Código para convertir ImageIcon a byte[]
+        }
 
-    // 8. Crear objeto Cliente
-    Cliente cliente = new Cliente(correo, nombre, telefono, ciudad, contrasenaEncriptada != null ? contrasenaEncriptada : "", fotoPerfil);
+        // 5. Crear y actualizar cliente
+        Cliente cliente = new Cliente(correo, JTnombre.getText().trim(), 
+                                    telefono, ciudad, 
+                                    contrasenaEncriptada != null ? contrasenaEncriptada : "", 
+                                    fotoPerfil);
 
-    // 9. Asignar contraseña encriptada si fue ingresada
-    if (contrasenaEncriptada != null) {
-        cliente.setContraseña(contrasenaEncriptada);
-    }
-
-    // 10. Guardar en la base de datos
-    if (ClienteDAO.actualizarCliente(cliente)) {
-        JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        JPcontraseña.setText(""); // Limpiar campo de contraseña
-    } else {
-        JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-        
+        if (ClienteDAO.actualizarCliente(cliente)) {
+            JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", 
+                                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JPcontraseña.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", 
+                                        "Error", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_JBguardarActionPerformed
 
     private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
