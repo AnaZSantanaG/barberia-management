@@ -14,13 +14,18 @@ import java.util.List;
  */
 // ===== CLASE BARBERO =====
 public class Barbero extends Usuario {
+    private  String nombre;
+    private  String email;
+    private  String ciudad;
+    private  String telefono;
+    private  String contraseña;
+    private int experiencia;
     private String nombreBarberia;
+    private  byte[] fotoPerfil;
     private String horarioAtencion;
     private boolean disponible;
-    private int experiencia; //varible que no estaba pero se solicita en el frame.
-    
     // NUEVO: Lista para guardar las rutas de las imágenes del portafolio
-    private List<File> imagenesPortafolio;
+    private final List<File> imagenesPortafolio;
     
     /**
      *
@@ -34,13 +39,16 @@ public class Barbero extends Usuario {
      * @param fotoPerfil
      */
     public Barbero(String nombre, String email, String ciudad, String telefono, 
-                   String contraseña, int experiencia, String nombreBarberia,byte[] fotoPerfil) {
+                   String contraseña, int experiencia, String nombreBarberia, byte[] fotoPerfil) {
         super(nombre, email, ciudad, telefono, contraseña,fotoPerfil);
-        this.nombreBarberia = nombreBarberia;
-        this.horarioAtencion = "9:00 AM - 6:00 PM"; // Horario por defecto
-        this.disponible = true;
+        this.nombre = nombre;
+        this.email = email;
+        this.ciudad = ciudad;
+        this.telefono = telefono;
+        this.contraseña = contraseña;
         this.experiencia = experiencia;
-        
+        this.nombreBarberia = nombreBarberia;
+        this.fotoPerfil = fotoPerfil;
         // NUEVO: Inicializar la lista de imágenes vacía
         this.imagenesPortafolio = new ArrayList<>();
     }
@@ -53,17 +61,41 @@ public class Barbero extends Usuario {
     }
     
     // Getters y Setters específicos del barbero 
+    @Override
+    public String getNombre() { return nombre; }
+    @Override
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    
+    @Override
+    public String getEmail() { return email; }
+    @Override
+    public void setEmail(String email) { this.email = email; }
+    
+    @Override
+    public String getCiudad() { return ciudad; }
+    @Override
+    public void setCiudad(String ciudad) { this.ciudad = ciudad; }
+    
+    @Override
+    public String getTelefono() { return telefono; }
+    @Override
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+    
+    @Override
+    public String getContraseña() { return contraseña; }
+    @Override
+    public void setContraseña(String contraseña) { this.contraseña = contraseña; }
+    
+    public int getExperiencia() { return experiencia; }
+    public void setExperiencia(int experiencia) { this.experiencia = experiencia; }
+    
     public String getNombreBarberia() { return nombreBarberia; }
     public void setNombreBarberia(String nombreBarberia) { this.nombreBarberia = nombreBarberia; }
     
-    public String getHorarioAtencion() { return horarioAtencion; }
-    public void setHorarioAtencion(String horarioAtencion) { this.horarioAtencion = horarioAtencion; }
-    
-    public boolean isDisponible() { return disponible; }
-    public void setDisponible(boolean disponible) { this.disponible = disponible; }
-    
-    public int getExperiencia() {return experiencia;}
-    public void setExperiencia(int experiencia) {this.experiencia = experiencia;}
+    @Override
+    public byte[] getFotoPerfil() { return fotoPerfil; }
+    @Override
+    public void setFotoPerfil(byte[] fotoPerfil) { this.fotoPerfil = fotoPerfil; }
     
     
     // Métodos para manejar el portafolio de imágenes
