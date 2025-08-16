@@ -55,7 +55,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         btnCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
         btnCerrarApp.setForeground(new java.awt.Color(255, 0, 0));
         btnCerrarApp.setText("Salir");
-        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarApp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarApp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarAppActionPerformed(evt);
@@ -105,6 +105,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         btnEntrar.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(0, 0, 0));
         btnEntrar.setText("ENTRAR");
+        btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
@@ -116,7 +117,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         lblRegistrate.setForeground(new java.awt.Color(0, 102, 204));
         lblRegistrate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrate.setText("Registrate");
-        lblRegistrate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblRegistrate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblRegistrate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblRegistrateMouseClicked(evt);
