@@ -87,19 +87,37 @@ public class DisponibilidadDAO {
 
     // Agregar nuevo horario
     public static boolean agregarHorario(int idPeluquero, String diaSemana, String horaInicio, String horaFin) {
-        String sql = "INSERT INTO disponibilidad_pel (id_peluquero, dia_semana, hora_inicio, hora_fin) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, idPeluquero);
-            ps.setString(2, diaSemana);
-            ps.setTime(3, Time.valueOf(horaInicio + ":00"));
-            ps.setTime(4, Time.valueOf(horaFin + ":00"));
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+    String sql = "INSERT INTO disponibilidad_pel (id_peluquero, dia_semana, hora_inicio, hora_fin) VALUES (?, ?, ?, ?)";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, idPeluquero);
+        ps.setString(2, diaSemana);
+
+        // Convertir AM/PM a 24h
+        String inicio24 = DisponibilidadDAO.convertirAMPMa24h(horaInicio);
+        String fin24 = DisponibilidadDAO.convertirAMPMa24h(horaFin);
+
+        // Asegurar formato HH:mm:ss
+        inicio24 = completarSegundos(inicio24);
+        fin24 = completarSegundos(fin24);
+
+        ps.setTime(3, Time.valueOf(inicio24));
+        ps.setTime(4, Time.valueOf(fin24));
+        ps.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+    // Método auxiliar
+    private static String completarSegundos(String hora) {
+        if (hora == null || hora.trim().isEmpty()) return "00:00:00";
+        if (hora.split(":").length == 2) {
+            return hora + ":00";
         }
+        return hora;
     }
     
     public static boolean eliminarHorarios(int idPeluquero) {
