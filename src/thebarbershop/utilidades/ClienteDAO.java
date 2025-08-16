@@ -35,7 +35,7 @@ public class ClienteDAO {
             String contraseña = rs.getString("clave");
             byte[] fotoPerfil = rs.getBinaryStream("foto_perfil") != null ? rs.getBytes("foto_perfil") : null;
 
-            return new Cliente(nombre, email, ciudad, telefono, contraseña, fotoPerfil);
+            return new Cliente(email, nombre, telefono, ciudad, contraseña, fotoPerfil);
         }
     } catch (SQLException e) {
         e.printStackTrace();
