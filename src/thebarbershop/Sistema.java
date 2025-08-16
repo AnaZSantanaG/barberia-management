@@ -69,7 +69,7 @@ public class Sistema {
     public List<Cita> getCitas() { return citas; }
     
     // Método para obtener barberos disponibles
-    public List<Barbero> getBarberosDisponibles() {
+    /*public List<Barbero> getBarberosDisponibles() {
         List<Barbero> barberos = new ArrayList<>();
         for (Usuario u : usuarios) {
             if (u instanceof Barbero && ((Barbero) u).isDisponible()) {
@@ -77,7 +77,7 @@ public class Sistema {
             }
         }
         return barberos;
-    }
+    }*/
     
     // Método para agendar cita
     public boolean agendarCita(Barbero barbero, String fecha, String hora, String lugar) {
