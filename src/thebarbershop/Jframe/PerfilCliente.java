@@ -282,14 +282,6 @@ public class PerfilCliente extends javax.swing.JFrame {
             fotoPerfil                 // foto
         );
 
-        // Debug: mostrar datos que se van a actualizar
-        System.out.println("=== ACTUALIZANDO CLIENTE ===");
-        System.out.println("Email: " + cliente.getEmail());
-        System.out.println("Nombre: " + cliente.getNombre());
-        System.out.println("Teléfono: " + cliente.getTelefono());
-        System.out.println("Ciudad: " + cliente.getCiudad());
-        System.out.println("Foto: " + (fotoPerfil != null ? fotoPerfil.length + " bytes" : "Sin foto"));
-
         if (ClienteDAO.actualizarCliente(cliente)) {
             JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", 
                                         "Éxito", JOptionPane.INFORMATION_MESSAGE);
