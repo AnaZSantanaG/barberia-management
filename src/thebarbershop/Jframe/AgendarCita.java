@@ -157,7 +157,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 JComboElegirbarberoActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 230, 50));
+        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 230, 50));
 
         JLElegirbarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLElegirbarbero.setForeground(new java.awt.Color(255, 255, 255));
