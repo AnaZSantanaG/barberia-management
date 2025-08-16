@@ -88,25 +88,72 @@ public class Validaciones {
  * 
  * @param componentes Componentes a limpiar (pueden ser JTextField, JComboBox, etc.)
  */
-public static void limpiarCampos(Object... componentes) {
-    for (Object comp : componentes) {
-        if (comp == null) continue;
-
-        if (comp instanceof JTextField) {
-            ((JTextField) comp).setText("");
-        } 
-        else if (comp instanceof JPasswordField) {
-            ((JPasswordField) comp).setText("");
-        } 
-        else if (comp instanceof JComboBox) {
-            // Reinicia al primer elemento (ej: "Seleccione...")
-            ((JComboBox<?>) comp).setSelectedIndex(0);
-        } 
-        else if (comp instanceof JRadioButton) {
-            // Deselecciona el radio button
-            ((JRadioButton) comp).setSelected(false);
+/**
+     * Limpia múltiples componentes de formulario
+     * Soporta: JTextField, JPasswordField, JTextArea, JComboBox, JRadioButton, JCheckBox
+     * @param componentes
+     */
+    public static void limpiarCampos(Object... componentes) {
+        for (Object comp : componentes) {
+            if (comp == null) continue;
+            
+            if (comp instanceof JTextField) {
+                ((JTextField) comp).setText("");
+            } 
+            else if (comp instanceof JPasswordField) {
+                ((JPasswordField) comp).setText("");
+            } 
+            else if (comp instanceof JTextArea) {
+                ((JTextArea) comp).setText("");
+            }
+            else if (comp instanceof JComboBox) {
+                JComboBox<?> combo = (JComboBox<?>) comp;
+                if (combo.getItemCount() > 0) {
+                    combo.setSelectedIndex(0);
+                }
+            } 
+            else if (comp instanceof JRadioButton) {
+                ((JRadioButton) comp).setSelected(false);
+            }
+            else if (comp instanceof JCheckBox) {
+                ((JCheckBox) comp).setSelected(false);
+            }
+            else if (comp instanceof JSpinner) {
+                ((JSpinner) comp).setValue(0);
+            }
+            else if (comp instanceof ButtonGroup) {
+                ((ButtonGroup) comp).clearSelection();
+            }
         }
-        // Puedes agregar más tipos si necesitas (JTextArea, etc.)
     }
-}
+    
+    /**
+     * Limpia todos los componentes de un contenedor JPanel
+     * @param panel
+     */
+    public static void limpiarPanel(JPanel panel) {
+        for (java.awt.Component comp : panel.getComponents()) {
+            if (comp instanceof JTextField) {
+                ((JTextField) comp).setText("");
+            } 
+            else if (comp instanceof JPasswordField) {
+                ((JPasswordField) comp).setText("");
+            } 
+            else if (comp instanceof JTextArea) {
+                ((JTextArea) comp).setText("");
+            }
+            else if (comp instanceof JComboBox) {
+                JComboBox<?> combo = (JComboBox<?>) comp;
+                if (combo.getItemCount() > 0) {
+                    combo.setSelectedIndex(0);
+                }
+            } 
+            else if (comp instanceof JRadioButton) {
+                ((JRadioButton) comp).setSelected(false);
+            }
+            else if (comp instanceof JCheckBox) {
+                ((JCheckBox) comp).setSelected(false);
+            }
+        }
+    }
 }
