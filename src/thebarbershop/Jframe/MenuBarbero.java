@@ -33,6 +33,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jPortafolio.setEnabled(true);
         jSalir.setEnabled(true);
         jAyuda.setEnabled(true);
+        jTPdescripcion.setEditable(false);
     }
 
     /**
@@ -136,9 +137,10 @@ public class MenuBarbero extends javax.swing.JFrame {
         });
         jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 230, 60));
 
+        jScrollPane1.setEnabled(false);
         jScrollPane1.setViewportView(jTPdescripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 220, 60));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 250, 140));
 
         chkFinSemana.setForeground(new java.awt.Color(255, 255, 255));
         chkFinSemana.setText("FIN DE SEMANA");
