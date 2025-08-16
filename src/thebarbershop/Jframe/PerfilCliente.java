@@ -264,9 +264,9 @@ public class PerfilCliente extends javax.swing.JFrame {
                 try {
                     ImageIO.write(bi, "jpg", baos);
                     fotoPerfil = baos.toByteArray();
-                    System.out.println("Foto de perfil procesada: " + fotoPerfil.length + " bytes");
+                    //System.out.println("Foto de perfil procesada: " + fotoPerfil.length + " bytes");
                 } catch (IOException e) {
-                    System.out.println("Error al procesar imagen: " + e.getMessage());
+                    //System.out.println("Error al procesar imagen: " + e.getMessage());
                     e.printStackTrace();
                 }
             }
