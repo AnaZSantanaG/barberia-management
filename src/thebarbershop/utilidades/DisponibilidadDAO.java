@@ -107,7 +107,6 @@ public class DisponibilidadDAO {
         }
     }
     
-    
     public static String ajustarHoraParaTurno(String hora, String turno) {
     if (turno.equals("PM") && !hora.contains(":")) {
         // Convertir hora simple a formato PM (ej: "2" -> "14:00")
