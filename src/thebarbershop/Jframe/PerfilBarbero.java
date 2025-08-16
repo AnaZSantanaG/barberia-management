@@ -10,6 +10,15 @@ import thebarbershop.utilidades.ConsultaNombreBarberia;
 import thebarbershop.utilidades.BarberoDAO;
 import thebarbershop.utilidades.Validaciones;
 import thebarbershop.utilidades.Seguridad;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 /**
  *
  * @author jaelj
@@ -248,7 +257,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
     }//GEN-LAST:event_JBeliminarPerfilActionPerformed
 
     private void JLguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLguardarActionPerformed
-        // Validaciones
+            // Validaciones
         if (!Validaciones.validarNombre(JTnombre)) return;
         if (!Validaciones.validarTelefono(JFtelefono.getText())) return;
         if (!Validaciones.validarCiudad(JComboCiudad)) return;
@@ -259,7 +268,7 @@ public class PerfilBarbero extends javax.swing.JFrame {
         String telefono = JFtelefono.getText().replaceAll("[^0-9]", "");
         String ciudad = (String) JComboCiudad.getSelectedItem();
         String seleccion = (String) JcomboExperiencia.getSelectedItem();
-        int experiencia = comboAExperiencia(seleccion); // Asegúrate de que no sea 0 si es válido
+        int experiencia = comboAExperiencia(seleccion);
 
         if (experiencia == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione una experiencia válida.");
@@ -279,54 +288,111 @@ public class PerfilBarbero extends javax.swing.JFrame {
             contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
         }
 
-        // Crear objeto
-        String nombreBarberiaActual = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
+        // Obtener foto de perfil del botón
         byte[] fotoPerfil = null;
+        if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
+            ImageIcon icon = (ImageIcon) JBicono.getIcon();
+
+            // Verificar que no sea el texto por defecto
+            if (!JBicono.getText().equals("ICON")) {
+                BufferedImage bi = new BufferedImage(
+                    icon.getIconWidth(),
+                    icon.getIconHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+                Graphics g = bi.createGraphics();
+
+                // Fondo blanco para evitar transparencias
+                g.setColor(java.awt.Color.WHITE);
+                g.fillRect(0, 0, bi.getWidth(), bi.getHeight());
+
+                icon.paintIcon(null, g, 0, 0);
+                g.dispose();
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                try {
+                    ImageIO.write(bi, "jpg", baos);
+                    fotoPerfil = baos.toByteArray();
+                    System.out.println("Foto de perfil procesada: " + fotoPerfil.length + " bytes");
+                } catch (IOException e) {
+                    System.out.println("Error al procesar imagen: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Crear objeto con nombre de barbería actual
+        String nombreBarberiaActual = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
 
         Barbero barbero = new Barbero(
-            nombre, correo, ciudad, telefono, 
+            nombre, 
+            correo, 
+            ciudad, 
+            telefono, 
             contrasenaEncriptada != null ? contrasenaEncriptada : "", 
             experiencia, 
             nombreBarberiaActual,
-                fotoPerfil// o obtén de otro campo si lo tienes
+            fotoPerfil
         );
 
         // Guardar
         if (BarberoDAO.actualizarBarbero(barbero)) {
-            JOptionPane.showMessageDialog(this, "Perfil actualizado.");
+            JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.");
             JPcontraseña.setText("");
         } else {
-            JOptionPane.showMessageDialog(this, "Error al actualizar el perfil.");
+            JOptionPane.showMessageDialog(this, "Error al actualizar el perfil. Verifique los datos.");
         }
     }//GEN-LAST:event_JLguardarActionPerformed
 
     private void cargarDatosPerfil() {
-        Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
-        if (barbero != null) {
-            JTnombre.setText(barbero.getNombre());
-            JTcorreo.setText(barbero.getEmail());
-            JFtelefono.setText(barbero.getTelefono());
-            // En cargarDatosPerfil()
-            String ciudadDB = barbero.getCiudad().trim();
+    Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
+    if (barbero != null) {
+        JTnombre.setText(barbero.getNombre());
+        JTcorreo.setText(barbero.getEmail());
+        JTcorreo.setEditable(false); // Hacer que el email no sea editable
+        
+        // Formatear teléfono con máscara
+        String telefono = barbero.getTelefono();
+        if (telefono != null && telefono.length() >= 10) {
+            String telefonoFormateado = String.format("(%s) %s-%s",
+                telefono.substring(0, 3),
+                telefono.substring(3, 6),
+                telefono.substring(6));
+            JFtelefono.setText(telefonoFormateado);
+        }
+        
+        // Seleccionar ciudad
+        String ciudadDB = barbero.getCiudad();
+        if (ciudadDB != null) {
             for (int i = 0; i < JComboCiudad.getItemCount(); i++) {
                 String item = JComboCiudad.getItemAt(i);
-                if (item.equalsIgnoreCase(ciudadDB)) {
+                if (item.equalsIgnoreCase(ciudadDB.trim())) {
                     JComboCiudad.setSelectedIndex(i);
                     break;
                 }
             }
-
-            //Manejar experiencia 0 o no válida
-            String experienciaTexto = experienciaACombo(barbero.getExperiencia());
-            JcomboExperiencia.setSelectedItem(experienciaTexto);
-
-            // Nombre de la barbería
-            String nombreBarberia = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
-            JLnombreBarberia.setText(nombreBarberia.isEmpty() ? "Barbería no asignada" : nombreBarberia);
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+        // Manejar experiencia
+        String experienciaTexto = experienciaACombo(barbero.getExperiencia());
+        JcomboExperiencia.setSelectedItem(experienciaTexto);
+
+        // Cargar foto de perfil
+        byte[] foto = barbero.getFotoPerfil();
+        if (foto != null && foto.length > 0) {
+            mostrarImagenEnBoton(foto);
+        } else {
+            JBicono.setText("ICON");
+            JBicono.setIcon(null);
+        }
+
+        // Nombre de la barbería
+        String nombreBarberia = ConsultaNombreBarberia.obtenerNombreBarberia(emailUsuario);
+        JLnombreBarberia.setText(nombreBarberia.isEmpty() ? "Barbería no asignada" : nombreBarberia);
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
     // Convierte texto del combo a número
     private int comboAExperiencia(String seleccion) {
     switch (seleccion) {
@@ -352,6 +418,30 @@ public class PerfilBarbero extends javax.swing.JFrame {
             default: return "Seleccione....";
         }
     }
+    
+    private void mostrarImagenEnBoton(byte[] imageBytes) {
+    try {
+        BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
+        if (img != null) {
+            // Redimensionar imagen para que se ajuste al botón
+            int btnWidth = JBicono.getWidth() > 0 ? JBicono.getWidth() : 150;
+            int btnHeight = JBicono.getHeight() > 0 ? JBicono.getHeight() : 140;
+            
+            Image scaledImg = img.getScaledInstance(btnWidth, btnHeight, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(scaledImg);
+            
+            JBicono.setIcon(icon);
+            JBicono.setText(""); // Quitar texto cuando hay imagen
+            System.out.println("Imagen cargada exitosamente");
+        }
+    } catch (IOException e) {
+        System.out.println("Error al cargar imagen: " + e.getMessage());
+        e.printStackTrace();
+        JBicono.setText("Error en imagen");
+        JBicono.setIcon(null);
+    }
+}
+    
     /**
      * @param args the command line arguments
      */
