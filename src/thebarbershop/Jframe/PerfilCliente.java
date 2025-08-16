@@ -219,9 +219,8 @@ public class PerfilCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JBiconoActionPerformed
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
-        // 1. Validar campos
+            // 1. Validar campos
         if (!Validaciones.validarNombre(JTnombre)) return;
-        if (!Validaciones.validarEmail(JTcorreo)) return;
 
         String telefonoFormateado = JFtelefono.getText();
         if (!Validaciones.validarTelefono(telefonoFormateado)) return;
@@ -230,13 +229,8 @@ public class PerfilCliente extends javax.swing.JFrame {
         if (!Validaciones.validarCiudad(JCOMBOciudad)) return;
         String ciudad = (String) JCOMBOciudad.getSelectedItem();
 
-        // 2. Verificar correo no cambiado
-        String correo = JTcorreo.getText().trim();
-        if (!correo.equals(emailUsuario)) {
-            JOptionPane.showMessageDialog(this, "No se puede cambiar el correo electrónico.", 
-                                       "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        // 2. Verificar correo no cambiado (el email es readonly en el perfil)
+        String correo = emailUsuario; // Usar el email de la sesión, no el del campo
 
         // 3. Procesar contraseña
         String contrasena = new String(JPcontraseña.getPassword()).trim();
@@ -247,40 +241,63 @@ public class PerfilCliente extends javax.swing.JFrame {
         }
 
         // 4. Obtener foto de perfil (si existe)
-    byte[] fotoPerfil = null;
-    if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
-        ImageIcon icon = (ImageIcon) JBicono.getIcon();
-        BufferedImage bi = new BufferedImage(
-            icon.getIconWidth(),
-            icon.getIconHeight(),
-            BufferedImage.TYPE_INT_RGB);
-        Graphics g = bi.createGraphics();
-        icon.paintIcon(null, g, 0, 0);
-        g.dispose();
-        
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(bi, "jpg", baos);
-            fotoPerfil = baos.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
+        byte[] fotoPerfil = null;
+        if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
+            ImageIcon icon = (ImageIcon) JBicono.getIcon();
+
+            // Verificar que no sea la imagen por defecto
+            if (!JBicono.getText().equals("Subir foto")) {
+                BufferedImage bi = new BufferedImage(
+                    icon.getIconWidth(),
+                    icon.getIconHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+                Graphics g = bi.createGraphics();
+
+                // Fondo blanco para evitar transparencias problemáticas
+                g.setColor(java.awt.Color.WHITE);
+                g.fillRect(0, 0, bi.getWidth(), bi.getHeight());
+
+                icon.paintIcon(null, g, 0, 0);
+                g.dispose();
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                try {
+                    ImageIO.write(bi, "jpg", baos);
+                    fotoPerfil = baos.toByteArray();
+                    System.out.println("Foto de perfil procesada: " + fotoPerfil.length + " bytes");
+                } catch (IOException e) {
+                    System.out.println("Error al procesar imagen: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
         }
-    }
 
-    // 5. Crear y actualizar cliente
-    Cliente cliente = new Cliente(correo, JTnombre.getText().trim(), 
-                                telefono, ciudad, 
-                                contrasenaEncriptada != null ? contrasenaEncriptada : "", 
-                                fotoPerfil);
+        // 5. Crear y actualizar cliente
+        Cliente cliente = new Cliente(
+            correo,                    // email
+            JTnombre.getText().trim(), // nombre
+            telefono,                  // teléfono
+            ciudad,                    // ciudad
+            contrasenaEncriptada != null ? contrasenaEncriptada : "", // contraseña
+            fotoPerfil                 // foto
+        );
 
-    if (ClienteDAO.actualizarCliente(cliente)) {
-        JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", 
-                                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        JPcontraseña.setText("");
-    } else {
-        JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil.", 
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-    }                
+        // Debug: mostrar datos que se van a actualizar
+        System.out.println("=== ACTUALIZANDO CLIENTE ===");
+        System.out.println("Email: " + cliente.getEmail());
+        System.out.println("Nombre: " + cliente.getNombre());
+        System.out.println("Teléfono: " + cliente.getTelefono());
+        System.out.println("Ciudad: " + cliente.getCiudad());
+        System.out.println("Foto: " + (fotoPerfil != null ? fotoPerfil.length + " bytes" : "Sin foto"));
+
+        if (ClienteDAO.actualizarCliente(cliente)) {
+            JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.", 
+                                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JPcontraseña.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el perfil. Verifique los datos.", 
+                                        "Error", JOptionPane.ERROR_MESSAGE);
+        }         
     }//GEN-LAST:event_JBguardarActionPerformed
 
     private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
@@ -296,8 +313,29 @@ public class PerfilCliente extends javax.swing.JFrame {
     if (cliente != null) {
         JTnombre.setText(cliente.getNombre());
         JTcorreo.setText(cliente.getEmail());
-        JFtelefono.setText(cliente.getTelefono());
-        JCOMBOciudad.setSelectedItem(cliente.getCiudad());
+        JTcorreo.setEditable(false); // Hacer que el email no sea editable
+        
+        // Formatear teléfono con máscara
+        String telefono = cliente.getTelefono();
+        if (telefono != null && telefono.length() >= 10) {
+            String telefonoFormateado = String.format("(%s) %s-%s",
+                telefono.substring(0, 3),
+                telefono.substring(3, 6),
+                telefono.substring(6));
+            JFtelefono.setText(telefonoFormateado);
+        }
+        
+        // Seleccionar ciudad en el combo
+        String ciudadDB = cliente.getCiudad();
+        if (ciudadDB != null) {
+            for (int i = 0; i < JCOMBOciudad.getItemCount(); i++) {
+                String item = JCOMBOciudad.getItemAt(i);
+                if (item.equalsIgnoreCase(ciudadDB.trim())) {
+                    JCOMBOciudad.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
 
         // Cargar foto de perfil
         byte[] foto = cliente.getFotoPerfil();
@@ -311,16 +349,30 @@ public class PerfilCliente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+    
     private void mostrarImagenEnBoton(byte[] imageBytes) {
-    try {
-        BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
-        ImageIcon icon = new ImageIcon(img.getScaledInstance(JBicono.getWidth(), JBicono.getHeight(), Image.SCALE_SMOOTH));
-        JBicono.setIcon(icon);
-        JBicono.setText(""); // Opcional: quita el texto "jButton3"
-    } catch (IOException e) {
-        e.printStackTrace();
+        try {
+            BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
+            if (img != null) {
+                // Redimensionar imagen para que se ajuste al botón
+                int btnWidth = JBicono.getWidth() > 0 ? JBicono.getWidth() : 150;
+                int btnHeight = JBicono.getHeight() > 0 ? JBicono.getHeight() : 140;
+
+                Image scaledImg = img.getScaledInstance(btnWidth, btnHeight, Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(scaledImg);
+
+                JBicono.setIcon(icon);
+                JBicono.setText(""); // Quitar texto cuando hay imagen
+                System.out.println("Imagen cargada exitosamente");
+            }
+        } catch (IOException e) {
+            System.out.println("Error al cargar imagen: " + e.getMessage());
+            e.printStackTrace();
+            JBicono.setText("Error en imagen");
+            JBicono.setIcon(null);
+        }
     }
-}
+
     
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
