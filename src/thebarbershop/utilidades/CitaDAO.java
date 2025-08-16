@@ -32,6 +32,7 @@ public class CitaDAO {
             e.printStackTrace();
         }
     }
+
     // Obtener todos los estilos de corte
     public static void cargarServicios(javax.swing.JComboBox<String> combo) {
         String sql = "SELECT nombre_estilo FROM estilos_corte";
@@ -50,41 +51,43 @@ public class CitaDAO {
     }
     
     /**
- * Obtiene los horarios disponibles de un barbero para un día de la semana
- * @param nombreBarbero Nombre del barbero
- * @param diaSemana Día de la semana (ej: "LUNES")
- * @return Lista de horarios disponibles en formato "HH:mm"
- */
+     * MÉTODO CORREGIDO: Obtiene los horarios disponibles de un barbero para un día específico
+     * @param nombreBarbero
+     * @param diaSemana
+     * @return 
+     */
     public static List<String> obtenerHorariosDisponibles(String nombreBarbero, String diaSemana) {
         List<String> horarios = new ArrayList<>();
         String sql = "SELECT dp.hora_inicio, dp.hora_fin " +
                      "FROM disponibilidad_pel dp " +
                      "JOIN peluqueros p ON dp.id_peluquero = p.id_Peluquero " +
-                     "WHERE p.nombre_completo = ? AND dp.dia_semana = ? " +
-                     "ORDER BY dp.hora_inicio";
-
+                     "WHERE p.nombre_completo = ? AND dp.dia_semana = ?";
+        
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
+            
             ps.setString(1, nombreBarbero);
             ps.setString(2, diaSemana.toUpperCase());
-
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Time inicio = rs.getTime("hora_inicio");
-                Time fin = rs.getTime("hora_fin");
-
-                // Generar intervalos de 30 min o 45 min según duración del corte
+                Time horaInicio = rs.getTime("hora_inicio");
+                Time horaFin = rs.getTime("hora_fin");
+                
                 Calendar cal = Calendar.getInstance();
-                cal.setTime(inicio);
-
-                while (cal.getTime().before(fin)) {
-                    String hora = new SimpleDateFormat("HH:mm").format(cal.getTime());
-                    // Verificar si ya hay cita en ese horario
-                    if (esDisponible(nombreBarbero, diaSemana, hora)) {
-                        horarios.add(hora);
-                    }
-                    cal.add(Calendar.MINUTE, 30); // Ajusta según duración del servicio
+                cal.setTime(horaInicio);
+                
+                Calendar fin = Calendar.getInstance();
+                fin.setTime(horaFin);
+                
+                // FORMATO CORREGIDO: AM/PM
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+                
+                // Generar horarios cada 30 minutos
+                while (cal.before(fin)) {
+                    String hora = sdf.format(cal.getTime());
+                    horarios.add(hora);
+                    cal.add(Calendar.MINUTE, 30);
                 }
             }
         } catch (SQLException e) {
@@ -93,25 +96,55 @@ public class CitaDAO {
         return horarios;
     }
 
-/**
- * Verifica si una hora específica está disponible (no hay cita)
+    /**
+     * MÉTODO CORREGIDO: Verifica si un barbero trabaja en un día específico
+     * @param nombreBarbero
+     * @param diaSemana
+     * @return 
+     */
+    public static boolean trabajaDia(String nombreBarbero, String diaSemana) {
+        String sql = "SELECT COUNT(*) FROM disponibilidad_pel dp " +
+                     "JOIN peluqueros p ON dp.id_peluquero = p.id_Peluquero " +
+                     "WHERE p.nombre_completo = ? AND dp.dia_semana = ?";
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, nombreBarbero);
+            ps.setString(2, diaSemana.toUpperCase());
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * MÉTODO CORREGIDO: Verifica disponibilidad específica de hora
      * @param nombreBarbero
      * @param fecha
      * @param hora
      * @return 
- */
-    // Verificar si un barbero está disponible en una fecha y hora
+     */
     public static boolean esDisponible(String nombreBarbero, String fecha, String hora) {
+        // Convertir hora de formato "hh:mm AM/PM" a "HH:mm:ss"
+        String horaConvertida = convertirHoraABD(hora);
+        
         String sql = "SELECT COUNT(*) FROM citas c " +
-                 "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
-                 "WHERE p.nombre_completo = ? AND DATE(c.fecha_cita) = ? AND TIME(c.fecha_cita) = ? AND c.estado = 'PENDIENTE'";
+                     "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
+                     "WHERE p.nombre_completo = ? AND DATE(c.fecha_cita) = STR_TO_DATE(?, '%d/%m/%Y') " +
+                     "AND TIME(c.fecha_cita) = ? AND c.estado = 'PENDIENTE'";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, nombreBarbero);
             ps.setString(2, fecha);
-            ps.setString(3, hora + ":00");
+            ps.setString(3, horaConvertida);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -122,11 +155,50 @@ public class CitaDAO {
         }
         return false;
     }
-    // Agendar cita
-    public static boolean agendarCita(
-        String emailCliente, String nombreBarbero, String servicio, 
-        String fecha, String hora, String notas
-    ){
+
+    /**
+     * MÉTODO AUXILIAR: Convierte hora de formato AM/PM a 24 horas
+     */
+    private static String convertirHoraABD(String horaAMPM) {
+        try {
+            SimpleDateFormat sdf12 = new SimpleDateFormat("hh:mm a");
+            SimpleDateFormat sdf24 = new SimpleDateFormat("HH:mm:ss");
+            return sdf24.format(sdf12.parse(horaAMPM));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "00:00:00";
+        }
+    }
+
+    /**
+     * MÉTODO CORREGIDO: Agendar cita con validaciones mejoradas
+     * @param emailCliente
+     * @param nombreBarbero
+     * @param servicio
+     * @param fecha
+     * @param hora
+     * @param notas
+     * @return 
+     */
+    public static boolean agendarCita(String emailCliente, String nombreBarbero, 
+                                    String servicio, String fecha, String hora, String notas) {
+        
+        // 1. Validar que el barbero trabaje ese día
+        String diaSemana = obtenerDiaSemana(fecha);
+        if (!trabajaDia(nombreBarbero, diaSemana)) {
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "El barbero " + nombreBarbero + " no trabaja los " + diaSemana.toLowerCase());
+            return false;
+        }
+
+        // 2. Validar disponibilidad de hora
+        if (!esDisponible(nombreBarbero, fecha, hora)) {
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "El barbero ya tiene una cita programada en ese horario");
+            return false;
+        }
+
+        // 3. Proceder con el agendamiento
         String sqlCliente = "SELECT id_clientes FROM clientes c JOIN users u ON c.id_users = u.idusers WHERE u.email = ?";
         String sqlBarbero = "SELECT id_Peluquero FROM peluqueros WHERE nombre_completo = ?";
         String sqlEstilo = "SELECT id_estilos FROM estilos_corte WHERE nombre_estilo = ?";
@@ -137,25 +209,26 @@ public class CitaDAO {
 
             int idCliente = 0, idBarbero = 0, idEstilo = 0;
 
-            // Obtener id_cliente
+            // Obtener IDs
             try (PreparedStatement ps = conn.prepareStatement(sqlCliente)) {
                 ps.setString(1, emailCliente);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) idCliente = rs.getInt(1); else throw new SQLException("Cliente no encontrado");
+                if (rs.next()) idCliente = rs.getInt(1); 
+                else throw new SQLException("Cliente no encontrado");
             }
 
-            // Obtener id_peluquero
             try (PreparedStatement ps = conn.prepareStatement(sqlBarbero)) {
                 ps.setString(1, nombreBarbero);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) idBarbero = rs.getInt(1); else throw new SQLException("Barbero no encontrado");
+                if (rs.next()) idBarbero = rs.getInt(1); 
+                else throw new SQLException("Barbero no encontrado");
             }
 
-            // Obtener id_estilo
             try (PreparedStatement ps = conn.prepareStatement(sqlEstilo)) {
                 ps.setString(1, servicio);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) idEstilo = rs.getInt(1); else throw new SQLException("Servicio no encontrado");
+                if (rs.next()) idEstilo = rs.getInt(1); 
+                else throw new SQLException("Servicio no encontrado");
             }
 
             // Insertar cita
@@ -163,7 +236,10 @@ public class CitaDAO {
                 ps.setInt(1, idCliente);
                 ps.setInt(2, idBarbero);
                 ps.setInt(3, idEstilo);
-                ps.setString(4, fecha + " " + hora);
+                
+                // Convertir fecha y hora para MySQL
+                String fechaHora = convertirFechaHoraParaMySQL(fecha, hora);
+                ps.setString(4, fechaHora);
                 ps.setString(5, notas);
                 ps.executeUpdate();
             }
@@ -181,12 +257,48 @@ public class CitaDAO {
             return false;
         }
     }
-    
+
+    /**
+     * MÉTODO AUXILIAR: Obtiene el día de la semana de una fecha
+     */
+    private static String obtenerDiaSemana(String fecha) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(sdf.parse(fecha));
+            
+            String[] dias = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"};
+            return dias[cal.get(Calendar.DAY_OF_WEEK)];
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "LUNES";
+        }
+    }
+
+    /**
+     * MÉTODO AUXILIAR: Convierte fecha y hora para MySQL
+     */
+    private static String convertirFechaHoraParaMySQL(String fecha, String hora) {
+        try {
+            // Convertir fecha de dd/MM/yyyy a yyyy-MM-dd
+            SimpleDateFormat fechaInput = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat fechaOutput = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaMySQL = fechaOutput.format(fechaInput.parse(fecha));
+            
+            // Convertir hora de AM/PM a 24 horas
+            String horaMySQL = convertirHoraABD(hora);
+            
+            return fechaMySQL + " " + horaMySQL;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return fecha + " 00:00:00";
+        }
+    }
 
     /**
      * Obtiene la próxima cita pendiente del cliente
-     * @param emailCliente Correo del cliente
-     * @return String con mensaje de la cita o null si no hay
+     * @param emailCliente
+     * @return 
      */
     public static String obtenerCitaCliente(String emailCliente) {
         String sql = "SELECT c.fecha_cita, p.nombre_completo " +
@@ -207,8 +319,6 @@ public class CitaDAO {
                 LocalDateTime fechaHora = rs.getTimestamp("fecha_cita").toLocalDateTime();
                 String fecha = fechaHora.toLocalDate().toString();
                 String hora = fechaHora.toLocalTime().toString();
-
-                // Formato de hora: solo HH:mm
                 String horaCita = hora.substring(0, 5);
 
                 return "Tienes una cita para " + fecha + " a las " + horaCita;
@@ -218,27 +328,4 @@ public class CitaDAO {
         }
         return null;
     }
-    
-    public static boolean trabajaDia(String nombreBarbero, String diaSemana) {
-        String sql = "SELECT COUNT(*) FROM disponibilidad_pel dp " +
-                     "JOIN peluqueros p ON dp.id_peluquero = p.id_Peluquero " +
-                     "WHERE p.nombre_completo = ? AND dp.dia_semana = ?";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, nombreBarbero);
-            ps.setString(2, diaSemana.toUpperCase());
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-    
-    
 }
