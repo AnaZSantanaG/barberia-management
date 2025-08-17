@@ -383,7 +383,7 @@ public class AgendarCita extends javax.swing.JFrame {
     cal.setTime(fecha);
     
     // Obtener día de la semana
-    String[] dias = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"};
+    String[] dias = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADOS"};
     String diaSemana = dias[cal.get(Calendar.DAY_OF_WEEK)];
 
     String barbero = (String) JComboElegirbarbero.getSelectedItem();
