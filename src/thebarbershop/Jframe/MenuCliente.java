@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -293,13 +294,19 @@ public class MenuCliente extends javax.swing.JFrame {
             JLiconoUserimage.setIcon(new ImageIcon(getClass().getResource("/com/images/default_profile.jpeg")));
         }
 
-        // Cargar cita
-        String mensajeCita = CitaDAO.obtenerCitaCliente(emailUsuario);
-        if (mensajeCita != null) {
-            jTextArea1.setText(mensajeCita);
+        // Cargar todas las citas del cliente
+        StringBuilder sb = new StringBuilder();
+        List<String> citas = CitaDAO.obtenerCitasPorCliente(emailUsuario);
+
+        if (citas.isEmpty()) {
+            sb.append("NO HAY CITAS AGENDADAS");
         } else {
-            jTextArea1.setText("NO HAY CITAS AGENDADAS");
+            for (String cita : citas) {
+                sb.append(cita).append("\n\n");
+            }
         }
+
+        jTextArea1.setText(sb.toString());
     } else {
         JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
