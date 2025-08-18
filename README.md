@@ -116,7 +116,7 @@ Desarrollar una aplicación de escritorio con interfaz gráfica utilizando Java 
 
 ### Paso 1: Configurar Base de Datos
 ```sql
--- Ejecutar script SQL del archivo help.txt
+-- Ejecutar script SQL del archivo database/schema.sql
 -- Crear base de datos barberia_system
 -- Importar todas las tablas requeridas
 ```
