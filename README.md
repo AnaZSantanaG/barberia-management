@@ -124,7 +124,7 @@ Desarrollar una aplicación de escritorio con interfaz gráfica utilizando Java 
 ### Paso 2: Configurar Proyecto
 ```bash
 # Clonar repositorio
-git clone https://github.com/ancharja/TheBarberShop.git
+git clone https://github.com/AnaZSantanaG/barberia-management.git
 
 # Importar en NetBeans
 # Agregar mysql-connector-java como dependencia
@@ -154,7 +154,7 @@ git clone https://github.com/ancharja/TheBarberShop.git
 Para reportar errores o solicitar ayuda:
 
 -  **Email:** soporte@thebarbershop.dev
--  **Issues:** [GitHub Issues](https://github.com/ancharja/TheBarberShop/issues)
+-  **Issues:** [GitHub Issues](https://github.com/AnaZSantanaG/barberia-management.git/issues)
 -  **Documentación completa:** Ver archivos en `/docs`
 
 ## 📄 Licencia
