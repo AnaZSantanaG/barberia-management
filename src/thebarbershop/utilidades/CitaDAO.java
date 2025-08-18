@@ -301,34 +301,44 @@ public class CitaDAO {
      * @param emailCliente
      * @return 
      */
-    public static String obtenerCitaCliente(String emailCliente) {
-        String sql = "SELECT c.fecha_cita, p.nombre_completo " +
-                     "FROM citas c " +
-                     "JOIN clientes cl ON c.id_cliente = cl.id_clientes " +
-                     "JOIN users u ON cl.id_users = u.idusers " +
-                     "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
-                     "WHERE u.email = ? AND c.estado = 'PENDIENTE' " +
-                     "ORDER BY c.fecha_cita LIMIT 1";
+    public static List<String> obtenerCitasPorCliente(String emailCliente) {
+    List<String> citas = new ArrayList<>();
+    String sql = """
+        SELECT c.fecha_cita, p.nombre_completo, est.nombre_estilo, c.notas, c.estado
+        FROM citas c
+        JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero
+        JOIN estilos_corte est ON c.id_estilo = est.id_estilos
+        JOIN clientes cl ON c.id_cliente = cl.id_clientes
+        JOIN users u ON cl.id_users = u.idusers
+        WHERE u.email = ?
+        ORDER BY c.fecha_cita DESC
+        """;
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, emailCliente);
-            ResultSet rs = ps.executeQuery();
+        ps.setString(1, emailCliente);
+        ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                LocalDateTime fechaHora = rs.getTimestamp("fecha_cita").toLocalDateTime();
-                String fecha = fechaHora.toLocalDate().toString();
-                String hora = fechaHora.toLocalTime().toString();
-                String horaCita = hora.substring(0, 5);
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        while (rs.next()) {
+            String fecha = formatoFecha.format(rs.getTimestamp("fecha_cita"));
+            String barbero = rs.getString("p.nombre_completo");
+            String estilo = rs.getString("est.nombre_estilo");
+            String notas = rs.getString("notas");
+            String estado = rs.getString("estado");
 
-                return "Tienes una cita para " + fecha + " a las " + horaCita;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            citas.add(String.format("Fecha: %s | Barbero: %s | Estilo: %s | Estado: %s | Notas: %s",
+                    fecha, barbero, estilo, estado, notas != null ? notas : "Sin notas"));
         }
-        return null;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al cargar citas del cliente.");
     }
+
+    return citas;
+}
     
         public static List<String> obtenerCitasPorBarbero(String emailBarbero) {
         List<String> citas = new ArrayList<>();
