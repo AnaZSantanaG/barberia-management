@@ -2,7 +2,6 @@
 package thebarbershop.Jframe;
 
 import thebarbershop.utilidades.*;
-import javax.swing.JOptionPane;
 /**
  *
  * @author jaelj
