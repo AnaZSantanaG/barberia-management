@@ -2,6 +2,11 @@
 
 Desarrollar una aplicación de escritorio con interfaz gráfica utilizando Java y programación orientada a objetos (POO) en Apache NetBeans, que permita a un peluquero gestionar su barbería de forma eficiente.
 
+## Roles del Equipo
+- **Líder del equipo:** Jael Josue Castro Polanco – Coordinó el proyecto y revisó el código.
+- **DBA:** Ana Z. Santana G – Diseñó la base de datos y scripts SQL y validaciones.
+- **SQA y Diseño:** Charlie Langumas –  diseño de interfaces y Realizó pruebas.
+
 ##  Configuración de la Base de Datos (para desarrolladores)
 
 Este proyecto incluye un script SQL con la estructura y datos iniciales necesarios para que puedas ejecutar la aplicación en tu computadora. A continuación te explicamos cómo configurar la base de datos localmente.
