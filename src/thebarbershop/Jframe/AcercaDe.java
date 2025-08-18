@@ -28,7 +28,7 @@ public class AcercaDe extends javax.swing.JFrame {
         setSize(422, 330);
         setResizable(false);
         
-        // Configurar contenido (usando tus componentes jPlAcercaDe, jScrollPane1, etc.)
+        // Configurar contenido (usando los componentes jPlAcercaDe, jScrollPane1, etc.)
         jTPacercaDe.setContentType("text/html");
         jTPacercaDe.setText("<html><center><h2>TheBarberShop</h2>"
                 + "<p>Versión 1.0</p>"
@@ -50,7 +50,7 @@ public class AcercaDe extends javax.swing.JFrame {
         });
         
         
-        // 3. Opcional: Permitir cerrar con ESC
+        // 3. Permitir cerrar con ESC
         JRootPane rootPane = SwingUtilities.getRootPane(jPlAcercaDe);
         rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
             KeyStroke.getKeyStroke("ESCAPE"), "close");
