@@ -18,6 +18,9 @@
         <Menu class="javax.swing.JMenu" name="jMiPerfil">
           <Properties>
             <Property name="text" type="java.lang.String" value="mi perfil"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Light" size="12" style="3"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMiPerfilActionPerformed"/>
@@ -52,6 +55,9 @@
         <Menu class="javax.swing.JMenu" name="jVerCitas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Citas Agendas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Light" size="12" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jCitasVistas">
@@ -67,6 +73,9 @@
         <Menu class="javax.swing.JMenu" name="jPortafolio">
           <Properties>
             <Property name="text" type="java.lang.String" value="mi portafolio"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Light" size="12" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPortafolioActionPerformed"/>
@@ -101,6 +110,9 @@
         <Menu class="javax.swing.JMenu" name="jSalir">
           <Properties>
             <Property name="text" type="java.lang.String" value="salir"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Light" size="12" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSalirActionPerformed"/>
@@ -136,6 +148,9 @@
         <Menu class="javax.swing.JMenu" name="jAyuda">
           <Properties>
             <Property name="text" type="java.lang.String" value="ayuda"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Light" size="12" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jAcercaDe">

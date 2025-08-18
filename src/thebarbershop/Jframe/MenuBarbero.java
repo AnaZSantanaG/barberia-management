@@ -196,6 +196,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMenuOpcion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
 
         jMiPerfil.setText("mi perfil");
+        jMiPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 3, 12)); // NOI18N
         jMiPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMiPerfilActionPerformed(evt);
@@ -224,6 +225,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMenuOpcion.add(jMiPerfil);
 
         jVerCitas.setText("Ver Citas Agendas");
+        jVerCitas.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
 
         jCitasVistas.setText("Citas");
         jCitasVistas.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +238,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMenuOpcion.add(jVerCitas);
 
         jPortafolio.setText("mi portafolio");
+        jPortafolio.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         jPortafolio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPortafolioActionPerformed(evt);
@@ -264,6 +267,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMenuOpcion.add(jPortafolio);
 
         jSalir.setText("salir");
+        jSalir.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         jSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSalirActionPerformed(evt);
@@ -293,6 +297,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMenuOpcion.add(jSalir);
 
         jAyuda.setText("ayuda");
+        jAyuda.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
 
         jAcercaDe.setText("acerca de...");
         jAcercaDe.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
