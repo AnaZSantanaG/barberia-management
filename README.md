@@ -1,152 +1,173 @@
-# barberia-management
+# TheBarberShop - Sistema de Gestión de Barberías
+
+> **Aplicación de escritorio desarrollada en Java con interfaz Swing para la gestión completa de citas y servicios en barberías.**
+
+## Tabla de Contenidos
+
+- [Descripción del Proyecto](#descripción-del-proyecto)
+- [Manual de Usuario](#manual-de-usuario)
+- [Características](#características)
+- [Requisitos del Sistema](#requisitos-del-sistema)
+- [Instalación](#instalación)
+- [Roles del Equipo](#roles-del-equipo)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Soporte](#soporte)
+
+##  Descripción del Proyecto
 
 Desarrollar una aplicación de escritorio con interfaz gráfica utilizando Java y programación orientada a objetos (POO) en Apache NetBeans, que permita a un peluquero gestionar su barbería de forma eficiente.
 
-## Roles del Equipo
-- **Líder del equipo:** Jael Josue Castro Polanco – Coordinó el proyecto y revisó el código.
-- **DBA:** Ana Z. Santana G – Diseñó la base de datos y scripts SQL y validaciones.
-- **SQA y Diseño:** Charlie Langumas –  diseño de interfaces y Realizó pruebas.
+---
 
-##  Configuración de la Base de Datos (para desarrolladores)
+##  MANUAL DE USUARIO
 
-Este proyecto incluye un script SQL con la estructura y datos iniciales necesarios para que puedas ejecutar la aplicación en tu computadora. A continuación te explicamos cómo configurar la base de datos localmente.
+### Información General
+- **Versión:** 1.0
+- **Desarrollado por:** Ana, Charlie y Jael (Ancharja Studios)
+- **Plataforma:** Aplicación de Escritorio (Java - Swing)
+- **Base de Datos:** MySQL
 
-**📁 Ubicación del script:** `barberia-management/database/schema.sql`
+###  Inicio Rápido
 
-### ¿Qué contiene el archivo schema.sql?
--  Creación de todas las tablas necesarias
--  Datos iniciales de prueba (usuarios, servicios, etc.)
--  Usuario administrador para pruebas
+#### 1. Inicio de Sesión
+1. Ingrese su correo electrónico registrado
+2. Ingrese su contraseña
+3. Haga clic en "Entrar"
+4. Será redirigido al menú correspondiente (Cliente o Barbero)
+
+#### 2. Registro de Usuario
+
+**Para Clientes:**
+- Complete: nombre, correo, ciudad, teléfono, contraseña
+- Seleccione "Cliente" como tipo de usuario
+- Haga clic en "Registrar"
+
+**Para Barberos:**
+- Complete los mismos datos del cliente
+- Agregue: experiencia y nombre de la barbería
+- Seleccione "Barbero" como tipo de usuario
+
+###  Funciones para Clientes
+
+#### Agendar Cita
+1. Seleccione "Agendar Cita" desde el menú principal
+2. Elija un barbero de la lista disponible
+3. Seleccione el servicio deseado
+4. Escoja fecha y hora disponible
+5. Agregue notas adicionales (opcional)
+6. Confirme la cita
+
+#### Mi Perfil
+- Editar datos personales (nombre, teléfono, ciudad)
+- Cambiar foto de perfil
+- Modificar contraseña
+- Eliminar cuenta (acción irreversible)
+
+###  Funciones para Barberos
+
+#### Gestionar Disponibilidad
+1. Acceda a "Disponibilidad" desde el menú
+2. Seleccione días de trabajo
+3. Elija turnos (mañana/tarde)
+4. El sistema asigna horarios automáticamente
+5. Guarde los cambios
+
+#### Portafolio de Trabajos
+- Subir fotos de trabajos realizados
+- Ver galería de trabajos anteriores
+- Agregar descripciones a las imágenes
+- Mostrar estilos a nuevos clientes
+
+#### Ver Citas y Actividad
+- Lista de citas por día
+- Resumen de actividad (total citas e ingresos)
+- Gestión de perfil profesional
+
+###  Funciones Generales
+- **Seguridad:** Contraseñas encriptadas con BCrypt
+- **Validaciones:** Correos únicos, formatos correctos
+- **Ayuda:** Información del software y desarrolladores
+- **Sesiones:** Cerrar sesión o salir del sistema
 
 ---
 
-##  Requisitos previos
+##  Características
 
-Antes de continuar, asegúrate de tener instalado:
+-  **Sistema de autenticación seguro** con encriptación BCrypt
+-  **Gestión dual de usuarios** (Clientes y Barberos)
+-  **Sistema de citas inteligente** con validación de disponibilidad
+-  **Portafolio visual** para barberos
+-  **Seguimiento de ingresos** y estadísticas
+-  **Gestión de perfiles** con fotos personalizadas
+-  **Control de horarios** y disponibilidad
 
-1. **MySQL Server** (versión 5.7 o superior)
-   -  [Descarga MySQL](https://dev.mysql.com/downloads/installer/)
+##  Requisitos del Sistema
 
-2. **MySQL Workbench** (opcional, para interfaz gráfica)
-   - O usar la consola de comandos (`mysql`)
+| Componente | Requisito |
+|------------|-----------|
+| Sistema Operativo | Windows, Linux o macOS |
+| Java | JDK 11 o superior |
+| IDE | NetBeans o IntelliJ IDEA |
+| Base de Datos | MySQL 8.0 |
+| Memoria RAM | 2 GB mínimo |
+| Espacio en disco | 100 MB |
 
-3. **Git** (para clonar el repositorio)
-   -  [Descarga Git](https://git-scm.com/downloads)
+##  Instalación
 
----
-
-##  Pasos de instalación
-
-### Paso 1: Clonar el repositorio
-```bash
-git clone https://github.com/tu-usuario/barberia-management.git
-cd barberia-management
-```
->  **Importante:** Reemplaza `tu-usuario` con el nombre real del dueño del repositorio.
-
-### Paso 2: Iniciar MySQL
-Asegúrate de que el servicio de MySQL esté en ejecución:
-
-**Windows:**
-- Ve al Administrador de tareas → Servicios
-- Busca "MySQL" y asegúrate de que esté corriendo
-
-**macOS/Linux:**
-```bash
-# Opción 1 (systemd)
-sudo systemctl start mysql
-
-# Opción 2 (Homebrew en macOS)
-brew services start mysql
-```
-
-### Paso 3: Crear la base de datos
-1. Abre la terminal y entra al cliente de MySQL:
-```bash
-mysql -u root -p
-```
-
-2. Ingresa tu contraseña de MySQL (por defecto puede ser `root` o estar vacía)
-
-3. Crea la base de datos:
+### Paso 1: Configurar Base de Datos
 ```sql
-CREATE DATABASE IF NOT EXISTS barberia_system;
-USE barberia_system;
+-- Ejecutar script SQL del archivo help.txt
+-- Crear base de datos barberia_system
+-- Importar todas las tablas requeridas
 ```
 
-4. Sal de MySQL:
-```sql
-EXIT;
-```
-
-### Paso 4: Ejecutar el script schema.sql
-Desde la terminal, ejecuta:
+### Paso 2: Configurar Proyecto
 ```bash
-mysql -u root -p barberia_system < database/schema.sql
-```
-> Se te pedirá tu contraseña de MySQL
+# Clonar repositorio
+git clone https://github.com/ancharja/TheBarberShop.git
 
- **Esto creará:**
-- Todas las tablas necesarias
-- Datos de prueba
-- Usuario administrador
-
-### Paso 5: Verificar la instalación
-1. Vuelve a entrar a MySQL:
-```bash
-mysql -u root -p
+# Importar en NetBeans
+# Agregar mysql-connector-java como dependencia
+# Ejecutar IniciarSesion.java
 ```
 
-2. Verifica que los datos se insertaron correctamente:
-```sql
-USE barberia_system;
-SELECT email, clave, tipo FROM users WHERE tipo = 'admin';
-```
 
-3. Deberías ver algo como:
-```
-+----------------------+----------+-------+
-| email                | clave    | tipo  |
-+----------------------+----------+-------+
-| admin@barbershop.com | admin123 | admin |
-+----------------------+----------+-------+
-```
+##  Roles del Equipo
 
-### Paso 6: Ejecutar la aplicación
-1. Abre el proyecto en tu IDE preferido (NetBeans, IntelliJ, Eclipse, etc.)
-2. Ejecuta la clase principal (por ejemplo, `Login.java` o `Main.java`)
-3. La aplicación se conectará automáticamente a la base de datos `barberia_system`
+| Miembro | Rol | Responsabilidades |
+|---------|-----|------------------|
+| **Charlie** | SQA | diseño de interfaces y Realizó pruebas. |
+| **Ana** | BDA | Diseñó la base de datos y scripts SQL y validaciones. |
+| **Jael** | Lider de Proyecto | Coordinó el proyecto y revisó el código. |
+
+##  Tecnologías Utilizadas
+
+- **Lenguaje:** Java
+- **Framework GUI:** Swing
+- **Base de Datos:** MySQL
+- **IDE:** Apache NetBeans
+- **Seguridad:** BCrypt
+- **Paradigma:** Programación Orientada a Objetos (POO)
+
+##  Soporte
+
+Para reportar errores o solicitar ayuda:
+
+-  **Email:** soporte@thebarbershop.dev
+-  **Issues:** [GitHub Issues](https://github.com/ancharja/TheBarberShop/issues)
+-  **Documentación completa:** Ver archivos en `/docs`
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 
-##  Credenciales de prueba
+<div align="center">
 
-**Usuario Administrador:**
-- **Email:** admin@barbershop.com
-- **Contraseña:** admin123
+**TheBarberShop v1.0**  
+*Desarrollado con ❤️ por Ancharja Studios*
 
----
+[Ana](https://github.com/AnaZSantanaG) • [Charlie](https://github.com/charlielangumas) • [Jael](https://github.com/Jaeljc)
 
-##  Solución de problemas comunes
-
-### Error: "Access denied for user 'root'"
-- Verifica que la contraseña de MySQL sea correcta
-- Intenta con: `mysql -u root` (sin contraseña)
-
-### Error: "Can't connect to MySQL server"
-- Asegúrate de que el servicio MySQL esté corriendo
-- Verifica que MySQL esté instalado correctamente
-
-### Error: "Database doesn't exist"
-- Asegúrate de haber ejecutado el Paso 3 correctamente
-- Verifica que el nombre de la base de datos sea `barberia_system`
-
----
-
-##  ¿Necesitas ayuda?
-
-Si tienes problemas con la configuración, contacta con el equipo de desarrollo o abre un issue en el repositorio.
-
----
-
-**¡Listo! Tu entorno de desarrollo está configurado y puedes empezar a trabajar en el proyecto.**
+</div>
