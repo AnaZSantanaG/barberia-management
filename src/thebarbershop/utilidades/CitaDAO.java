@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Mamore e Ika
@@ -327,5 +328,44 @@ public class CitaDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    
+        public static List<String> obtenerCitasPorBarbero(String emailBarbero) {
+        List<String> citas = new ArrayList<>();
+        String sql = """
+            SELECT c.fecha_cita, p.nombre_completo, cl.nombre, est.nombre_estilo, c.notas
+            FROM citas c
+            JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero
+            JOIN clientes cl ON c.id_cliente = cl.id_clientes
+            JOIN estilos_corte est ON c.id_estilo = est.id_estilos
+            JOIN users u ON p.id_users = u.idusers
+            WHERE u.email = ?
+            ORDER BY c.fecha_cita
+            """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, emailBarbero);
+            ResultSet rs = ps.executeQuery();
+
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+            while (rs.next()) {
+                String fecha = formatoFecha.format(rs.getTimestamp("fecha_cita"));
+                String barbero = rs.getString("p.nombre_completo");
+                String cliente = rs.getString("cl.nombre");
+                String estilo = rs.getString("est.nombre_estilo");
+                String notas = rs.getString("notas");
+
+                citas.add(String.format("Fecha: %s | Cliente: %s | Estilo: %s | Notas: %s",
+                        fecha, cliente, estilo, notas != null ? notas : "Sin notas"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar citas: " + e.getMessage());
+        }
+
+        return citas;
     }
 }
