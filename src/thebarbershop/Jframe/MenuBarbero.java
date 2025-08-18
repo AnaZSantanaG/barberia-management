@@ -67,6 +67,8 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMiPerfil = new javax.swing.JMenu();
         jPerfil = new javax.swing.JMenu();
         Jperfil = new javax.swing.JMenuItem();
+        jVerCitas = new javax.swing.JMenu();
+        jCitasVistas = new javax.swing.JMenuItem();
         jPortafolio = new javax.swing.JMenu();
         jPortafolioFoto = new javax.swing.JMenu();
         Jportafolio = new javax.swing.JMenuItem();
@@ -219,6 +221,18 @@ public class MenuBarbero extends javax.swing.JFrame {
         jMiPerfil.add(jPerfil);
 
         jMenuOpcion.add(jMiPerfil);
+
+        jVerCitas.setText("Ver Citas Agendas");
+
+        jCitasVistas.setText("Citas");
+        jCitasVistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCitasVistasActionPerformed(evt);
+            }
+        });
+        jVerCitas.add(jCitasVistas);
+
+        jMenuOpcion.add(jVerCitas);
 
         jPortafolio.setText("mi portafolio");
         jPortafolio.addActionListener(new java.awt.event.ActionListener() {
@@ -412,6 +426,11 @@ public class MenuBarbero extends javax.swing.JFrame {
     acercaDe.setLocationRelativeTo(this);
     acercaDe.setVisible(true);
     }//GEN-LAST:event_JacercaDeActionPerformed
+
+    private void jCitasVistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCitasVistasActionPerformed
+        // TODO add your handling code here:
+        new CitasBarbero(emailUsuario).setVisible(true);
+    }//GEN-LAST:event_jCitasVistasActionPerformed
     
     private void cargarDatosIniciales() {
     Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
@@ -638,6 +657,7 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JMenu jAcercaDe;
     private javax.swing.JMenu jAyuda;
     private javax.swing.JMenu jCerrar;
+    private javax.swing.JMenuItem jCitasVistas;
     private javax.swing.JMenuBar jMenuOpcion;
     private javax.swing.JMenu jMiPerfil;
     private javax.swing.JPanel jPanel1;
@@ -647,5 +667,6 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JMenu jSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTPdescripcion;
+    private javax.swing.JMenu jVerCitas;
     // End of variables declaration//GEN-END:variables
 }
