@@ -28,6 +28,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         cargarDatosIniciales();
         
         // Asegurar visibilidad y habilitar menús
+        jVerCitas.setVisible(true);
         jMenuOpcion.setVisible(true);
         jMiPerfil.setEnabled(true);
         jPortafolio.setEnabled(true);
@@ -429,6 +430,7 @@ public class MenuBarbero extends javax.swing.JFrame {
 
     private void jCitasVistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCitasVistasActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new CitasBarbero(emailUsuario).setVisible(true);
     }//GEN-LAST:event_jCitasVistasActionPerformed
     
