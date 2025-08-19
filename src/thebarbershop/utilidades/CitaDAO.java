@@ -328,7 +328,6 @@ public class CitaDAO {
             String notas = rs.getString("notas");
             String estado = rs.getString("estado");
 
-            // Formato para mostrar
             String citaStr = String.format("Fecha: %s | Barbero: %s | Estilo: %s | Precio: $%.2f | Estado: %s | Notas: %s",
                     fecha, barbero, estilo, precio, estado,
                     notas != null ? notas : "Sin notas");

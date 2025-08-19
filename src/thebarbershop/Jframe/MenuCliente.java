@@ -7,12 +7,9 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import thebarbershop.Cliente;
-import thebarbershop.utilidades.CitaDAO;
 import thebarbershop.utilidades.ClienteDAO;
 
 /**
@@ -20,6 +17,7 @@ import thebarbershop.utilidades.ClienteDAO;
  * @author jaelj
  */
 public class MenuCliente extends javax.swing.JFrame {
+    
     private final String emailUsuario;
     /**
      * Creates new form MenuPrincipal
@@ -31,6 +29,7 @@ public class MenuCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         cargarDatosUsuario();
         
+        
         // Asegurar visibilidad y habilitar menús
         jMenuOpciones.setVisible(true);
         jMiPerfil.setEnabled(true);
@@ -38,6 +37,7 @@ public class MenuCliente extends javax.swing.JFrame {
         Jsalir.setEnabled(true);
         jayuda.setEnabled(true);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,13 +52,14 @@ public class MenuCliente extends javax.swing.JFrame {
         JPusuario = new javax.swing.JPanel();
         JLBienvenido = new javax.swing.JLabel();
         JLiconoUserimage = new javax.swing.JLabel();
+        btnCancelarCita = new javax.swing.JButton();
         JPmenu = new javax.swing.JPanel();
         JBtitle = new javax.swing.JLabel();
         JBcitasagendadas = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         JBeslogan = new javax.swing.JLabel();
         JBimagen = new javax.swing.JLabel();
+        LSverCitas = new javax.swing.JScrollPane();
+        jLCitas = new javax.swing.JList<>();
         jMenuOpciones = new javax.swing.JMenuBar();
         jMiPerfil = new javax.swing.JMenu();
         jPerfil = new javax.swing.JMenuItem();
@@ -89,6 +90,19 @@ public class MenuCliente extends javax.swing.JFrame {
         JLiconoUserimage.setText("ICON");
         JPusuario.add(JLiconoUserimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 140));
 
+        btnCancelarCita.setBackground(new java.awt.Color(153, 0, 0));
+        btnCancelarCita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        btnCancelarCita.setText("Cancelar cita");
+        btnCancelarCita.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 51, 0), new java.awt.Color(102, 0, 0), null, null));
+        btnCancelarCita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarCita.setName("Cancelar Cita"); // NOI18N
+        btnCancelarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCitaActionPerformed(evt);
+            }
+        });
+        JPusuario.add(btnCancelarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 140, 30));
+
         getContentPane().add(JPusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
 
         JPmenu.setBackground(new java.awt.Color(255, 255, 255));
@@ -106,28 +120,7 @@ public class MenuCliente extends javax.swing.JFrame {
         JBcitasagendadas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JBcitasagendadas.setText("MIS CITAS AGENDADAS:");
         JBcitasagendadas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPmenu.add(JBcitasagendadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 330, 20));
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(51, 51, 51));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("NO HAY CITAS AGENDADAS");
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTextArea1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jTextArea1AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jScrollPane1.setViewportView(jTextArea1);
-
-        JPmenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 390, 340));
+        JPmenu.add(JBcitasagendadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 330, 20));
 
         JBeslogan.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBeslogan.setForeground(new java.awt.Color(0, 0, 0));
@@ -138,6 +131,15 @@ public class MenuCliente extends javax.swing.JFrame {
         JBimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/fashion-8254063_1280.jpg"))); // NOI18N
         JBimagen.setText("jLabel7");
         JPmenu.add(JBimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 510));
+
+        jLCitas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        LSverCitas.setViewportView(jLCitas);
+
+        JPmenu.add(LSverCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 390, 340));
 
         getContentPane().add(JPmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 720, 510));
 
@@ -225,10 +227,6 @@ public class MenuCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextArea1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTextArea1AncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextArea1AncestorAdded
-
     private void jMiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMiPerfilActionPerformed
         
     }//GEN-LAST:event_jMiPerfilActionPerformed
@@ -275,6 +273,11 @@ public class MenuCliente extends javax.swing.JFrame {
     acercaDe.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void btnCancelarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCitaActionPerformed
+        // TODO add your handling code here
+      
+    }//GEN-LAST:event_btnCancelarCitaActionPerformed
+
     private void cargarDatosUsuario() {
     Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
     if (cliente != null) {
@@ -294,23 +297,9 @@ public class MenuCliente extends javax.swing.JFrame {
             JLiconoUserimage.setIcon(new ImageIcon(getClass().getResource("/com/images/default_profile.jpeg")));
         }
 
-        // Cargar todas las citas del cliente
-        StringBuilder sb = new StringBuilder();
-        List<String> citas = CitaDAO.obtenerCitasPorCliente(emailUsuario);
-
-        if (citas.isEmpty()) {
-            sb.append("NO HAY CITAS AGENDADAS");
-        } else {
-            for (String cita : citas) {
-                sb.append(cita).append("\n\n");
-            }
-        }
-
-        jTextArea1.setText(sb.toString());
-    } else {
-        JOptionPane.showMessageDialog(this, "No se encontraron datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
 }
+    }
+    
     
     
 
@@ -342,16 +331,19 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JPanel JPmenu;
     private javax.swing.JPanel JPusuario;
     private javax.swing.JMenu Jsalir;
+    private javax.swing.JScrollPane LSverCitas;
+    private javax.swing.JButton btnCancelarCita;
     private javax.swing.JMenu jAgendar;
     private javax.swing.JMenuItem jAgendarCita;
     private javax.swing.JMenuItem jCerrar;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JList<String> jLCitas;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar jMenuOpciones;
     private javax.swing.JMenu jMiPerfil;
     private javax.swing.JMenuItem jPerfil;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenu jayuda;
     // End of variables declaration//GEN-END:variables
+
+    
 }
