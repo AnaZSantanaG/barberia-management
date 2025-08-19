@@ -82,7 +82,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 txtCorreoActionPerformed(evt);
             }
         });
-        JPprincipal.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 490, 30));
+        JPprincipal.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 470, 30));
         JPprincipal.add(JScorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 510, 20));
 
         JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
@@ -100,7 +100,7 @@ public class IniciarSesion extends javax.swing.JFrame {
             }
         });
         JPprincipal.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 490, 30));
-        JPprincipal.add(sprContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 510, 20));
+        JPprincipal.add(sprContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 470, 20));
 
         btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrar.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
