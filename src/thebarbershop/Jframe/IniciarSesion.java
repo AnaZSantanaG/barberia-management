@@ -39,6 +39,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         JPcontraseña = new javax.swing.JPasswordField();
         sprContrasena = new javax.swing.JSeparator();
         btnEntrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         lblRegistrate = new javax.swing.JLabel();
         JLimagenBarberia = new javax.swing.JLabel();
         JLempresa = new javax.swing.JLabel();
@@ -61,7 +62,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 btnCerrarAppActionPerformed(evt);
             }
         });
-        JPprincipal.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 120, 40));
+        JPprincipal.add(btnCerrarApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 120, 40));
 
         JLTitleIniciarsesion.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
         JLTitleIniciarsesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -111,9 +112,14 @@ public class IniciarSesion extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
-        JPprincipal.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 40));
+        JPprincipal.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, 40));
 
-        lblRegistrate.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        jLabel1.setText("¿Aun sin cuenta?");
+        JPprincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, 20));
+
+        lblRegistrate.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 14)); // NOI18N
         lblRegistrate.setForeground(new java.awt.Color(0, 102, 204));
         lblRegistrate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrate.setText("Registrate");
@@ -123,10 +129,10 @@ public class IniciarSesion extends javax.swing.JFrame {
                 lblRegistrateMouseClicked(evt);
             }
         });
-        JPprincipal.add(lblRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, -1, 40));
+        JPprincipal.add(lblRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 140, 40));
 
-        JLimagenBarberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen3(1).jpg"))); // NOI18N
-        JPprincipal.add(JLimagenBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 500));
+        JLimagenBarberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/login2.jpg"))); // NOI18N
+        JPprincipal.add(JLimagenBarberia, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 370, 500));
 
         JLempresa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JLempresa.setForeground(new java.awt.Color(0, 0, 0));
@@ -296,6 +302,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JSeparator JScorreo;
     private javax.swing.JButton btnCerrarApp;
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblRegistrate;
     private javax.swing.JSeparator sprContrasena;

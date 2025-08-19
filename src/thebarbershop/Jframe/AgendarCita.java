@@ -46,6 +46,8 @@ public class AgendarCita extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         JLnotasadicionales = new javax.swing.JLabel();
         txtGuardarFecha = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTPdescripcion = new javax.swing.JTextPane();
         JBcancelar = new javax.swing.JButton();
         JBagendarcita = new javax.swing.JButton();
         JComboElegirbarbero = new javax.swing.JComboBox<>();
@@ -114,17 +116,22 @@ public class AgendarCita extends javax.swing.JFrame {
 
         JSPnotasadicionales.setViewportView(jScrollPane1);
 
-        jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 190, 120));
+        jPanel1.add(JSPnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 240, 120));
 
         JLnotasadicionales.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLnotasadicionales.setForeground(new java.awt.Color(255, 255, 255));
         JLnotasadicionales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLnotasadicionales.setText("Notas adicionales");
-        jPanel1.add(JLnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 190, 30));
+        jPanel1.add(JLnotasadicionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 190, 30));
 
         txtGuardarFecha.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         txtGuardarFecha.setEnabled(false);
         jPanel1.add(txtGuardarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 140, 210, 30));
+
+        jScrollPane2.setEnabled(false);
+        jScrollPane2.setViewportView(jTPdescripcion);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 220, 130));
 
         JBcancelar.setBackground(new java.awt.Color(153, 0, 51));
         JBcancelar.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
@@ -135,7 +142,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 JBcancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 190, 50));
+        jPanel1.add(JBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, 140, 30));
 
         JBagendarcita.setBackground(new java.awt.Color(51, 102, 0));
         JBagendarcita.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
@@ -146,7 +153,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 JBagendarcitaActionPerformed(evt);
             }
         });
-        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 190, 50));
+        jPanel1.add(JBagendarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 140, 30));
 
         JComboElegirbarbero.setBackground(new java.awt.Color(153, 153, 153));
         JComboElegirbarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -157,13 +164,13 @@ public class AgendarCita extends javax.swing.JFrame {
                 JComboElegirbarberoActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 230, 50));
+        jPanel1.add(JComboElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 230, 50));
 
         JLElegirbarbero.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLElegirbarbero.setForeground(new java.awt.Color(255, 255, 255));
         JLElegirbarbero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLElegirbarbero.setText("Seleccione Barbero:");
-        jPanel1.add(JLElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 230, 30));
+        jPanel1.add(JLElegirbarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 230, 30));
 
         JLfechadelacita.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLfechadelacita.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,25 +187,25 @@ public class AgendarCita extends javax.swing.JFrame {
                 JComboHORAActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboHORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 230, 50));
+        jPanel1.add(JComboHORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 230, 50));
 
         JLhora.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLhora.setForeground(new java.awt.Color(255, 255, 255));
         JLhora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLhora.setText("Hora:");
-        jPanel1.add(JLhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 30));
+        jPanel1.add(JLhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 230, 30));
 
         JComboLugarcita.setBackground(new java.awt.Color(153, 153, 153));
         JComboLugarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JComboLugarcita.setForeground(new java.awt.Color(0, 0, 0));
         JComboLugarcita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion lugar...", "1", "2", "3", "4", "5", " " }));
-        jPanel1.add(JComboLugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 230, 50));
+        jPanel1.add(JComboLugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 230, 50));
 
         JLlugarcita.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JLlugarcita.setForeground(new java.awt.Color(255, 255, 255));
         JLlugarcita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLlugarcita.setText("Lugar de Cita:");
-        jPanel1.add(JLlugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 230, 30));
+        jPanel1.add(JLlugarcita, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 230, 30));
 
         Jcalendario.setBackground(new java.awt.Color(51, 51, 51));
         Jcalendario.setForeground(new java.awt.Color(51, 51, 51));
@@ -216,13 +223,13 @@ public class AgendarCita extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Volver al menu");
+        jButton1.setText("Volver ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 190, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 140, 30));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
@@ -453,6 +460,8 @@ public class AgendarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTPdescripcion;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtGuardarFecha;
     // End of variables declaration//GEN-END:variables

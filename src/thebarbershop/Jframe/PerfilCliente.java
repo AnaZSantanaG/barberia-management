@@ -52,7 +52,6 @@ public class PerfilCliente extends javax.swing.JFrame {
         JFtelefono = new javax.swing.JFormattedTextField();
         JLcontraseña = new javax.swing.JLabel();
         JPcontraseña = new javax.swing.JPasswordField();
-        JBCerrarSesion = new javax.swing.JButton();
         JBguardar = new javax.swing.JButton();
         JBeliminarPerfil = new javax.swing.JButton();
         JBvolveralmenu = new javax.swing.JButton();
@@ -83,37 +82,37 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JBiconoActionPerformed(evt);
             }
         });
-        jPanel1.add(JBicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 150, 140));
+        jPanel1.add(JBicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 150, 140));
 
         JBciudad.setBackground(new java.awt.Color(255, 255, 255));
         JBciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JBciudad.setForeground(new java.awt.Color(255, 255, 255));
         JBciudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JBciudad.setText("Ciudad");
-        jPanel1.add(JBciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 190, 30));
+        jPanel1.add(JBciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 190, 30));
 
         JCOMBOciudad.setBackground(new java.awt.Color(51, 51, 51));
         JCOMBOciudad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JCOMBOciudad.setForeground(new java.awt.Color(255, 255, 255));
         JCOMBOciudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Santo Domingo", "Santiago", "San Cristóbal", "San Pedro de Macorís" }));
-        jPanel1.add(JCOMBOciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 200, 50));
+        jPanel1.add(JCOMBOciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 200, 50));
 
         JLnombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLnombre.setForeground(new java.awt.Color(255, 255, 255));
         JLnombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLnombre.setText("Nombre");
-        jPanel1.add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 180, 30));
+        jPanel1.add(JLnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 180, 30));
 
         JTnombre.setBackground(new java.awt.Color(153, 153, 153));
         JTnombre.setForeground(new java.awt.Color(0, 0, 0));
         JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 240, 50));
+        jPanel1.add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 240, 50));
 
         JLcorreo.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLcorreo.setForeground(new java.awt.Color(255, 255, 255));
         JLcorreo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcorreo.setText("Correo");
-        jPanel1.add(JLcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 240, 30));
+        jPanel1.add(JLcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 240, 30));
 
         JTcorreo.setBackground(new java.awt.Color(153, 153, 153));
         JTcorreo.setForeground(new java.awt.Color(0, 0, 0));
@@ -122,13 +121,13 @@ public class PerfilCliente extends javax.swing.JFrame {
                 JTcorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(JTcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 240, 50));
+        jPanel1.add(JTcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 240, 50));
 
         JLtelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLtelefono.setForeground(new java.awt.Color(255, 255, 255));
         JLtelefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtelefono.setText("Telefono");
-        jPanel1.add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 240, 30));
+        jPanel1.add(JLtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 240, 30));
 
         JFtelefono.setBackground(new java.awt.Color(153, 153, 153));
         JFtelefono.setForeground(new java.awt.Color(0, 0, 0));
@@ -137,62 +136,50 @@ public class PerfilCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 240, 50));
+        jPanel1.add(JFtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 240, 50));
 
         JLcontraseña.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLcontraseña.setForeground(new java.awt.Color(255, 255, 255));
         JLcontraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLcontraseña.setText("Contraseña");
-        jPanel1.add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 240, 30));
+        jPanel1.add(JLcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 240, 30));
 
         JPcontraseña.setBackground(new java.awt.Color(153, 153, 153));
         JPcontraseña.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 240, 50));
-
-        JBCerrarSesion.setBackground(new java.awt.Color(51, 0, 0));
-        JBCerrarSesion.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        JBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        JBCerrarSesion.setText("Salir del Perfil");
-        JBCerrarSesion.setActionCommand("Cerrar Sesion");
-        JBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCerrarSesionActionPerformed(evt);
-            }
-        });
-        jPanel1.add(JBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 430, 180, 50));
+        jPanel1.add(JPcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 240, 50));
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBguardar.setForeground(new java.awt.Color(255, 255, 255));
-        JBguardar.setText("Guardar Cambios");
+        JBguardar.setText("Guardar");
         JBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 220, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 150, 40));
 
         JBeliminarPerfil.setBackground(new java.awt.Color(153, 0, 51));
         JBeliminarPerfil.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         JBeliminarPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        JBeliminarPerfil.setText("Eliminar Perfil");
+        JBeliminarPerfil.setText("Eliminar ");
         JBeliminarPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBeliminarPerfilActionPerformed(evt);
             }
         });
-        jPanel1.add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 220, 50));
+        jPanel1.add(JBeliminarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 150, 40));
 
         JBvolveralmenu.setBackground(new java.awt.Color(153, 153, 153));
         JBvolveralmenu.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JBvolveralmenu.setForeground(new java.awt.Color(51, 51, 51));
-        JBvolveralmenu.setText("Volver al Menu");
+        JBvolveralmenu.setText("Volver ");
         JBvolveralmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBvolveralmenuActionPerformed(evt);
             }
         });
-        jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 220, 50));
+        jPanel1.add(JBvolveralmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 150, 40));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -292,10 +279,6 @@ public class PerfilCliente extends javax.swing.JFrame {
         }         
     }//GEN-LAST:event_JBguardarActionPerformed
 
-    private void JBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCerrarSesionActionPerformed
-        thebarbershop.utilidades.CerrarSesion.mostrarOpcionesSalida(this);
-    }//GEN-LAST:event_JBCerrarSesionActionPerformed
-
     private void JBeliminarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarPerfilActionPerformed
         thebarbershop.utilidades.EliminarPerfil.eliminarPerfilCliente(this, emailUsuario);
     }//GEN-LAST:event_JBeliminarPerfilActionPerformed
@@ -384,7 +367,6 @@ public class PerfilCliente extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBCerrarSesion;
     private javax.swing.JLabel JBciudad;
     private javax.swing.JButton JBeliminarPerfil;
     private javax.swing.JButton JBguardar;

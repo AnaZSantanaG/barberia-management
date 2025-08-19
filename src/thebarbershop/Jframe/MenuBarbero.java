@@ -56,6 +56,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         chkAM = new javax.swing.JCheckBox();
         chkPM = new javax.swing.JCheckBox();
         JComboEstilosdisp = new javax.swing.JComboBox<>();
+        JLiconoUserimage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPdescripcion = new javax.swing.JTextPane();
         chkFinSemana = new javax.swing.JCheckBox();
@@ -103,14 +104,14 @@ public class MenuBarbero extends javax.swing.JFrame {
         JLresumendeactividad.setForeground(new java.awt.Color(255, 255, 255));
         JLresumendeactividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLresumendeactividad.setText("Resumen de Actividad:");
-        jPanel1.add(JLresumendeactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 240, 30));
-        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 320, 340));
+        jPanel1.add(JLresumendeactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 240, 30));
+        jPanel1.add(JSPresumenActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 320, 360));
 
         JLestilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLestilosdisp.setForeground(new java.awt.Color(255, 255, 255));
         JLestilosdisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLestilosdisp.setText("Estilos disponibles:");
-        jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 230, 30));
+        jPanel1.add(JLestilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 30));
 
         chkAM.setForeground(new java.awt.Color(255, 255, 255));
         chkAM.setText("A.M.");
@@ -119,7 +120,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkAMActionPerformed(evt);
             }
         });
-        jPanel1.add(chkAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+        jPanel1.add(chkAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
 
         chkPM.setForeground(new java.awt.Color(255, 255, 255));
         chkPM.setText("P.M.");
@@ -128,7 +129,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkPMActionPerformed(evt);
             }
         });
-        jPanel1.add(chkPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
+        jPanel1.add(chkPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
 
         JComboEstilosdisp.setBackground(new java.awt.Color(51, 51, 51));
         JComboEstilosdisp.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -138,12 +139,18 @@ public class MenuBarbero extends javax.swing.JFrame {
                 JComboEstilosdispActionPerformed(evt);
             }
         });
-        jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 230, 60));
+        jPanel1.add(JComboEstilosdisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 230, 60));
+
+        JLiconoUserimage.setBackground(new java.awt.Color(255, 255, 255));
+        JLiconoUserimage.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        JLiconoUserimage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLiconoUserimage.setText("ICON");
+        jPanel1.add(JLiconoUserimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 160, 140));
 
         jScrollPane1.setEnabled(false);
         jScrollPane1.setViewportView(jTPdescripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 250, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 250, 140));
 
         chkFinSemana.setForeground(new java.awt.Color(255, 255, 255));
         chkFinSemana.setText("FIN DE SEMANA");
@@ -152,7 +159,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkFinSemanaActionPerformed(evt);
             }
         });
-        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+        jPanel1.add(chkFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, -1, -1));
 
         chkLunesAViernes.setForeground(new java.awt.Color(255, 255, 255));
         chkLunesAViernes.setText("LUNES A VIERNES");
@@ -161,18 +168,18 @@ public class MenuBarbero extends javax.swing.JFrame {
                 chkLunesAViernesActionPerformed(evt);
             }
         });
-        jPanel1.add(chkLunesAViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
+        jPanel1.add(chkLunesAViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, -1, -1));
 
         JLhorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         JLhorarios.setForeground(new java.awt.Color(255, 255, 255));
         JLhorarios.setText("Horarios disponibles");
-        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 230, 30));
+        jPanel1.add(JLhorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 230, 30));
 
         JcomboHorarios.setBackground(new java.awt.Color(51, 51, 51));
         JcomboHorarios.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JcomboHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregue horarios..." }));
         JcomboHorarios.setPreferredSize(new java.awt.Dimension(180, 23));
-        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 230, 60));
+        jPanel1.add(JcomboHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 230, 60));
 
         JBguardar.setBackground(new java.awt.Color(13, 73, 11));
         JBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
@@ -183,7 +190,7 @@ public class MenuBarbero extends javax.swing.JFrame {
                 JBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 210, 50));
+        jPanel1.add(JBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 140, -1));
 
         JLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
         jPanel1.add(JLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
@@ -648,6 +655,7 @@ public class MenuBarbero extends javax.swing.JFrame {
     private javax.swing.JLabel JLestilosdisp;
     private javax.swing.JLabel JLfondo;
     private javax.swing.JLabel JLhorarios;
+    private javax.swing.JLabel JLiconoUserimage;
     private javax.swing.JLabel JLresumendeactividad;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JScrollPane JSPresumenActividad;

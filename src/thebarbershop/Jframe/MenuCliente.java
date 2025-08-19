@@ -127,7 +127,7 @@ public class MenuCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTextArea1);
 
-        JPmenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 330, 340));
+        JPmenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 390, 340));
 
         JBeslogan.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JBeslogan.setForeground(new java.awt.Color(0, 0, 0));

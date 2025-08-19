@@ -7,7 +7,6 @@ package thebarbershop.utilidades;
 import thebarbershop.db.DatabaseConnection;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -304,7 +303,7 @@ public class CitaDAO {
     public static List<String> obtenerCitasPorCliente(String emailCliente) {
     List<String> citas = new ArrayList<>();
     String sql = """
-        SELECT c.fecha_cita, p.nombre_completo, est.nombre_estilo, c.notas, c.estado
+        SELECT c.fecha_cita, p.nombre_completo, est.nombre_estilo, est.precio, c.notas, c.estado
         FROM citas c
         JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero
         JOIN estilos_corte est ON c.id_estilo = est.id_estilos
@@ -325,11 +324,16 @@ public class CitaDAO {
             String fecha = formatoFecha.format(rs.getTimestamp("fecha_cita"));
             String barbero = rs.getString("p.nombre_completo");
             String estilo = rs.getString("est.nombre_estilo");
+            double precio = rs.getDouble("est.precio");
             String notas = rs.getString("notas");
             String estado = rs.getString("estado");
 
-            citas.add(String.format("Fecha: %s | Barbero: %s | Estilo: %s | Estado: %s | Notas: %s",
-                    fecha, barbero, estilo, estado, notas != null ? notas : "Sin notas"));
+            // Formato para mostrar
+            String citaStr = String.format("Fecha: %s | Barbero: %s | Estilo: %s | Precio: $%.2f | Estado: %s | Notas: %s",
+                    fecha, barbero, estilo, precio, estado,
+                    notas != null ? notas : "Sin notas");
+
+            citas.add(citaStr);
         }
 
     } catch (SQLException e) {
@@ -340,7 +344,7 @@ public class CitaDAO {
     return citas;
 }
     
-        public static List<String> obtenerCitasPorBarbero(String emailBarbero) {
+    public static List<String> obtenerCitasPorBarbero(String emailBarbero) {
         List<String> citas = new ArrayList<>();
         String sql = """
             SELECT c.fecha_cita, p.nombre_completo, cl.nombre, est.nombre_estilo, c.notas
@@ -377,5 +381,70 @@ public class CitaDAO {
         }
 
         return citas;
+    }
+    
+    public static boolean marcarCitaComoRealizada(int idCita, String emailBarbero) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            conn.setAutoCommit(false);
+
+            // Verificar que el barbero sea el dueño de la cita y que sea hoy
+            String sql = "SELECT c.fecha_cita, c.estado FROM citas c " +
+                    "JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero " +
+                    "JOIN users u ON p.id_users = u.idusers " +
+                    "WHERE c.id_cita = ? AND u.email = ?";
+
+            Timestamp fechaCita;
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, idCita);
+                ps.setString(2, emailBarbero);
+                ResultSet rs = ps.executeQuery();
+                if (!rs.next()) {
+                    JOptionPane.showMessageDialog(null, "Cita no encontrada o no le pertenece.");
+                    return false;
+                }
+                fechaCita = rs.getTimestamp("fecha_cita");
+                String estado = rs.getString("estado");
+                if (!"PENDIENTE".equals(estado)) {
+                    JOptionPane.showMessageDialog(null, "La cita ya fue " + estado.toLowerCase() + ".");
+                    return false;
+                }
+            }
+
+            // Validar que sea hoy y que la hora haya llegado
+            Calendar ahora = Calendar.getInstance();
+            Calendar cita = Calendar.getInstance();
+            cita.setTime(fechaCita);
+
+            // Permitir solo si la cita es hoy y la hora ya pasó o es actual
+            if (!esMismoDia(ahora, cita)) {
+                JOptionPane.showMessageDialog(null, "Solo puede marcar como realizada el día de la cita.");
+                return false;
+            }
+
+            // Actualizar estado
+            String sqlUpdate = "UPDATE citas SET estado = 'REALIZADO' WHERE id_cita = ?";
+            try (PreparedStatement ps = conn.prepareStatement(sqlUpdate)) {
+                ps.setInt(1, idCita);
+                ps.executeUpdate();
+            }
+
+            conn.commit();
+            JOptionPane.showMessageDialog(null, "Cita marcada como realizada.");
+            return true;
+
+        } catch (SQLException e) {
+            try { conn.rollback(); } catch (Exception ex) {}
+            e.printStackTrace();
+            return false;
+        } finally {
+            try { if (conn != null) conn.close(); } catch (SQLException e) {}
+        }
+    }
+
+    private static boolean esMismoDia(Calendar c1, Calendar c2) {
+        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
+               c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR);
     }
 }
