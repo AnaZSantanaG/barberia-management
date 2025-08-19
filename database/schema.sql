@@ -31,12 +31,13 @@ CREATE TABLE `citas` (
   `metodo_pago` enum('EFECTIVO','TARJETA DEBITO','TARJETA CREDITO','TRANSFERENCIA','OTRO') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'EFECTIVO',
   `estado` enum('PENDIENTE','REALIZADO','CANCELADO') COLLATE utf8mb4_unicode_ci DEFAULT 'PENDIENTE',
   `notas` text COLLATE utf8mb4_unicode_ci,
+  `mora_aplicada` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_cita`),
-  KEY `id_cliente` (`id_cliente`),
-  KEY `id_peluquero` (`id_peluquero`),
   KEY `id_estilo` (`id_estilo`),
-  CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_clientes`),
-  CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_peluquero`) REFERENCES `peluqueros` (`id_Peluquero`),
+  KEY `citas_ibfk_1` (`id_cliente`),
+  KEY `citas_ibfk_2` (`id_peluquero`),
+  CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_clientes`) ON DELETE CASCADE,
+  CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_peluquero`) REFERENCES `peluqueros` (`id_Peluquero`) ON DELETE CASCADE,
   CONSTRAINT `citas_ibfk_3` FOREIGN KEY (`id_estilo`) REFERENCES `estilos_corte` (`id_estilos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,7 +62,7 @@ CREATE TABLE `clientes` (
   PRIMARY KEY (`id_clientes`),
   KEY `id_users` (`id_users`),
   CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`idusers`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +81,7 @@ CREATE TABLE `disponibilidad_pel` (
   PRIMARY KEY (`id_disponibilidad`),
   KEY `id_peluquero` (`id_peluquero`),
   CONSTRAINT `disponibilidad_pel_ibfk_1` FOREIGN KEY (`id_peluquero`) REFERENCES `peluqueros` (`id_Peluquero`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,6 +140,24 @@ CREATE TABLE `metodo_pago` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `moras`
+--
+
+DROP TABLE IF EXISTS `moras`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `moras` (
+  `id_mora` int NOT NULL AUTO_INCREMENT,
+  `id_cita` int NOT NULL,
+  `monto` decimal(10,2) NOT NULL,
+  `fecha_aplicacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_mora`),
+  KEY `id_cita` (`id_cita`),
+  CONSTRAINT `moras_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `citas` (`id_cita`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `peluqueros`
 --
 
@@ -159,7 +178,7 @@ CREATE TABLE `peluqueros` (
   PRIMARY KEY (`id_Peluquero`),
   KEY `id_users` (`id_users`),
   CONSTRAINT `peluqueros_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`idusers`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +219,7 @@ CREATE TABLE `users` (
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idusers`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,4 +273,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-15 18:20:02
+-- Dump completed on 2025-08-19  1:01:57
