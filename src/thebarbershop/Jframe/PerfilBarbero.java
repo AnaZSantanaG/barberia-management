@@ -235,7 +235,22 @@ public class PerfilBarbero extends javax.swing.JFrame {
     }//GEN-LAST:event_JBiconoActionPerformed
 
     private void JBeliminarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarPerfilActionPerformed
-        thebarbershop.utilidades.EliminarPerfil.eliminarPerfilCliente(this, emailUsuario);
+        int confirmacion = JOptionPane.showConfirmDialog(
+        this,
+        "<html><b>¿Estás seguro de que deseas eliminar tu cuenta?</b><br><br>" +
+        "Esta acción es <b>irreversible</b>.<br>" +
+        "Se eliminarán todos tus datos y no podrás recuperar tu cuenta.<br><br>" +
+        "¿Deseas continuar?</html>",
+        "Confirmar eliminación",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        thebarbershop.utilidades.EliminarPerfil.eliminarPerfilBarbero(this, emailUsuario);
+        // Nota: este método ya cierra la ventana y abre IniciarSesion
+    }
+        
     }//GEN-LAST:event_JBeliminarPerfilActionPerformed
 
     private void JLguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLguardarActionPerformed
