@@ -3,9 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package thebarbershop.Jframe;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import thebarbershop.utilidades.BarberoDAO;
 import thebarbershop.Barbero;
@@ -150,7 +155,7 @@ public class MenuBarbero extends javax.swing.JFrame {
         jScrollPane1.setEnabled(false);
         jScrollPane1.setViewportView(jTPdescripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 250, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 250, 200));
 
         chkFinSemana.setForeground(new java.awt.Color(255, 255, 255));
         chkFinSemana.setText("FIN DE SEMANA");
@@ -448,17 +453,27 @@ public class MenuBarbero extends javax.swing.JFrame {
     
     private void cargarDatosIniciales() {
     Barbero barbero = BarberoDAO.obtenerBarberoPorEmail(emailUsuario);
-    if (barbero != null) {
-        JLtitulo.setText(barbero.getNombreBarberia());
-        cargarEstilosDisponibles();
-        cargarHorariosDisponibles();
-        mostrarResumenActividad();
-        
-        // Ocultar inicialmente el panel de descripción
-        jScrollPane1.setVisible(false);
-    } else {
-        JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        if (barbero != null) {
+            JLtitulo.setText(barbero.getNombreBarberia());
+            cargarEstilosDisponibles();
+            cargarHorariosDisponibles();
+            mostrarResumenActividad();
+            // Mostrar foto de perfil
+                byte[] fotoPerfil = barbero.getFotoPerfil();
+                if (fotoPerfil != null && fotoPerfil.length > 0) {
+                    try {
+                        BufferedImage img = ImageIO.read(new ByteArrayInputStream(fotoPerfil));
+                        ImageIcon icon = new ImageIcon(img.getScaledInstance(JLiconoUserimage.getWidth(), JLiconoUserimage.getHeight(), Image.SCALE_SMOOTH));
+                        JLiconoUserimage.setIcon(icon);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            // Ocultar inicialmente el panel de descripción
+            jScrollPane1.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontraron datos del barbero.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void cargarEstilosDisponibles() {
