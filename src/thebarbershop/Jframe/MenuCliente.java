@@ -8,8 +8,10 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import thebarbershop.Cliente;
+import thebarbershop.utilidades.CitaDAO;
 import thebarbershop.utilidades.ClienteDAO;
 
 /**
@@ -28,7 +30,7 @@ public class MenuCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         cargarDatosUsuario();
-        
+        cargarCitas();
         
         // Asegurar visibilidad y habilitar menús
         jMenuOpciones.setVisible(true);
@@ -36,6 +38,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jAgendar.setEnabled(true);
         Jsalir.setEnabled(true);
         jayuda.setEnabled(true);
+        jLCitas.setEnabled(true);
     }
 
 
@@ -132,6 +135,7 @@ public class MenuCliente extends javax.swing.JFrame {
         JBimagen.setText("jLabel7");
         JPmenu.add(JBimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 510));
 
+        jLCitas.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         jLCitas.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -279,28 +283,41 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarCitaActionPerformed
 
     private void cargarDatosUsuario() {
-    Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
-    if (cliente != null) {
-        JLBienvenido.setText("HOLA, " + cliente.getNombre().split(" ")[0].toUpperCase());
+        Cliente cliente = ClienteDAO.obtenerClientePorEmail(emailUsuario);
+        if (cliente != null) {
+            JLBienvenido.setText("HOLA, " + cliente.getNombre().split(" ")[0].toUpperCase());
 
-        // Mostrar foto de perfil
-        byte[] fotoPerfil = cliente.getFotoPerfil();
-        if (fotoPerfil != null && fotoPerfil.length > 0) {
-            try {
-                BufferedImage img = ImageIO.read(new ByteArrayInputStream(fotoPerfil));
-                ImageIcon icon = new ImageIcon(img.getScaledInstance(JLiconoUserimage.getWidth(), JLiconoUserimage.getHeight(), Image.SCALE_SMOOTH));
-                JLiconoUserimage.setIcon(icon);
-            } catch (IOException e) {
-                e.printStackTrace();
+            // Mostrar foto de perfil
+            byte[] fotoPerfil = cliente.getFotoPerfil();
+            if (fotoPerfil != null && fotoPerfil.length > 0) {
+                try {
+                    BufferedImage img = ImageIO.read(new ByteArrayInputStream(fotoPerfil));
+                    ImageIcon icon = new ImageIcon(img.getScaledInstance(JLiconoUserimage.getWidth(), JLiconoUserimage.getHeight(), Image.SCALE_SMOOTH));
+                    JLiconoUserimage.setIcon(icon);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                JLiconoUserimage.setIcon(new ImageIcon(getClass().getResource("/com/images/default_profile.jpeg")));
             }
-        } else {
-            JLiconoUserimage.setIcon(new ImageIcon(getClass().getResource("/com/images/default_profile.jpeg")));
         }
-
-}
     }
     
-    
+    private void cargarCitas() {
+        // Obtener las citas del barbero desde la base de datos
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        var citas = CitaDAO.obtenerCitasPorCliente(emailUsuario);
+
+        if (citas.isEmpty()) {
+            modeloLista.addElement("No tienes citas agendadas.");
+        } else {
+            for (String cita : citas) {
+                modeloLista.addElement(cita);
+            }
+        }
+
+        jLCitas.setModel(modeloLista);
+    }
     
 
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
