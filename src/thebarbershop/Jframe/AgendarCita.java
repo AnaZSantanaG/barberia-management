@@ -10,18 +10,26 @@ import javax.swing.JOptionPane; // Para los mensajes emergentes
 import thebarbershop.utilidades.CitaDAO;
 import java.util.Calendar;
 import java.util.List;
+import thebarbershop.utilidades.EstiloCorteDAO;
 /**
  *
  * @author jaelj
  */
 public class AgendarCita extends javax.swing.JFrame {
+    
     private final String emailUsuario;
+    
     public AgendarCita(String email) {
         this.emailUsuario = email;
         initComponents();
+
+        // Configuración inicial
+        jTPdescripcion.setEditable(false);
+        jScrollPane2.setVisible(false); // Esto es clave: oculta el panel de descripción
         Jcalendario.addPropertyChangeListener(this::JcalendarioPropertyChange);
         setLocationRelativeTo(null);
-        // Cargar datos desde la BD
+
+        // Cargar datos
         CitaDAO.cargarBarberos(JComboElegirbarbero);
         CitaDAO.cargarServicios(JcomboTipodeservicio);
     }
@@ -331,7 +339,7 @@ public class AgendarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_JComboHORAActionPerformed
 
     private void JcomboTipodeservicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboTipodeservicioActionPerformed
-        
+        mostrarInformacionEstilo();
     }//GEN-LAST:event_JcomboTipodeservicioActionPerformed
 
     private void JComboElegirbarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboElegirbarberoActionPerformed
@@ -425,6 +433,31 @@ public class AgendarCita extends javax.swing.JFrame {
     }
 }
     
+    private void mostrarInformacionEstilo() {
+    String seleccion = (String) JcomboTipodeservicio.getSelectedItem();
+    
+    // Si no hay selección válida o es el placeholder, ocultar el panel
+    if (seleccion == null || seleccion.equals("Seleccione Servicio...")) {
+        jScrollPane2.setVisible(false);
+        jTPdescripcion.setText("");
+        return;
+    }
+
+    // Obtener información del estilo desde la base de datos
+    EstiloCorteDAO.Estilo estilo = EstiloCorteDAO.obtenerEstiloPorNombre(seleccion);
+    if (estilo != null) {
+        // Formatear la información
+       String info = "Descripción:\n" + estilo.descripcion + "\n\n" +
+                      "Precio: RD$" + String.format("%.2f", estilo.precio) + "\n\n" +
+                      "Tiempo estimado: 1 hora 15 minutos";
+        jTPdescripcion.setText(info);
+        jTPdescripcion.setCaretPosition(0); // Para que el scroll inicie arriba
+        jScrollPane2.setVisible(true); // 👉 Mostrar solo si hay info
+    } else {
+        jScrollPane2.setVisible(false);
+        jTPdescripcion.setText("");
+    }
+}
     /*ha sido comentado debido a cambios implementados por Ana. se ha querido dar la bienvenida a los usuarios y debido a conflictos con la variable emailUsuario, ha 
     **optado por comentar los main, un poco mas de investigacion de su parte le ha revelado que no todos lo frame deben llevar main, si no el frame principal que en este caso seria
     ** el iniciar sesion y que los frame que deben pasar por el no deberian llevar main*/
