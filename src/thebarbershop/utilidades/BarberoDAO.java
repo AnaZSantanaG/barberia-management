@@ -52,7 +52,7 @@ public class BarberoDAO {
 
     // Actualizar datos del barbero
     public static boolean actualizarBarbero(Barbero barbero) {
-        String sqlBarbero = "UPDATE peluqueros SET nombre_completo = ?, telefono = ?, Ciudad = ?, years_experiencia = ?, nombreBarberia = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
+        String sqlBarbero = "UPDATE peluqueros SET nombre_completo = ?, telefono = ?, Ciudad = ?, years_experiencia = ?, nombreBarberia = ?, foto_perfil = ? WHERE id_users = (SELECT idusers FROM users WHERE email = ?)";
         String sqlUser = "UPDATE users SET clave = ? WHERE email = ?";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -65,7 +65,15 @@ public class BarberoDAO {
                 ps.setString(3, barbero.getCiudad());
                 ps.setInt(4, barbero.getExperiencia());
                 ps.setString(5, barbero.getNombreBarberia());
-                ps.setString(6, barbero.getEmail());
+                
+                // Manejar foto de perfil (puede ser null)
+                if (barbero.getFotoPerfil() != null && barbero.getFotoPerfil().length > 0) {
+                    ps.setBytes(6, barbero.getFotoPerfil());
+                } else {
+                    ps.setNull(6, Types.BLOB);
+                }
+                
+                ps.setString(7, barbero.getEmail());
                 int filas = ps.executeUpdate();
                 if (filas == 0) {
                     conn.rollback();

@@ -285,20 +285,20 @@ public class PerfilBarbero extends javax.swing.JFrame {
             contrasenaEncriptada = Seguridad.encriptarContraseña(contrasena);
         }
 
-        // Obtener foto de perfil del botón
+        // 4. Obtener foto de perfil (si existe)
         byte[] fotoPerfil = null;
         if (JBicono.getIcon() != null && JBicono.getIcon() instanceof ImageIcon) {
             ImageIcon icon = (ImageIcon) JBicono.getIcon();
 
-            // Verificar que no sea el texto por defecto
-            if (!JBicono.getText().equals("ICON")) {
+            // Verificar que no sea la imagen por defecto
+            if (!JBicono.getText().equals("Subir foto")) {
                 BufferedImage bi = new BufferedImage(
                     icon.getIconWidth(),
                     icon.getIconHeight(),
                     BufferedImage.TYPE_INT_RGB);
                 Graphics g = bi.createGraphics();
 
-                // Fondo blanco para evitar transparencias
+                // Fondo blanco para evitar transparencias problemáticas
                 g.setColor(java.awt.Color.WHITE);
                 g.fillRect(0, 0, bi.getWidth(), bi.getHeight());
 
@@ -309,9 +309,9 @@ public class PerfilBarbero extends javax.swing.JFrame {
                 try {
                     ImageIO.write(bi, "jpg", baos);
                     fotoPerfil = baos.toByteArray();
-                    System.out.println("Foto de perfil procesada: " + fotoPerfil.length + " bytes");
+                    //System.out.println("Foto de perfil procesada: " + fotoPerfil.length + " bytes");
                 } catch (IOException e) {
-                    System.out.println("Error al procesar imagen: " + e.getMessage());
+                    //System.out.println("Error al procesar imagen: " + e.getMessage());
                     e.printStackTrace();
                 }
             }
