@@ -12,7 +12,14 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import thebarbershop.Cliente;
 import thebarbershop.utilidades.CitaDAO;
+import thebarbershop.utilidades.CancelarCita;
 import thebarbershop.utilidades.ClienteDAO;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -279,7 +286,51 @@ public class MenuCliente extends javax.swing.JFrame {
 
     private void btnCancelarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCitaActionPerformed
         // TODO add your handling code here
-      
+        String citaSeleccionada = jLCitas.getSelectedValue();
+
+    if (citaSeleccionada == null) {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una cita para cancelar.");
+        return;
+    }
+
+    // Extraer la fecha de la cita seleccionada
+    // Formato esperado: "Fecha: 15/04/2025 03:30 PM | Barbero: ..."
+    String[] partes = citaSeleccionada.split("\\|");
+    if (partes.length == 0) {
+        JOptionPane.showMessageDialog(this, "Error al leer la cita.");
+        return;
+    }
+
+    String fechaStr = partes[0].replace("Fecha: ", "").trim();
+
+    try {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        Date fecha = sdf.parse(fechaStr);
+        Timestamp fechaCita = new Timestamp(fecha.getTime());
+
+        // Validar que falte al menos 24h
+        Calendar ahora = Calendar.getInstance();
+        Calendar cita = Calendar.getInstance();
+        cita.setTime(fecha);
+        cita.add(Calendar.HOUR_OF_DAY, -24); // Restar 24h
+
+        if (ahora.after(cita)) {
+            JOptionPane.showMessageDialog(this, "Solo puedes cancelar con al menos 24 horas de anticipación.");
+            return;
+        }
+
+        // Intentar cancelar en la base de datos
+        if (CancelarCita.CitaDAO.cancelarCitaEnBD(emailUsuario, fechaCita)) {
+            JOptionPane.showMessageDialog(this, "Cita cancelada con éxito.");
+            cargarCitas(); // Recargar lista
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo cancelar la cita. Puede que ya haya sido cancelada o no exista.");
+        }
+
+    } catch (ParseException e) {
+        JOptionPane.showMessageDialog(this, "Error al procesar la fecha de la cita.");
+        e.printStackTrace();
+    }      
     }//GEN-LAST:event_btnCancelarCitaActionPerformed
 
     private void cargarDatosUsuario() {
