@@ -346,14 +346,14 @@ public class CitaDAO {
     public static List<String> obtenerCitasPorBarbero(String emailBarbero) {
         List<String> citas = new ArrayList<>();
         String sql = """
-            SELECT c.fecha_cita, p.nombre_completo, cl.nombre, est.nombre_estilo, c.notas
+            SELECT c.fecha_cita, p.nombre_completo, cl.nombre, est.nombre_estilo, c.notas, c.estado
             FROM citas c
             JOIN peluqueros p ON c.id_peluquero = p.id_Peluquero
             JOIN clientes cl ON c.id_cliente = cl.id_clientes
             JOIN estilos_corte est ON c.id_estilo = est.id_estilos
             JOIN users u ON p.id_users = u.idusers
             WHERE u.email = ?
-            ORDER BY c.fecha_cita
+            ORDER BY c.fecha_cita DESC
             """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -369,18 +369,23 @@ public class CitaDAO {
                 String cliente = rs.getString("cl.nombre");
                 String estilo = rs.getString("est.nombre_estilo");
                 String notas = rs.getString("notas");
+                String estado = rs.getString("estado");
 
-                citas.add(String.format("Fecha: %s | Cliente: %s | Estilo: %s | Notas: %s",
-                        fecha, cliente, estilo, notas != null ? notas : "Sin notas"));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al cargar citas: " + e.getMessage());
+                // Formatear la cita con el estado
+            String citaStr = String.format("Fecha: %s | Cliente: %s | Estilo: %s | Estado: %s | Notas: %s",
+                    fecha,
+                    cliente,
+                    estilo,
+                    estado,
+                    notas != null ? notas : "Sin notas");
+            citas.add(citaStr);
         }
-
-        return citas;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al cargar citas: " + e.getMessage());
     }
+    return citas;
+}
     
     public static boolean marcarCitaComoRealizada(int idCita, String emailBarbero) {
         Connection conn = null;

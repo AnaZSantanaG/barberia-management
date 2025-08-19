@@ -5,10 +5,13 @@
 package thebarbershop.Jframe;
 
 import javax.swing.JOptionPane;
-import thebarbershop.utilidades.BarberoDAO;
-import thebarbershop.Barbero;
 import thebarbershop.utilidades.*;
 import javax.swing.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JLabel;
 
 /**
  *
@@ -40,20 +43,48 @@ public class CitasBarbero extends javax.swing.JFrame {
     
     
     private void cargarCitas() {
-        // Obtener las citas del barbero desde la base de datos
-        DefaultListModel<String> modeloLista = new DefaultListModel<>();
-        var citas = CitaDAO.obtenerCitasPorBarbero(emailUsuario);
+    DefaultListModel<String> modeloLista = new DefaultListModel<>();
+    var citas = CitaDAO.obtenerCitasPorBarbero(emailUsuario);
 
-        if (citas.isEmpty()) {
-            modeloLista.addElement("No tienes citas agendadas.");
-        } else {
-            for (String cita : citas) {
-                modeloLista.addElement(cita);
-            }
+    if (citas.isEmpty()) {
+        modeloLista.addElement("No tienes citas agendadas.");
+    } else {
+        for (String cita : citas) {
+            modeloLista.addElement(cita);
         }
-
-        JListCitas.setModel(modeloLista);
     }
+
+    JListCitas.setModel(modeloLista);
+
+    // Configurar renderizador personalizado
+    JListCitas.setCellRenderer(new DefaultListCellRenderer() {
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value,
+                int index, boolean isSelected, boolean hasFocus) {
+                JLabel label = (JLabel) super.getListCellRendererComponent(
+                list, value, index, isSelected, hasFocus);
+
+            String texto = value.toString();
+
+            if (texto.contains("CANCELADO")) {
+                label.setForeground(Color.RED);
+                label.setFont(label.getFont().deriveFont(Font.ITALIC));
+            } else if (texto.contains("REALIZADO")) {
+                label.setForeground(new Color(0, 150, 0)); // Verde oscuro
+            } else if (texto.contains("PENDIENTE")) {
+                label.setForeground(Color.BLUE);
+            } else {
+                label.setForeground(Color.BLACK);
+            }
+
+            if (isSelected) {
+                label.setBackground(new Color(200, 200, 255));
+            }
+
+            return label;
+        }
+    });
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +98,7 @@ public class CitasBarbero extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         JListCitas = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
+        jlFondoImagenes = new javax.swing.JLabel();
         jMenuOpcion = new javax.swing.JMenuBar();
         jVerCitas = new javax.swing.JMenu();
         jCitasVistas = new javax.swing.JMenuItem();
@@ -100,8 +131,8 @@ public class CitasBarbero extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 880, 410));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 6, 910, 500));
+        jlFondoImagenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/imagen10(1).jpg"))); // NOI18N
+        jPanel1.add(jlFondoImagenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 6, 910, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 510));
 
@@ -335,7 +366,6 @@ public class CitasBarbero extends javax.swing.JFrame {
     private javax.swing.JMenu jAyuda;
     private javax.swing.JMenu jCerrar;
     private javax.swing.JMenuItem jCitasVistas;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuOpcion;
     private javax.swing.JMenu jMiPerfil;
     private javax.swing.JPanel jPanel1;
@@ -345,5 +375,6 @@ public class CitasBarbero extends javax.swing.JFrame {
     private javax.swing.JMenu jSalir;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu jVerCitas;
+    private javax.swing.JLabel jlFondoImagenes;
     // End of variables declaration//GEN-END:variables
 }
