@@ -34,6 +34,8 @@ Desarrollar una aplicación de escritorio con interfaz gráfica utilizando Java 
 2. Ingrese su contraseña
 3. Haga clic en "Entrar"
 4. Será redirigido al menú correspondiente (Cliente o Barbero)
+<img width="920" height="529" alt="image" src="https://github.com/user-attachments/assets/6a42f273-be0a-441c-ab6e-0bfd935b3b5d" />
+
 
 #### 2. Registro de Usuario
 
@@ -41,11 +43,15 @@ Desarrollar una aplicación de escritorio con interfaz gráfica utilizando Java 
 - Complete: nombre, correo, ciudad, teléfono, contraseña
 - Seleccione "Cliente" como tipo de usuario
 - Haga clic en "Registrar"
+<img width="920" height="527" alt="image" src="https://github.com/user-attachments/assets/8c71b679-87dc-40d7-9232-94acabae7a66" />
+
 
 **Para Barberos:**
 - Complete los mismos datos del cliente
 - Agregue: experiencia y nombre de la barbería
 - Seleccione "Barbero" como tipo de usuario
+<img width="923" height="526" alt="image" src="https://github.com/user-attachments/assets/ea7587e4-3760-4e14-80b0-d88340d2827a" />
+
 
 ###  Funciones para Clientes
 
